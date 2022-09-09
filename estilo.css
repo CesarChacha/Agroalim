@@ -1,0 +1,63 @@
+*{
+  margin: o;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+head{
+
+}
+body{
+  background-image: url('R.jpg');
+
+}
+.formato.h1
+
+.formato {
+  width: 1300px;
+  height: 600px;
+  background: #24303c;
+  padding: 30px;
+  margin: auto;
+  margin-top: 30px;
+  border-radius: 4px;
+  font-family: monospace;
+  color: white;
+  box-shadow: 20px 26px 50px #000;
+}
+.estilo{
+  width: auto;
+  background: #24303c;
+  padding: 5px;
+  border-radius: 4px;
+  margin-bottom: auto;
+  border: 1px solid #CED8F6;
+  font-family: 'monospace';
+  font-size: 15px;
+  color: white;
+
+}
+.boton{
+
+  width: 15%;
+padding: 15px;
+  weight: 32px;
+  background: #1f53c5;
+  border: white;
+  color: white;
+  font-size: 20px;
+  font-style: italic;
+  position: relative; left: -60px; top: -55px;
+
+}
+.pepino{
+  width: auto;
+  background: #24303c;
+  padding: 5px;
+  border-radius: 4px;
+  margin-bottom: auto;
+  border: 1px solid #CED8F6;
+  font-family: 'monospace';
+  font-size: 15px;
+  color: white;
+}
