@@ -1,1 +1,129 @@
-<p>registro works!</p>
+<form  [formGroup]="formRegistro" (ngSubmit)="save()">
+    <div class="row">
+        <div class="col">
+            <p class="h5">Datos generales</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <mat-form-field class="w-100">
+                <mat-label>Nombre</mat-label>
+                <input matInput type="text"  formControlName="nombre">
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <mat-form-field class="w-100">
+                <mat-label>Razón social</mat-label>
+                <input matInput type="text"  formControlName="razon_social">
+            </mat-form-field>
+        </div>
+        <div class="col">
+            <mat-form-field class="w-100">
+                <mat-label>RFC</mat-label>
+                <input matInput type="text"  formControlName="rfc">
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <mat-form-field class="w-100">
+                <mat-label>Descripción</mat-label>
+                <textarea matInput type="text"  formControlName="descripcion"></textarea>
+            </mat-form-field>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col">
+            <p class="h6">Domicilio</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <mat-form-field class="w-100">
+                <mat-label>Calle y número</mat-label>
+                <input matInput type="text"  formControlName="calle_numero">
+            </mat-form-field>
+        </div>
+        <div class="col">
+            <mat-form-field class="w-100">
+                <mat-label>Código postal</mat-label>
+                <input matInput type="text"  formControlName="codigo_postal">
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <mat-form-field class="w-100">
+                <mat-label>Colonia</mat-label>
+                <input matInput type="text"  formControlName="colonia">
+            </mat-form-field>
+        </div>
+        <div class="col">
+            <mat-form-field class="w-100">
+                <mat-label>Municipio</mat-label>
+                <input matInput type="text"  formControlName="municipio">
+            </mat-form-field>
+        </div>
+        <div class="col">
+            <mat-form-field class="w-100">
+                <mat-label>Estado</mat-label>
+                <input matInput type="text"  formControlName="estado">
+            </mat-form-field>
+        </div>
+    </div>
+
+    <hr>
+    <div class="row">
+        <div class="col">
+            <p class="h6">Teléfonos</p>
+        </div>
+        <div class="col">
+            <p class="h6 text-end ptb"><a (click)="addTelefono()">+</a></p>
+        </div>
+    </div>
+    <div formArrayName="telefonos">
+        <div class="row" *ngFor="let item of getTelefonos.controls; let PosT = index" [formGroupName]="PosT">
+            <div class="col">
+                <mat-form-field class="w-100">
+                    <mat-label>Teléfono {{PosT+1}}</mat-label>
+                    <input matInput type="text" formControlName="telefono">
+                    <button type="button" (click)="delTelefono(PosT)" matSuffix mat-icon-button aria-label="Clear">
+                      <mat-icon>close</mat-icon>
+                    </button>
+                </mat-form-field>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+    <div class="row">
+        <div class="col">
+            <p class="h6">Sitios en la web</p>
+        </div>
+        <div class="col">
+            <p class="h6 text-end ptb"><a (click)="addSitio()">+</a></p>
+        </div>
+    </div>
+    <div formArrayName="sitios">
+        <div class="row" *ngFor="let item of getSitios.controls; let PosS = index" [formGroupName]="PosS">
+            <div class="col">
+                <mat-form-field class="w-100">
+                    <mat-label>Sitio {{PosS+1}}</mat-label>
+                    <input matInput type="text" formControlName="sitio">
+                    <button type="button" (click)="delSitio(PosS)" matSuffix mat-icon-button aria-label="Clear">
+                      <mat-icon>close</mat-icon>
+                    </button>
+                </mat-form-field>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col">
+            <button type="submit" class="w-100" mat-raised-button color="primary" [disabled]="formRegistro.invalid">Guardar <mat-icon>send</mat-icon></button>
+        </div>
+    </div>
+</form>
