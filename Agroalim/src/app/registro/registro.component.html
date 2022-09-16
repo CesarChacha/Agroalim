@@ -1,7 +1,7 @@
 <form  [formGroup]="formRegistro" (ngSubmit)="save()">
     <div class="row">
         <div class="col">
-            <p class="h5">Datos generales</p>
+            <p class="h5">Datos de la empresa</p>
         </div>
     </div>
     <div class="row">
@@ -120,7 +120,171 @@
             </div>
         </div>
     </div>
+    
     <hr>
+    <div class="row">
+        <div class="col">
+            <p class="h6">Datos de contacto responsable ante el clúster</p>
+        </div>
+    </div>
+    <div formArrayName="responsables_cluster">
+        <div *ngFor="let item of getResponsablesCluster.controls; let PosC = index" [formGroupName]="PosC">
+            <div class="row">
+                <div class="col">
+                    <p><b>{{rol_empresa[PosC].nombre}}</b> {{rol_empresa[PosC].descripcion}}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <mat-form-field class="w-100">
+                        <mat-label>Nombre(s)</mat-label>
+                        <input matInput type="text" formControlName="nombre">
+                    </mat-form-field>
+                </div>
+                <div class="col">
+                    <mat-form-field class="w-100">
+                        <mat-label>Apellido(s)</mat-label>
+                        <input matInput type="text" formControlName="apellido">
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <mat-form-field class="w-100">
+                        <mat-label>Telefono Oficina</mat-label>
+                        <input matInput type="text" formControlName="telefono_oficina">
+                    </mat-form-field>
+                </div>
+                <div class="col">
+                    <mat-form-field class="w-100">
+                        <mat-label>Telefono Móvil (WhatsApp)</mat-label>
+                        <input matInput type="text" formControlName="telefono_movil">
+                    </mat-form-field>
+                </div>
+                <div class="col">
+                    <mat-form-field class="w-100">
+                        <mat-label>Correo</mat-label>
+                        <input matInput type="text" formControlName="correo">
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+    <div class="row">
+        <div class="col">
+            <p class="h6">Responsables de participar comité</p>
+        </div>
+    </div>
+    <div formArrayName="responsables_comite">
+        <div *ngFor="let item of getResponsablesComite.controls; let PosR = index" [formGroupName]="PosR">
+            <div class="row">
+                <div class="col">
+                    <p><b>{{comites[PosR].nombre}}</b> {{comites[PosR].descripcion}}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <mat-form-field class="w-100">
+                        <mat-label>Nombre(s)</mat-label>
+                        <input matInput type="text" formControlName="nombre">
+                    </mat-form-field>
+                </div>
+                <div class="col">
+                    <mat-form-field class="w-100">
+                        <mat-label>Apellido(s)</mat-label>
+                        <input matInput type="text" formControlName="apellido">
+                    </mat-form-field>
+                </div>
+                <div class="col">
+                    <mat-form-field class="w-100">
+                        <mat-label>Puesto</mat-label>
+                        <input matInput type="text" formControlName="puesto">
+                    </mat-form-field>
+                </div>
+                <div class="col">
+                    <mat-form-field class="w-100">
+                        <mat-label>Profesión</mat-label>
+                        <input matInput type="text" formControlName="profesion">
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <mat-form-field class="w-100">
+                        <mat-label>Telefono Oficina</mat-label>
+                        <input matInput type="text" formControlName="telefono_oficina">
+                    </mat-form-field>
+                </div>
+                <div class="col">
+                    <mat-form-field class="w-100">
+                        <mat-label>Telefono Móvil (WhatsApp)</mat-label>
+                        <input matInput type="text" formControlName="telefono_movil">
+                    </mat-form-field>
+                </div>
+                <div class="col">
+                    <mat-form-field class="w-100">
+                        <mat-label>Correo</mat-label>
+                        <input matInput type="text" formControlName="correo">
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+    <div class="row">
+        <div class="col">
+            <p class="h6">Datos de actividades de la empresa</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <mat-form-field class="w-100">
+                <mat-label>Indique tipo de negocio</mat-label>
+                <mat-select formControlName="tipo_negocio">
+                    <mat-option *ngFor="let tipo of tipos_negocio" [value]="tipo.id_tipo_negocio">{{tipo.nombre}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <mat-form-field class="w-100">
+                <mat-label>En que parte de la cadena productiva esta ubicado (Marque con una X)</mat-label>
+                <mat-select formControlName="cadena_prodictiva" multiple>
+                    <mat-option *ngFor="let cadena of candenas_productiva" [value]="cadena.id_cadena_productiva">{{cadena.nombre}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </div>
+
+    <hr>
+    <div class="row">
+        <div class="col">
+            <p class="h6">Datos de capacidad de la empresa</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <mat-form-field class="w-100">
+                <mat-label>Número de empleados</mat-label>
+                <input matInput type="text" formControlName="numero_empleados">
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <mat-form-field class="w-100">
+                <mat-label>Facturación anual promedio en millones de pesos</mat-label>
+                <mat-select formControlName="facturacion_anual">
+                    <mat-option *ngFor="let fca of facturacion_anual" [value]="fca.id_facturacion">{{fca.nombre}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </div>
+
     <div class="row">
         <div class="col">
             <button type="submit" class="w-100" mat-raised-button color="primary" [disabled]="formRegistro.invalid">Guardar <mat-icon>send</mat-icon></button>
