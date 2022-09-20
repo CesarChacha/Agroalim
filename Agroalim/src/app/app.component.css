@@ -1,15 +1,19 @@
-.example-spacer {
+.sb-spacer {
     flex: 1 1 auto;
 }
 
 
-.example-sidenav-content {
+.sidenav-content {
     display: flex;
     height: 100%;
     align-items: center;
     justify-content: center;
 }
 
-.example-sidenav {
+.sb-sidenav {
     padding: 20px;
+}
+
+.gray-icon {
+    color: gray;
 }
