@@ -17,28 +17,28 @@
 
 <mat-drawer-container style="height: 93vh" autosize>
   <br>
-  <mat-drawer #drawer class="sb-sidenav" mode="side">
+  <mat-drawer #drawer class="sb-sidenav" mode="push">
 
     <mat-selection-list [multiple]="false">
-      <mat-list-option>
+      <mat-list-option [routerLink]="'home/dashboard'">
         <mat-icon mat-list-icon class="gray-icon">dashboard</mat-icon>
         Dashboard
       </mat-list-option>
 
-      <mat-list-option>
+      <mat-list-option [routerLink]="'home/solicitudes'">
         <mat-icon mat-list-icon class="gray-icon">back_hand</mat-icon>
         Solicitudes
       </mat-list-option>
-      <mat-list-option>
+      <mat-list-option [routerLink]="'home/empresas'">
         <mat-icon mat-list-icon class="gray-icon">business</mat-icon>
         Empresas
       </mat-list-option>
       
-      <mat-list-option>
+      <mat-list-option [routerLink]="'home/catalogos'">
         <mat-icon mat-list-icon class="gray-icon">menu_book</mat-icon>
         Catalogos
       </mat-list-option>
-      <mat-list-option>
+      <mat-list-option [routerLink]="'home/mi-cuenta'">
         <mat-icon mat-list-icon class="gray-icon">account_circle</mat-icon>
         Mi cuenta
       </mat-list-option>
