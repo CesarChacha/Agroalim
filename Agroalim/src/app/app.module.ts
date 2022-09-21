@@ -19,13 +19,21 @@ import {MatListModule} from '@angular/material/list';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { SolicitudesComponent } from './solicitudes/solicitudes.component';
+import { EmpresasComponent } from './empresas/empresas.component';
+import { CatalogosComponent } from './catalogos/catalogos.component';
+import { MiCuentaComponent } from './mi-cuenta/mi-cuenta.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RegistroComponent,
     LoginComponent,
-    DashboardComponent
+    DashboardComponent,
+    SolicitudesComponent,
+    EmpresasComponent,
+    CatalogosComponent,
+    MiCuentaComponent
   ],
   imports: [
     BrowserModule,
