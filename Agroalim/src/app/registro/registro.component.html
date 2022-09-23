@@ -120,7 +120,7 @@
             </div>
         </div>
     </div>
-    
+
     <hr>
     <div class="row">
         <div class="col">
@@ -284,10 +284,25 @@
             </mat-form-field>
         </div>
     </div>
-
+    <div class="row">
+        <div class="col">
+            <p class="h6">¿Su empresa actualmente participa en algún proyecto dentro del sector alimentario con alguna organizacion?. Seleccione cual(si no es, asi omita esta opción)</p>
+        </div>
+    </div>
+    <div class ="row">
+      <div class="col">
+        <mat-form-field class="w-100">
+        <mat-label>Seleccione la organizacion en la que su empresa participa.</mat-label>
+<mat-select formControlName="proyecto_sectorAlim">
+  <mat-option *ngFor="let sea of proyecto_sectorAlim" [value]="sea.id_sectorAlim">{{sea.nombre}}</mat-option>
+</mat-select>
+</mat-form-field>
+</div>
+</div>
     <div class="row">
         <div class="col">
             <button type="submit" class="w-100" mat-raised-button color="primary" [disabled]="formRegistro.invalid">Guardar <mat-icon>send</mat-icon></button>
         </div>
     </div>
+
 </form>

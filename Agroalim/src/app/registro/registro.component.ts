@@ -47,12 +47,35 @@ export class RegistroComponent implements OnInit {
                       { id_cadena_productiva : 6, nombre : 'Retail', descripcion : ''},
                       { id_cadena_productiva : 7, nombre : 'Supermercados', descripcion : ''}
                     ]
-  
+
   facturacion_anual: any [] = [
                       { id_facturacion : 1, nombre : '0 - 10 Millones de pesos.', descripcion : ''},
                       { id_facturacion : 2, nombre : '10 - 50 Millones de pesos.', descripcion : ''},
                       { id_facturacion : 3, nombre : '51 - 100 Millones de pesos.', descripcion : ''},
                       { id_facturacion : 4, nombre : 'Más de 100 Millones de pesos.', descripcion : ''},
+                    ]
+                    proyecto_sectorAlim: any [] = [
+                      {id_sectorAlim : 1, nombre: 'UANL', descripcion : '' },
+                      {id_sectorAlim : 2, nombre: 'ITESM', descripcion : '' },
+                      {id_sectorAlim : 3, nombre: 'UDEM', descripcion : '' },
+                      {id_sectorAlim : 4, nombre: 'UERRE', descripcion : '' },
+                      {id_sectorAlim : 5, nombre: 'Escuelas técnicas', descripcion : '' },
+                      {id_sectorAlim : 1, nombre: 'CIATEJ', descripcion : '' },
+                      {id_sectorAlim : 1, nombre: 'CIQA', descripcion : '' },
+                      {id_sectorAlim : 1, nombre: 'Incubadora de nanotecnología', descripcion : '' },
+                      {id_sectorAlim : 1, nombre: 'Incubadora de biotecnología', descripcion : '' },
+                      {id_sectorAlim : 1, nombre: 'TECNALIA', descripcion : '' },
+                      {id_sectorAlim : 1, nombre: 'CONACYT', descripcion : '' },
+                      {id_sectorAlim : 1, nombre: 'OTRO', descripcion : '' },
+
+
+
+
+
+
+
+
+
                     ]
 
   ngOnInit(): void {
@@ -200,7 +223,8 @@ export class RegistroComponent implements OnInit {
       cadena_prodictiva : ["",[Validators.required]],
       numero_empleados : ["",[Validators.required]],
       facturacion_anual : ["",[Validators.required]],
-      
+      proyecto_sectorAlim:["",[Validators.required]],
+
     });
   }
 
@@ -219,7 +243,7 @@ export class RegistroComponent implements OnInit {
 
   delTelefono(index:number){
     const cntrs = <FormArray>this.formRegistro!.controls['telefonos'];
-    cntrs.removeAt(index); 
+    cntrs.removeAt(index);
   }
 
   addSitio(){
@@ -233,7 +257,7 @@ export class RegistroComponent implements OnInit {
 
   delSitio(index:number){
     const cntrs = <FormArray>this.formRegistro!.controls['sitios'];
-    cntrs.removeAt(index); 
+    cntrs.removeAt(index);
   }
 
   get getTelefonos(){
