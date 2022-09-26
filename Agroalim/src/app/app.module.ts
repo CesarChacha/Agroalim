@@ -24,6 +24,8 @@ import { EmpresasComponent } from './empresas/empresas.component';
 import { CatalogosComponent } from './catalogos/catalogos.component';
 import { MiCuentaComponent } from './mi-cuenta/mi-cuenta.component';
 
+import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,7 +51,8 @@ import { MiCuentaComponent } from './mi-cuenta/mi-cuenta.component';
     ReactiveFormsModule,
     MatAutocompleteModule,
     MatSelectModule,
-    MatListModule
+    MatListModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
