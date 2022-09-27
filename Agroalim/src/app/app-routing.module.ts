@@ -7,16 +7,20 @@ import { EmpresasComponent } from "./empresas/empresas.component";
 import { SolicitudesComponent } from "./solicitudes/solicitudes.component";
 import { CatalogosComponent } from "./catalogos/catalogos.component";
 import { MiCuentaComponent } from "./mi-cuenta/mi-cuenta.component";
+import { OnlyLoggedGuard } from "./utils/guards/only-logged.guard";
+import { OnlyNotLoggedGuard } from "./utils/guards/only-not-logged.guard";
 
 const routes: Routes = [
   {path : '', redirectTo : 'login', pathMatch : 'full'},
-  {path : 'registro', title : 'Agroalim - Solicitud de registro', component : RegistroComponent},
-  {path : 'login', title : 'Agroalim - Login', component : LoginComponent},
+  {path : 'registro', title : 'Agroalim - Solicitud de registro', canActivate : [ OnlyNotLoggedGuard ], component : RegistroComponent},
+  {path : 'login', title : 'Agroalim - Login', canActivate : [ OnlyNotLoggedGuard ], component : LoginComponent},
   {
     path : 'home', 
-    title : 'Agroalim', 
+    title : 'Agroalim',
+    //pathMatch :  'full',
+    canActivate : [ OnlyLoggedGuard ],
     children : [
-      {path : '', redirectTo : 'dashboard', pathMatch : 'full'},
+      {path : '', component : DashboardComponent},
       {path : 'dashboard', title : 'Dashboard', component : DashboardComponent},
       {path : 'solicitudes', title : 'Solicitudes', component : SolicitudesComponent},
       {path : 'empresas', title : 'Empresas', component : EmpresasComponent},

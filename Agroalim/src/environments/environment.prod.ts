@@ -1,7 +1,9 @@
+
 export const environment = {
-  production: true
+  production: true,
+  api
 };
 
-export const api = {
-  be_url : 'localhost:44567/api/'
-};
+function api (endpoint: string) {
+  return `https://localhost:44384/api/${endpoint}`;
+}

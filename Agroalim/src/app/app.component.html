@@ -1,5 +1,5 @@
 <mat-toolbar color="primary">
-  <button (click)="drawer.toggle()" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+  <button (click)="toggleDrawer()" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
     <mat-icon>menu</mat-icon>
   </button>
   <span>Agroalim</span>
@@ -17,9 +17,9 @@
 
 <mat-drawer-container style="height: 93vh" autosize>
   <br>
-  <mat-drawer #drawer class="sb-sidenav" mode="push">
+  <mat-drawer #drawer name="drawer" class="sb-sidenav" mode="push">
 
-    <mat-selection-list [multiple]="false">
+    <mat-selection-list [multiple]="false"  *ngIf="itsAuthenticated">
       <mat-list-option [routerLink]="'home/dashboard'">
         <mat-icon mat-list-icon class="gray-icon">dashboard</mat-icon>
         Dashboard
@@ -42,7 +42,7 @@
         <mat-icon mat-list-icon class="gray-icon">account_circle</mat-icon>
         Mi cuenta
       </mat-list-option>
-      <mat-list-option>
+      <mat-list-option (click)="closeSession()">
         <mat-icon mat-list-icon class="gray-icon">logout</mat-icon>
         Cerrar sesión
       </mat-list-option>

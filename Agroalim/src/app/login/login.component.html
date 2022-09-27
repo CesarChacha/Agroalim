@@ -12,7 +12,7 @@
             <div class="row">
                 <div class="col">
                     <mat-form-field class="w-100">
-                        <mat-label>Nombre(s)</mat-label>
+                        <mat-label>Email</mat-label>
                         <input matInput type="text" formControlName="user">
                     </mat-form-field>
                 </div>
@@ -20,14 +20,14 @@
             <div class="row">
                 <div class="col">
                     <mat-form-field class="w-100">
-                        <mat-label>Apellido(s)</mat-label>
+                        <mat-label>Contraseña</mat-label>
                         <input matInput type="password" formControlName="password">
                     </mat-form-field>
                 </div>
             </div>
             <div class="row">
                 <div class="col">
-                    <button class="w-100" mat-raised-button color="primary" [disabled]="loginForm.invalid">Entrar</button>
+                    <button class="w-100" mat-raised-button color="primary" [disabled]="loginForm.invalid"  (click)="initSession()">Entrar</button>
                 </div>
             </div>
         </form>

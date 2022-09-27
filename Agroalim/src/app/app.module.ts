@@ -15,6 +15,8 @@ import {MatInputModule} from '@angular/material/input';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatSelectModule} from '@angular/material/select';
 import {MatListModule} from '@angular/material/list';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { LoginComponent } from './login/login.component';
@@ -23,6 +25,9 @@ import { SolicitudesComponent } from './solicitudes/solicitudes.component';
 import { EmpresasComponent } from './empresas/empresas.component';
 import { CatalogosComponent } from './catalogos/catalogos.component';
 import { MiCuentaComponent } from './mi-cuenta/mi-cuenta.component';
+
+import { OnlyLoggedGuard } from "./utils/guards/only-logged.guard";
+import { OnlyNotLoggedGuard } from "./utils/guards/only-not-logged.guard";
 
 import { HttpClientModule } from '@angular/common/http';
 
@@ -52,9 +57,14 @@ import { HttpClientModule } from '@angular/common/http';
     MatAutocompleteModule,
     MatSelectModule,
     MatListModule,
-    HttpClientModule
+    HttpClientModule,
+    MatProgressBarModule,
+    MatSnackBarModule
   ],
-  providers: [],
+  providers: [
+    OnlyLoggedGuard,
+    OnlyNotLoggedGuard
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

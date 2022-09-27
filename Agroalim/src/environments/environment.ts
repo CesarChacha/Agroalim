@@ -3,12 +3,13 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  api
 };
 
-export const api = {
-  be_url : 'localhost:44567/api/'
-};
+function api (endpoint: string) {
+  return `https://localhost:44384/api/${endpoint}`;
+}
 
 
 /*
