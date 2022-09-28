@@ -60,23 +60,56 @@ export class RegistroComponent implements OnInit {
                       {id_sectorAlim : 3, nombre: 'UDEM', descripcion : '' },
                       {id_sectorAlim : 4, nombre: 'UERRE', descripcion : '' },
                       {id_sectorAlim : 5, nombre: 'Escuelas técnicas', descripcion : '' },
-                      {id_sectorAlim : 1, nombre: 'CIATEJ', descripcion : '' },
-                      {id_sectorAlim : 1, nombre: 'CIQA', descripcion : '' },
-                      {id_sectorAlim : 1, nombre: 'Incubadora de nanotecnología', descripcion : '' },
-                      {id_sectorAlim : 1, nombre: 'Incubadora de biotecnología', descripcion : '' },
-                      {id_sectorAlim : 1, nombre: 'TECNALIA', descripcion : '' },
-                      {id_sectorAlim : 1, nombre: 'CONACYT', descripcion : '' },
-                      {id_sectorAlim : 1, nombre: 'OTRO', descripcion : '' },
-
-
-
-
-
-
-
-
+                      {id_sectorAlim : 6, nombre: 'CIATEJ', descripcion : '' },
+                      {id_sectorAlim : 7, nombre: 'CIQA', descripcion : '' },
+                      {id_sectorAlim : 8, nombre: 'Incubadora de nanotecnología', descripcion : '' },
+                      {id_sectorAlim : 9, nombre: 'Incubadora de biotecnología', descripcion : '' },
+                      {id_sectorAlim : 10, nombre: 'TECNALIA', descripcion : '' },
+                      {id_sectorAlim : 11, nombre: 'CONACYT', descripcion : '' },
+                      {id_sectorAlim : 12, nombre: 'OTRO', descripcion : '' },
 
                     ]
+ opcione:any[]= [
+   {id_opcione : 1, nombre: 'Si'},
+   {id_opcione : 2, nombre: 'No'},
+
+ ]
+ normas:any[]= [
+   {id_normas : 1, nombre: 'NOM-051', descripcion : '' },
+   {id_normas : 2, nombre: 'ISO 9001', descripcion : '' },
+   {id_normas : 3, nombre: 'Global Markets Básico', descripcion : '' },
+   {id_normas : 4, nombre: 'Global Markets Intermedio', descripcion : '' },
+   {id_normas : 5, nombre: 'IFS', descripcion : '' },
+   {id_normas : 6, nombre: 'BRC', descripcion : '' },
+   {id_normas : 7, nombre: 'FSSC 22000', descripcion : '' },
+   {id_normas : 8, nombre: 'SQF', descripcion : '' },
+   {id_normas : 9, nombre: 'Primus GSF', descripcion : '' },
+   {id_normas : 10, nombre: 'Orgánico', descripcion : '' },
+   {id_normas : 11, nombre: 'Kosher', descripcion : '' },
+   {id_normas : 12, nombre: 'HALAL', descripcion : '' },
+   {id_normas : 13, nombre: 'Ninguno', descripcion: ''},
+ ]
+ temas: any[]= [
+   {id_normas : 1, nombre: 'Evaluaciones de inocuidad', descripcion : '' },
+   {id_normas : 2, nombre: 'Consultorías de inocuidad', descripcion : '' },
+   {id_normas : 3, nombre: 'Contacto con proveedores', descripcion : '' },
+   {id_normas : 4, nombre: 'Desarrollo con proveedores', descripcion : '' },
+   {id_normas : 5, nombre: 'Contacto con clientes', descripcion : '' },
+   {id_normas : 6, nombre: 'Iniciar departamentos o áreas en su empresa', descripcion : '' },
+   {id_normas : 7, nombre: 'Temas de sustentabilidad (ahorros de agua, luz, gas, manejo de residuos)', descripcion : '' },
+   {id_normas : 8, nombre: 'Proyectos de innovación', descripcion : '' },
+   {id_normas : 9, nombre: 'Networking', descripcion : '' },
+   {id_normas : 10, nombre: 'Comercio exterior', descripcion : '' },
+   {id_normas : 11, nombre: 'Automatización', descripcion : '' },
+   {id_normas : 12, nombre: 'Bolsa de trabajo y/o practicantes', descripcion : '' },
+   {id_normas : 13, nombre: 'Mejora la eficencia operativa', descripcion: ''},
+   {id_normas : 13, nombre: 'Capacitaciones', descripcion: ''},
+   {id_normas : 13, nombre: 'Regulacion de negocio', descripcion: ''},
+   {id_normas : 13, nombre: 'Financiamiento', descripcion: ''},
+   {id_normas : 13, nombre: 'Otro', descripcion: ''},
+
+
+ ]
 
   ngOnInit(): void {
     this.initForm();
@@ -224,7 +257,9 @@ export class RegistroComponent implements OnInit {
       numero_empleados : ["",[Validators.required]],
       facturacion_anual : ["",[Validators.required]],
       proyecto_sectorAlim:["",[Validators.required]],
-
+      comentario : ["",[Validators.required]],
+      exporta: ["", [Validators.required]],
+      coment: ["", [Validators.required]],
     });
   }
 

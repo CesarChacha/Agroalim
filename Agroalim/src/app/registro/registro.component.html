@@ -299,10 +299,91 @@
 </mat-form-field>
 </div>
 </div>
+<div class="row">
+    <div class="col">
+        <p class="h6">Comentarios acerca de la organización en la que la empresa participa.</p>
+    </div>
+</div>
+<div class="row">
+  <div class ="col">
+    <mat-form-field class="w-100">
+      <mat-label>Comentarios acerca de la participacion de la empresa en la organización.</mat-label>
+      <input matInput type="text" formControlName="comentario">
+</mat-form-field>
+    </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <p class="h6">¿Su empresa exporta?</p>
+        </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <mat-form-field class="w-100">
+                    <mat-label>(Marque con una X)</mat-label>
+                    <mat-select formControlName="opcione" multiple>
+                        <mat-option *ngFor="let cadena of opcione" [value]="cadena.id_opcione">{{cadena.nombre}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          </div>
+          </div>
+          <div class="row">
+              <div class="col">
+                  <p class="h6">¿A que paises exportan?</p>
+              </div>
+              </div>
+              <div class="row">
+                <div class ="col">
+                  <mat-form-field class="w-100">
+                    <mat-label>Inserte los paises a los que exportan. (en caso de ser NO. Escriba "en proceso")</mat-label>
+                    <input matInput type="text" formControlName="exporta">
+              </mat-form-field>
+                  </div>
+                  </div>
+                  <div class="row">
+                      <div class="col">
+                          <p class="h6">¿Cuales son las normas. regulaciones o estándares mexicanas e internacionales que aplican para el giro de su empresa y que aplican actualmente en su empresa (Puede marcar mas de una segun aplique)?</p>
+                      </div>
+                      </div>
+                      <div class="row">
+                          <div class="col">
+                              <mat-form-field class="w-100">
+                                  <mat-label>Puede seleccionar una o más opciones</mat-label>
+                                  <mat-select formControlName="normas" multiple>
+                                      <mat-option *ngFor="let cadena of normas" [value]="cadena.id_normas">{{cadena.nombre}}</mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                        </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <p class="h6">¿En qué temas le gustaria recibir más apoyo del Clúster</p>
+                            </div>
+                            </div>
+                        <div class="row">
+                            <div class="col">
+                                <mat-form-field class="w-100">
+                                    <mat-label>Puede seleccionar una o más opciones</mat-label>
+                                    <mat-select formControlName="temas" multiple>
+                                        <mat-option *ngFor="let cadena of temas" [value]="cadena.id_temas">{{cadena.nombre}}</mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                          </div>
+                          </div>
+                          <div class="row">
+                            <div class ="col">
+                              <mat-form-field class="w-100">
+                                <mat-label>Comentario acerca de algun tema del que lo pueda apoyar el Cluster</mat-label>
+                                <input matInput type="text" formControlName="coment">
+                          </mat-form-field>
+                              </div>
+                              </div>
+
     <div class="row">
         <div class="col">
             <button type="submit" class="w-100" mat-raised-button color="primary" [disabled]="formRegistro.invalid">Guardar <mat-icon>send</mat-icon></button>
         </div>
     </div>
+
 
 </form>
