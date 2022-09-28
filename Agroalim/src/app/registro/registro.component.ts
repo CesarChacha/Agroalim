@@ -261,6 +261,7 @@ export class RegistroComponent implements OnInit {
       normas : ["", [Validators.required]],
       exporta: ["", [Validators.required]],
       coment: ["", [Validators.required]],
+ opcione :["", [Validators.required]],
       temas :["", [Validators. required]],
     });
   }
