@@ -258,6 +258,7 @@ export class RegistroComponent implements OnInit {
       facturacion_anual : ["",[Validators.required]],
       proyecto_sectorAlim:["",[Validators.required]],
       comentario : ["",[Validators.required]],
+      normas : ["", [Validators.required]],
       exporta: ["", [Validators.required]],
       coment: ["", [Validators.required]],
     });
