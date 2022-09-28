@@ -90,23 +90,23 @@ export class RegistroComponent implements OnInit {
    {id_normas : 13, nombre: 'Ninguno', descripcion: ''},
  ]
  temas: any[]= [
-   {id_normas : 1, nombre: 'Evaluaciones de inocuidad', descripcion : '' },
-   {id_normas : 2, nombre: 'Consultorías de inocuidad', descripcion : '' },
-   {id_normas : 3, nombre: 'Contacto con proveedores', descripcion : '' },
-   {id_normas : 4, nombre: 'Desarrollo con proveedores', descripcion : '' },
-   {id_normas : 5, nombre: 'Contacto con clientes', descripcion : '' },
-   {id_normas : 6, nombre: 'Iniciar departamentos o áreas en su empresa', descripcion : '' },
-   {id_normas : 7, nombre: 'Temas de sustentabilidad (ahorros de agua, luz, gas, manejo de residuos)', descripcion : '' },
-   {id_normas : 8, nombre: 'Proyectos de innovación', descripcion : '' },
-   {id_normas : 9, nombre: 'Networking', descripcion : '' },
-   {id_normas : 10, nombre: 'Comercio exterior', descripcion : '' },
-   {id_normas : 11, nombre: 'Automatización', descripcion : '' },
-   {id_normas : 12, nombre: 'Bolsa de trabajo y/o practicantes', descripcion : '' },
-   {id_normas : 13, nombre: 'Mejora la eficencia operativa', descripcion: ''},
-   {id_normas : 13, nombre: 'Capacitaciones', descripcion: ''},
-   {id_normas : 13, nombre: 'Regulacion de negocio', descripcion: ''},
-   {id_normas : 13, nombre: 'Financiamiento', descripcion: ''},
-   {id_normas : 13, nombre: 'Otro', descripcion: ''},
+   {id_temas : 1, nombre: 'Evaluaciones de inocuidad', descripcion : '' },
+   {id_temas : 2, nombre: 'Consultorías de inocuidad', descripcion : '' },
+   {id_temas : 3, nombre: 'Contacto con proveedores', descripcion : '' },
+   {id_temas : 4, nombre: 'Desarrollo con proveedores', descripcion : '' },
+   {id_temas : 5, nombre: 'Contacto con clientes', descripcion : '' },
+   {id_temas : 6, nombre: 'Iniciar departamentos o áreas en su empresa', descripcion : '' },
+   {id_temas : 7, nombre: 'Temas de sustentabilidad (ahorros de agua, luz, gas, manejo de residuos)', descripcion : '' },
+   {id_temas : 8, nombre: 'Proyectos de innovación', descripcion : '' },
+   {id_temas : 9, nombre: 'Networking', descripcion : '' },
+   {id_temas : 10, nombre: 'Comercio exterior', descripcion : '' },
+   {id_temas : 11, nombre: 'Automatización', descripcion : '' },
+   {id_temas : 12, nombre: 'Bolsa de trabajo y/o practicantes', descripcion : '' },
+   {id_temas : 13, nombre: 'Mejora la eficencia operativa', descripcion: ''},
+   {id_temas : 13, nombre: 'Capacitaciones', descripcion: ''},
+   {id_temas : 13, nombre: 'Regulacion de negocio', descripcion: ''},
+   {id_temas : 13, nombre: 'Financiamiento', descripcion: ''},
+   {id_temas : 13, nombre: 'Otro', descripcion: ''},
 
 
  ]
@@ -261,6 +261,7 @@ export class RegistroComponent implements OnInit {
       normas : ["", [Validators.required]],
       exporta: ["", [Validators.required]],
       coment: ["", [Validators.required]],
+      temas :["", [Validators. required]],
     });
   }
 
