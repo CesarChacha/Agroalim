@@ -1,0 +1,308 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="agroalim_qaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="administradore">
+    <Key>
+      <PropertyRef Name="id_administrador" />
+    </Key>
+    <Property Name="id_administrador" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" MaxLength="512" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="apellido" Type="String" MaxLength="512" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="correo" Type="String" MaxLength="512" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="512" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="activo" Type="Boolean" Nullable="false" />
+    <Property Name="baja" Type="Boolean" Nullable="false" />
+    <Property Name="fecha_actualizacion" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityContainer Name="dbEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="administradores" EntityType="Self.administradore" />
+    <EntitySet Name="actividades" EntityType="agroalim_qaModel.actividade" />
+    <EntitySet Name="comites" EntityType="agroalim_qaModel.comite" />
+    <EntitySet Name="domicilios" EntityType="agroalim_qaModel.domicilio" />
+    <EntitySet Name="empresas" EntityType="agroalim_qaModel.empresa" />
+    <EntitySet Name="facturacions" EntityType="agroalim_qaModel.facturacion" />
+    <EntitySet Name="normas" EntityType="agroalim_qaModel.norma" />
+    <EntitySet Name="organizaciones" EntityType="agroalim_qaModel.organizacione" />
+    <EntitySet Name="profesiones" EntityType="agroalim_qaModel.profesione" />
+    <EntitySet Name="puestos" EntityType="agroalim_qaModel.puesto" />
+    <EntitySet Name="responsables" EntityType="agroalim_qaModel.responsable" />
+    <EntitySet Name="sitios" EntityType="agroalim_qaModel.sitio" />
+    <EntitySet Name="telefonos" EntityType="agroalim_qaModel.telefono" />
+    <EntitySet Name="temas" EntityType="agroalim_qaModel.tema" />
+    <AssociationSet Name="FK_responsable_comite" Association="agroalim_qaModel.FK_responsable_comite">
+      <End Role="comite" EntitySet="comites" />
+      <End Role="responsable" EntitySet="responsables" />
+    </AssociationSet>
+    <AssociationSet Name="FK_empresa_domicilio" Association="agroalim_qaModel.FK_empresa_domicilio">
+      <End Role="empresa" EntitySet="empresas" />
+      <End Role="domicilio" EntitySet="domicilios" />
+    </AssociationSet>
+    <AssociationSet Name="FK_empresa_sitio" Association="agroalim_qaModel.FK_empresa_sitio">
+      <End Role="empresa" EntitySet="empresas" />
+      <End Role="sitio" EntitySet="sitios" />
+    </AssociationSet>
+    <AssociationSet Name="FK_empresa_telefono" Association="agroalim_qaModel.FK_empresa_telefono">
+      <End Role="empresa" EntitySet="empresas" />
+      <End Role="telefono" EntitySet="telefonos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_responsable_empresa" Association="agroalim_qaModel.FK_responsable_empresa">
+      <End Role="empresa" EntitySet="empresas" />
+      <End Role="responsable" EntitySet="responsables" />
+    </AssociationSet>
+    <AssociationSet Name="FK_responsable_profesion" Association="agroalim_qaModel.FK_responsable_profesion">
+      <End Role="profesione" EntitySet="profesiones" />
+      <End Role="responsable" EntitySet="responsables" />
+    </AssociationSet>
+    <AssociationSet Name="FK_responsable_puesto" Association="agroalim_qaModel.FK_responsable_puesto">
+      <End Role="puesto" EntitySet="puestos" />
+      <End Role="responsable" EntitySet="responsables" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="actividade">
+    <Key>
+      <PropertyRef Name="id_actividad" />
+    </Key>
+    <Property Name="id_actividad" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="false" />
+    <Property Name="activo" Type="Boolean" Nullable="false" />
+    <Property Name="baja" Type="Boolean" Nullable="false" />
+    <Property Name="fecha_actualizacion" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="comite">
+    <Key>
+      <PropertyRef Name="id_comite" />
+    </Key>
+    <Property Name="id_comite" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="false" />
+    <Property Name="activo" Type="Boolean" Nullable="false" />
+    <Property Name="baja" Type="Boolean" Nullable="false" />
+    <Property Name="fecha_actualizacion" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="responsables" Relationship="agroalim_qaModel.FK_responsable_comite" FromRole="comite" ToRole="responsable" />
+  </EntityType>
+  <EntityType Name="domicilio">
+    <Key>
+      <PropertyRef Name="id_domicilio" />
+    </Key>
+    <Property Name="id_domicilio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="calle" Type="String" Nullable="false" MaxLength="1024" FixedLength="false" Unicode="false" />
+    <Property Name="numero" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Name="codigo_postal" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="false" />
+    <Property Name="activo" Type="Boolean" Nullable="false" />
+    <Property Name="baja" Type="Boolean" Nullable="false" />
+    <Property Name="fecha_actualizacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="id_empresa" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="empresa" Relationship="agroalim_qaModel.FK_empresa_domicilio" FromRole="domicilio" ToRole="empresa" />
+  </EntityType>
+  <EntityType Name="empresa">
+    <Key>
+      <PropertyRef Name="id_empresa" />
+    </Key>
+    <Property Name="id_empresa" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="razon_social" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="rfc" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="false" />
+    <Property Name="nombre_comercial" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="descripcion" Type="String" Nullable="false" MaxLength="1024" FixedLength="false" Unicode="false" />
+    <Property Name="productos" Type="Boolean" Nullable="false" />
+    <Property Name="servicios" Type="Boolean" Nullable="false" />
+    <Property Name="solicitud_aceptada" Type="Boolean" Nullable="false" />
+    <Property Name="activo" Type="Boolean" Nullable="false" />
+    <Property Name="baja" Type="Boolean" Nullable="false" />
+    <Property Name="fecha_actualizacion" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="domicilios" Relationship="agroalim_qaModel.FK_empresa_domicilio" FromRole="empresa" ToRole="domicilio" />
+    <NavigationProperty Name="sitios" Relationship="agroalim_qaModel.FK_empresa_sitio" FromRole="empresa" ToRole="sitio" />
+    <NavigationProperty Name="telefonos" Relationship="agroalim_qaModel.FK_empresa_telefono" FromRole="empresa" ToRole="telefono" />
+    <NavigationProperty Name="responsables" Relationship="agroalim_qaModel.FK_responsable_empresa" FromRole="empresa" ToRole="responsable" />
+  </EntityType>
+  <EntityType Name="facturacion">
+    <Key>
+      <PropertyRef Name="id_facturacion" />
+    </Key>
+    <Property Name="id_facturacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="false" />
+    <Property Name="activo" Type="Boolean" Nullable="false" />
+    <Property Name="baja" Type="Boolean" Nullable="false" />
+    <Property Name="fecha_actualizacion" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="norma">
+    <Key>
+      <PropertyRef Name="id_norma" />
+    </Key>
+    <Property Name="id_norma" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="false" />
+    <Property Name="activo" Type="Boolean" Nullable="false" />
+    <Property Name="baja" Type="Boolean" Nullable="false" />
+    <Property Name="fecha_actualizacion" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="organizacione">
+    <Key>
+      <PropertyRef Name="id_organizacion" />
+    </Key>
+    <Property Name="id_organizacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="false" />
+    <Property Name="activo" Type="Boolean" Nullable="false" />
+    <Property Name="baja" Type="Boolean" Nullable="false" />
+    <Property Name="fecha_actualizacion" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="profesione">
+    <Key>
+      <PropertyRef Name="id_profesion" />
+    </Key>
+    <Property Name="id_profesion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="false" />
+    <Property Name="activo" Type="Boolean" Nullable="false" />
+    <Property Name="baja" Type="Boolean" Nullable="false" />
+    <Property Name="fecha_actualizacion" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="responsables" Relationship="agroalim_qaModel.FK_responsable_profesion" FromRole="profesione" ToRole="responsable" />
+  </EntityType>
+  <EntityType Name="puesto">
+    <Key>
+      <PropertyRef Name="id_puesto" />
+    </Key>
+    <Property Name="id_puesto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="false" />
+    <Property Name="activo" Type="Boolean" Nullable="false" />
+    <Property Name="baja" Type="Boolean" Nullable="false" />
+    <Property Name="fecha_actualizacion" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="responsables" Relationship="agroalim_qaModel.FK_responsable_puesto" FromRole="puesto" ToRole="responsable" />
+  </EntityType>
+  <EntityType Name="responsable">
+    <Key>
+      <PropertyRef Name="id_responsable" />
+    </Key>
+    <Property Name="id_responsable" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="false" />
+    <Property Name="apellido" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="false" />
+    <Property Name="correo" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="false" />
+    <Property Name="password" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="false" />
+    <Property Name="telefono_oficina" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="false" />
+    <Property Name="telefono_whatsapp" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="false" />
+    <Property Name="activo" Type="Boolean" Nullable="false" />
+    <Property Name="baja" Type="Boolean" Nullable="false" />
+    <Property Name="id_empresa" Type="Int32" Nullable="false" />
+    <Property Name="id_puesto" Type="Int32" Nullable="false" />
+    <Property Name="id_profesion" Type="Int32" Nullable="false" />
+    <Property Name="id_comite" Type="Int32" Nullable="false" />
+    <Property Name="fecha_actualizacion" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="comite" Relationship="agroalim_qaModel.FK_responsable_comite" FromRole="responsable" ToRole="comite" />
+    <NavigationProperty Name="empresa" Relationship="agroalim_qaModel.FK_responsable_empresa" FromRole="responsable" ToRole="empresa" />
+    <NavigationProperty Name="profesione" Relationship="agroalim_qaModel.FK_responsable_profesion" FromRole="responsable" ToRole="profesione" />
+    <NavigationProperty Name="puesto" Relationship="agroalim_qaModel.FK_responsable_puesto" FromRole="responsable" ToRole="puesto" />
+  </EntityType>
+  <EntityType Name="sitio">
+    <Key>
+      <PropertyRef Name="id_sitios" />
+    </Key>
+    <Property Name="id_sitios" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="sitio1" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="false" />
+    <Property Name="activo" Type="Boolean" Nullable="false" />
+    <Property Name="baja" Type="Boolean" Nullable="false" />
+    <Property Name="fecha_actualizacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="id_empresa" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="empresa" Relationship="agroalim_qaModel.FK_empresa_sitio" FromRole="sitio" ToRole="empresa" />
+  </EntityType>
+  <EntityType Name="telefono">
+    <Key>
+      <PropertyRef Name="id_telefono" />
+    </Key>
+    <Property Name="id_telefono" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="telefono1" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="false" />
+    <Property Name="activo" Type="Boolean" Nullable="false" />
+    <Property Name="baja" Type="Boolean" Nullable="false" />
+    <Property Name="fecha_actualizacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="id_empresa" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="empresa" Relationship="agroalim_qaModel.FK_empresa_telefono" FromRole="telefono" ToRole="empresa" />
+  </EntityType>
+  <EntityType Name="tema">
+    <Key>
+      <PropertyRef Name="id_tema" />
+    </Key>
+    <Property Name="id_tema" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="false" />
+    <Property Name="activo" Type="Boolean" Nullable="false" />
+    <Property Name="baja" Type="Boolean" Nullable="false" />
+    <Property Name="fecha_actualizacion" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <Association Name="FK_responsable_comite">
+    <End Type="agroalim_qaModel.comite" Role="comite" Multiplicity="1" />
+    <End Type="agroalim_qaModel.responsable" Role="responsable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="comite">
+        <PropertyRef Name="id_comite" />
+      </Principal>
+      <Dependent Role="responsable">
+        <PropertyRef Name="id_comite" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_empresa_domicilio">
+    <End Type="agroalim_qaModel.empresa" Role="empresa" Multiplicity="1" />
+    <End Type="agroalim_qaModel.domicilio" Role="domicilio" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="empresa">
+        <PropertyRef Name="id_empresa" />
+      </Principal>
+      <Dependent Role="domicilio">
+        <PropertyRef Name="id_empresa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_empresa_sitio">
+    <End Type="agroalim_qaModel.empresa" Role="empresa" Multiplicity="1" />
+    <End Type="agroalim_qaModel.sitio" Role="sitio" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="empresa">
+        <PropertyRef Name="id_empresa" />
+      </Principal>
+      <Dependent Role="sitio">
+        <PropertyRef Name="id_empresa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_empresa_telefono">
+    <End Type="agroalim_qaModel.empresa" Role="empresa" Multiplicity="1" />
+    <End Type="agroalim_qaModel.telefono" Role="telefono" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="empresa">
+        <PropertyRef Name="id_empresa" />
+      </Principal>
+      <Dependent Role="telefono">
+        <PropertyRef Name="id_empresa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_responsable_empresa">
+    <End Type="agroalim_qaModel.empresa" Role="empresa" Multiplicity="1" />
+    <End Type="agroalim_qaModel.responsable" Role="responsable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="empresa">
+        <PropertyRef Name="id_empresa" />
+      </Principal>
+      <Dependent Role="responsable">
+        <PropertyRef Name="id_empresa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_responsable_profesion">
+    <End Type="agroalim_qaModel.profesione" Role="profesione" Multiplicity="1" />
+    <End Type="agroalim_qaModel.responsable" Role="responsable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="profesione">
+        <PropertyRef Name="id_profesion" />
+      </Principal>
+      <Dependent Role="responsable">
+        <PropertyRef Name="id_profesion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_responsable_puesto">
+    <End Type="agroalim_qaModel.puesto" Role="puesto" Multiplicity="1" />
+    <End Type="agroalim_qaModel.responsable" Role="responsable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="puesto">
+        <PropertyRef Name="id_puesto" />
+      </Principal>
+      <Dependent Role="responsable">
+        <PropertyRef Name="id_puesto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

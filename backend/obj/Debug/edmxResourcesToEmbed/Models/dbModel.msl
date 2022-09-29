@@ -1,0 +1,182 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="agroalim_qaModelStoreContainer" CdmEntityContainer="dbEntities">
+    <EntitySetMapping Name="administradores">
+      <EntityTypeMapping TypeName="agroalim_qaModel.administradore">
+        <MappingFragment StoreEntitySet="administradores">
+          <ScalarProperty Name="id_administrador" ColumnName="id_administrador" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="apellido" ColumnName="apellido" />
+          <ScalarProperty Name="correo" ColumnName="correo" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="baja" ColumnName="baja" />
+          <ScalarProperty Name="fecha_actualizacion" ColumnName="fecha_actualizacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="actividades">
+      <EntityTypeMapping TypeName="agroalim_qaModel.actividade">
+        <MappingFragment StoreEntitySet="actividades">
+          <ScalarProperty Name="fecha_actualizacion" ColumnName="fecha_actualizacion" />
+          <ScalarProperty Name="baja" ColumnName="baja" />
+          <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="id_actividad" ColumnName="id_actividad" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="comites">
+      <EntityTypeMapping TypeName="agroalim_qaModel.comite">
+        <MappingFragment StoreEntitySet="comites">
+          <ScalarProperty Name="fecha_actualizacion" ColumnName="fecha_actualizacion" />
+          <ScalarProperty Name="baja" ColumnName="baja" />
+          <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="id_comite" ColumnName="id_comite" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="domicilios">
+      <EntityTypeMapping TypeName="agroalim_qaModel.domicilio">
+        <MappingFragment StoreEntitySet="domicilios">
+          <ScalarProperty Name="id_empresa" ColumnName="id_empresa" />
+          <ScalarProperty Name="fecha_actualizacion" ColumnName="fecha_actualizacion" />
+          <ScalarProperty Name="baja" ColumnName="baja" />
+          <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="codigo_postal" ColumnName="codigo_postal" />
+          <ScalarProperty Name="numero" ColumnName="numero" />
+          <ScalarProperty Name="calle" ColumnName="calle" />
+          <ScalarProperty Name="id_domicilio" ColumnName="id_domicilio" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="empresas">
+      <EntityTypeMapping TypeName="agroalim_qaModel.empresa">
+        <MappingFragment StoreEntitySet="empresas">
+          <ScalarProperty Name="fecha_actualizacion" ColumnName="fecha_actualizacion" />
+          <ScalarProperty Name="baja" ColumnName="baja" />
+          <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="solicitud_aceptada" ColumnName="solicitud_aceptada" />
+          <ScalarProperty Name="servicios" ColumnName="servicios" />
+          <ScalarProperty Name="productos" ColumnName="productos" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="nombre_comercial" ColumnName="nombre_comercial" />
+          <ScalarProperty Name="rfc" ColumnName="rfc" />
+          <ScalarProperty Name="razon_social" ColumnName="razon_social" />
+          <ScalarProperty Name="id_empresa" ColumnName="id_empresa" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="facturacions">
+      <EntityTypeMapping TypeName="agroalim_qaModel.facturacion">
+        <MappingFragment StoreEntitySet="facturacion">
+          <ScalarProperty Name="fecha_actualizacion" ColumnName="fecha_actualizacion" />
+          <ScalarProperty Name="baja" ColumnName="baja" />
+          <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="id_facturacion" ColumnName="id_facturacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="normas">
+      <EntityTypeMapping TypeName="agroalim_qaModel.norma">
+        <MappingFragment StoreEntitySet="normas">
+          <ScalarProperty Name="fecha_actualizacion" ColumnName="fecha_actualizacion" />
+          <ScalarProperty Name="baja" ColumnName="baja" />
+          <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="id_norma" ColumnName="id_norma" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="organizaciones">
+      <EntityTypeMapping TypeName="agroalim_qaModel.organizacione">
+        <MappingFragment StoreEntitySet="organizaciones">
+          <ScalarProperty Name="fecha_actualizacion" ColumnName="fecha_actualizacion" />
+          <ScalarProperty Name="baja" ColumnName="baja" />
+          <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="id_organizacion" ColumnName="id_organizacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="profesiones">
+      <EntityTypeMapping TypeName="agroalim_qaModel.profesione">
+        <MappingFragment StoreEntitySet="profesiones">
+          <ScalarProperty Name="fecha_actualizacion" ColumnName="fecha_actualizacion" />
+          <ScalarProperty Name="baja" ColumnName="baja" />
+          <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="id_profesion" ColumnName="id_profesion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="puestos">
+      <EntityTypeMapping TypeName="agroalim_qaModel.puesto">
+        <MappingFragment StoreEntitySet="puestos">
+          <ScalarProperty Name="fecha_actualizacion" ColumnName="fecha_actualizacion" />
+          <ScalarProperty Name="baja" ColumnName="baja" />
+          <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="id_puesto" ColumnName="id_puesto" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="responsables">
+      <EntityTypeMapping TypeName="agroalim_qaModel.responsable">
+        <MappingFragment StoreEntitySet="responsables">
+          <ScalarProperty Name="fecha_actualizacion" ColumnName="fecha_actualizacion" />
+          <ScalarProperty Name="id_comite" ColumnName="id_comite" />
+          <ScalarProperty Name="id_profesion" ColumnName="id_profesion" />
+          <ScalarProperty Name="id_puesto" ColumnName="id_puesto" />
+          <ScalarProperty Name="id_empresa" ColumnName="id_empresa" />
+          <ScalarProperty Name="baja" ColumnName="baja" />
+          <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="telefono_whatsapp" ColumnName="telefono_whatsapp" />
+          <ScalarProperty Name="telefono_oficina" ColumnName="telefono_oficina" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="correo" ColumnName="correo" />
+          <ScalarProperty Name="apellido" ColumnName="apellido" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="id_responsable" ColumnName="id_responsable" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sitios">
+      <EntityTypeMapping TypeName="agroalim_qaModel.sitio">
+        <MappingFragment StoreEntitySet="sitios">
+          <ScalarProperty Name="id_empresa" ColumnName="id_empresa" />
+          <ScalarProperty Name="fecha_actualizacion" ColumnName="fecha_actualizacion" />
+          <ScalarProperty Name="baja" ColumnName="baja" />
+          <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="sitio1" ColumnName="sitio" />
+          <ScalarProperty Name="id_sitios" ColumnName="id_sitios" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="telefonos">
+      <EntityTypeMapping TypeName="agroalim_qaModel.telefono">
+        <MappingFragment StoreEntitySet="telefonos">
+          <ScalarProperty Name="id_empresa" ColumnName="id_empresa" />
+          <ScalarProperty Name="fecha_actualizacion" ColumnName="fecha_actualizacion" />
+          <ScalarProperty Name="baja" ColumnName="baja" />
+          <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="telefono1" ColumnName="telefono" />
+          <ScalarProperty Name="id_telefono" ColumnName="id_telefono" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="temas">
+      <EntityTypeMapping TypeName="agroalim_qaModel.tema">
+        <MappingFragment StoreEntitySet="temas">
+          <ScalarProperty Name="fecha_actualizacion" ColumnName="fecha_actualizacion" />
+          <ScalarProperty Name="baja" ColumnName="baja" />
+          <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="id_tema" ColumnName="id_tema" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
