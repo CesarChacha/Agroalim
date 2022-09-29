@@ -12,12 +12,22 @@ namespace backend.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class organizacione
+    public partial class responsables
     {
-        public int id_organizacion { get; set; }
+        public int id_responsable { get; set; }
         public string nombre { get; set; }
+        public string apellido { get; set; }
+        public string correo { get; set; }
+        public string password { get; set; }
+        public string telefono_oficina { get; set; }
+        public string telefono_whatsapp { get; set; }
         public bool activo { get; set; }
         public bool baja { get; set; }
         public System.DateTime fecha_actualizacion { get; set; }
+    
+        public virtual comites comites { get; set; }
+        public virtual empresas empresas { get; set; }
+        public virtual profesiones profesiones { get; set; }
+        public virtual puestos puestos { get; set; }
     }
 }

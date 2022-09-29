@@ -139,3 +139,27 @@ CREATE TABLE responsables (
 	CONSTRAINT FK_responsable_profesion FOREIGN KEY (id_profesion) REFERENCES profesiones(id_profesion),
 	CONSTRAINT FK_responsable_comite FOREIGN KEY (id_comite) REFERENCES comites(id_comite)
 )
+
+CREATE TABLE empresa_norma(
+	id_empresa_norma INT PRIMARY KEY IDENTITY(1,1),
+	id_empresa INT NOT NULL,
+	id_norma INT NOT NULL,
+	CONSTRAINT FK_empresa_norma_empresa FOREIGN KEY (id_empresa) REFERENCES empresas(id_empresa),
+	CONSTRAINT FK_empresa_norma_norma FOREIGN KEY (id_norma) REFERENCES normas(id_norma),
+)
+
+CREATE TABLE empresa_organizacion(
+	id_empresa_organizacion INT PRIMARY KEY IDENTITY(1,1),
+	id_empresa INT NOT NULL,
+	id_organizacion INT NOT NULL,
+	CONSTRAINT FK_empresa_organizacion_empresa FOREIGN KEY (id_empresa) REFERENCES empresas(id_empresa),
+	CONSTRAINT FK_empresa_organizacion_organizacion FOREIGN KEY (id_organizacion) REFERENCES organizaciones(id_organizacion),
+)
+
+CREATE TABLE empresa_tema(
+	id_empresa_tema INT PRIMARY KEY IDENTITY(1,1),
+	id_empresa INT NOT NULL,
+	id_tema INT NOT NULL,
+	CONSTRAINT FK_empresa_tema_empresa FOREIGN KEY (id_empresa) REFERENCES empresas(id_empresa),
+	CONSTRAINT FK_empresa_tema_tema FOREIGN KEY (id_tema) REFERENCES temas(id_tema),
+)

@@ -12,15 +12,18 @@ namespace backend.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class empresa
+    public partial class empresas
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public empresa()
+        public empresas()
         {
-            this.domicilios = new HashSet<domicilio>();
-            this.sitios = new HashSet<sitio>();
-            this.telefonos = new HashSet<telefono>();
-            this.responsables = new HashSet<responsable>();
+            this.domicilios = new HashSet<domicilios>();
+            this.sitios = new HashSet<sitios>();
+            this.telefonos = new HashSet<telefonos>();
+            this.responsables = new HashSet<responsables>();
+            this.empresa_norma = new HashSet<empresa_norma>();
+            this.empresa_organizacion = new HashSet<empresa_organizacion>();
+            this.empresa_tema = new HashSet<empresa_tema>();
         }
     
         public int id_empresa { get; set; }
@@ -36,12 +39,18 @@ namespace backend.Models
         public System.DateTime fecha_actualizacion { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<domicilio> domicilios { get; set; }
+        public virtual ICollection<domicilios> domicilios { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<sitio> sitios { get; set; }
+        public virtual ICollection<sitios> sitios { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<telefono> telefonos { get; set; }
+        public virtual ICollection<telefonos> telefonos { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<responsable> responsables { get; set; }
+        public virtual ICollection<responsables> responsables { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<empresa_norma> empresa_norma { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<empresa_organizacion> empresa_organizacion { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<empresa_tema> empresa_tema { get; set; }
     }
 }

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="agroalim_qaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="bdModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="actividades">
           <Key>
             <PropertyRef Name="id_actividad" />
@@ -51,24 +51,30 @@
           <Property Name="fecha_actualizacion" Type="datetime" Nullable="false" />
           <Property Name="id_empresa" Type="int" Nullable="false" />
         </EntityType>
-        <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'agroalim_qa.dbo.empresa_norma' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
         <EntityType Name="empresa_norma">
-          <Property Name="id_empresa" Type="int" />
-          <Property Name="id_norma" Type="int" />
-        </EntityType>-->
-        <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'agroalim_qa.dbo.empresa_organizacion' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
+          <Key>
+            <PropertyRef Name="id_empresa_norma" />
+          </Key>
+          <Property Name="id_empresa_norma" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_empresa" Type="int" Nullable="false" />
+          <Property Name="id_norma" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="empresa_organizacion">
-          <Property Name="id_empresa" Type="int" />
-          <Property Name="id_organizacion" Type="int" />
-        </EntityType>-->
-        <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'agroalim_qa.dbo.empresa_tema' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
+          <Key>
+            <PropertyRef Name="id_empresa_organizacion" />
+          </Key>
+          <Property Name="id_empresa_organizacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_empresa" Type="int" Nullable="false" />
+          <Property Name="id_organizacion" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="empresa_tema">
-          <Property Name="id_empresa" Type="int" />
-          <Property Name="id_tema" Type="int" />
-        </EntityType>-->
+          <Key>
+            <PropertyRef Name="id_empresa_tema" />
+          </Key>
+          <Property Name="id_empresa_tema" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_empresa" Type="int" Nullable="false" />
+          <Property Name="id_tema" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="empresas">
           <Key>
             <PropertyRef Name="id_empresa" />
@@ -198,18 +204,54 @@ advertencia 6013: La tabla o vista 'agroalim_qa.dbo.empresa_tema' no tiene defin
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <!--Errores durante la generación:
-error 6004: Una relación hace referencia a la tabla 'agroalim_qa.dbo.empresa_norma', pero no se encuentra la tabla.
-        <Association Name="FK_empresa_norma_empresa" />-->
-        <!--Errores durante la generación:
-error 6004: Una relación hace referencia a la tabla 'agroalim_qa.dbo.empresa_norma', pero no se encuentra la tabla.
-        <Association Name="FK_empresa_norma_norma" />-->
-        <!--Errores durante la generación:
-error 6004: Una relación hace referencia a la tabla 'agroalim_qa.dbo.empresa_organizacion', pero no se encuentra la tabla.
-        <Association Name="FK_empresa_organizacion_empresa" />-->
-        <!--Errores durante la generación:
-error 6004: Una relación hace referencia a la tabla 'agroalim_qa.dbo.empresa_organizacion', pero no se encuentra la tabla.
-        <Association Name="FK_empresa_organizacion_organizacion" />-->
+        <Association Name="FK_empresa_norma_empresa">
+          <End Role="empresas" Type="Self.empresas" Multiplicity="1" />
+          <End Role="empresa_norma" Type="Self.empresa_norma" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="empresas">
+              <PropertyRef Name="id_empresa" />
+            </Principal>
+            <Dependent Role="empresa_norma">
+              <PropertyRef Name="id_empresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_empresa_norma_norma">
+          <End Role="normas" Type="Self.normas" Multiplicity="1" />
+          <End Role="empresa_norma" Type="Self.empresa_norma" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="normas">
+              <PropertyRef Name="id_norma" />
+            </Principal>
+            <Dependent Role="empresa_norma">
+              <PropertyRef Name="id_norma" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_empresa_organizacion_empresa">
+          <End Role="empresas" Type="Self.empresas" Multiplicity="1" />
+          <End Role="empresa_organizacion" Type="Self.empresa_organizacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="empresas">
+              <PropertyRef Name="id_empresa" />
+            </Principal>
+            <Dependent Role="empresa_organizacion">
+              <PropertyRef Name="id_empresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_empresa_organizacion_organizacion">
+          <End Role="organizaciones" Type="Self.organizaciones" Multiplicity="1" />
+          <End Role="empresa_organizacion" Type="Self.empresa_organizacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="organizaciones">
+              <PropertyRef Name="id_organizacion" />
+            </Principal>
+            <Dependent Role="empresa_organizacion">
+              <PropertyRef Name="id_organizacion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_empresa_sitio">
           <End Role="empresas" Type="Self.empresas" Multiplicity="1" />
           <End Role="sitios" Type="Self.sitios" Multiplicity="*" />
@@ -234,12 +276,30 @@ error 6004: Una relación hace referencia a la tabla 'agroalim_qa.dbo.empresa_or
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <!--Errores durante la generación:
-error 6004: Una relación hace referencia a la tabla 'agroalim_qa.dbo.empresa_tema', pero no se encuentra la tabla.
-        <Association Name="FK_empresa_tema_empresa" />-->
-        <!--Errores durante la generación:
-error 6004: Una relación hace referencia a la tabla 'agroalim_qa.dbo.empresa_tema', pero no se encuentra la tabla.
-        <Association Name="FK_empresa_tema_norma" />-->
+        <Association Name="FK_empresa_tema_empresa">
+          <End Role="empresas" Type="Self.empresas" Multiplicity="1" />
+          <End Role="empresa_tema" Type="Self.empresa_tema" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="empresas">
+              <PropertyRef Name="id_empresa" />
+            </Principal>
+            <Dependent Role="empresa_tema">
+              <PropertyRef Name="id_empresa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_empresa_tema_tema">
+          <End Role="temas" Type="Self.temas" Multiplicity="1" />
+          <End Role="empresa_tema" Type="Self.empresa_tema" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="temas">
+              <PropertyRef Name="id_tema" />
+            </Principal>
+            <Dependent Role="empresa_tema">
+              <PropertyRef Name="id_tema" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_responsable_comite">
           <End Role="comites" Type="Self.comites" Multiplicity="1" />
           <End Role="responsables" Type="Self.responsables" Multiplicity="*" />
@@ -288,11 +348,14 @@ error 6004: Una relación hace referencia a la tabla 'agroalim_qa.dbo.empresa_te
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="agroalim_qaModelStoreContainer">
+        <EntityContainer Name="bdModelStoreContainer">
           <EntitySet Name="actividades" EntityType="Self.actividades" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="administradores" EntityType="Self.administradores" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="comites" EntityType="Self.comites" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="domicilios" EntityType="Self.domicilios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="empresa_norma" EntityType="Self.empresa_norma" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="empresa_organizacion" EntityType="Self.empresa_organizacion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="empresa_tema" EntityType="Self.empresa_tema" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="empresas" EntityType="Self.empresas" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="facturacion" EntityType="Self.facturacion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="normas" EntityType="Self.normas" Schema="dbo" store:Type="Tables" />
@@ -307,6 +370,22 @@ error 6004: Una relación hace referencia a la tabla 'agroalim_qa.dbo.empresa_te
             <End Role="empresas" EntitySet="empresas" />
             <End Role="domicilios" EntitySet="domicilios" />
           </AssociationSet>
+          <AssociationSet Name="FK_empresa_norma_empresa" Association="Self.FK_empresa_norma_empresa">
+            <End Role="empresas" EntitySet="empresas" />
+            <End Role="empresa_norma" EntitySet="empresa_norma" />
+          </AssociationSet>
+          <AssociationSet Name="FK_empresa_norma_norma" Association="Self.FK_empresa_norma_norma">
+            <End Role="normas" EntitySet="normas" />
+            <End Role="empresa_norma" EntitySet="empresa_norma" />
+          </AssociationSet>
+          <AssociationSet Name="FK_empresa_organizacion_empresa" Association="Self.FK_empresa_organizacion_empresa">
+            <End Role="empresas" EntitySet="empresas" />
+            <End Role="empresa_organizacion" EntitySet="empresa_organizacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_empresa_organizacion_organizacion" Association="Self.FK_empresa_organizacion_organizacion">
+            <End Role="organizaciones" EntitySet="organizaciones" />
+            <End Role="empresa_organizacion" EntitySet="empresa_organizacion" />
+          </AssociationSet>
           <AssociationSet Name="FK_empresa_sitio" Association="Self.FK_empresa_sitio">
             <End Role="empresas" EntitySet="empresas" />
             <End Role="sitios" EntitySet="sitios" />
@@ -314,6 +393,14 @@ error 6004: Una relación hace referencia a la tabla 'agroalim_qa.dbo.empresa_te
           <AssociationSet Name="FK_empresa_telefono" Association="Self.FK_empresa_telefono">
             <End Role="empresas" EntitySet="empresas" />
             <End Role="telefonos" EntitySet="telefonos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_empresa_tema_empresa" Association="Self.FK_empresa_tema_empresa">
+            <End Role="empresas" EntitySet="empresas" />
+            <End Role="empresa_tema" EntitySet="empresa_tema" />
+          </AssociationSet>
+          <AssociationSet Name="FK_empresa_tema_tema" Association="Self.FK_empresa_tema_tema">
+            <End Role="temas" EntitySet="temas" />
+            <End Role="empresa_tema" EntitySet="empresa_tema" />
           </AssociationSet>
           <AssociationSet Name="FK_responsable_comite" Association="Self.FK_responsable_comite">
             <End Role="comites" EntitySet="comites" />
@@ -335,8 +422,18 @@ error 6004: Una relación hace referencia a la tabla 'agroalim_qa.dbo.empresa_te
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="agroalim_qaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="administradore">
+      <Schema Namespace="bdModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="actividades">
+          <Key>
+            <PropertyRef Name="id_actividad" />
+          </Key>
+          <Property Name="id_actividad" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="activo" Type="Boolean" Nullable="false" />
+          <Property Name="baja" Type="Boolean" Nullable="false" />
+          <Property Name="fecha_actualizacion" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="administradores">
           <Key>
             <PropertyRef Name="id_administrador" />
           </Key>
@@ -349,306 +446,325 @@ error 6004: Una relación hace referencia a la tabla 'agroalim_qa.dbo.empresa_te
           <Property Name="baja" Type="Boolean" Nullable="false" />
           <Property Name="fecha_actualizacion" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
-        <EntityContainer Name="dbEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="administradores" EntityType="Self.administradore" />
-          <EntitySet Name="actividades" EntityType="agroalim_qaModel.actividade" />
-          <EntitySet Name="comites" EntityType="agroalim_qaModel.comite" />
-          <EntitySet Name="domicilios" EntityType="agroalim_qaModel.domicilio" />
-          <EntitySet Name="empresas" EntityType="agroalim_qaModel.empresa" />
-          <EntitySet Name="facturacions" EntityType="agroalim_qaModel.facturacion" />
-          <EntitySet Name="normas" EntityType="agroalim_qaModel.norma" />
-          <EntitySet Name="organizaciones" EntityType="agroalim_qaModel.organizacione" />
-          <EntitySet Name="profesiones" EntityType="agroalim_qaModel.profesione" />
-          <EntitySet Name="puestos" EntityType="agroalim_qaModel.puesto" />
-          <EntitySet Name="responsables" EntityType="agroalim_qaModel.responsable" />
-          <EntitySet Name="sitios" EntityType="agroalim_qaModel.sitio" />
-          <EntitySet Name="telefonos" EntityType="agroalim_qaModel.telefono" />
-          <EntitySet Name="temas" EntityType="agroalim_qaModel.tema" />
-          <AssociationSet Name="FK_responsable_comite" Association="agroalim_qaModel.FK_responsable_comite">
-            <End Role="comite" EntitySet="comites" />
-            <End Role="responsable" EntitySet="responsables" />
-          </AssociationSet>
-          <AssociationSet Name="FK_empresa_domicilio" Association="agroalim_qaModel.FK_empresa_domicilio">
-            <End Role="empresa" EntitySet="empresas" />
-            <End Role="domicilio" EntitySet="domicilios" />
-          </AssociationSet>
-          <AssociationSet Name="FK_empresa_sitio" Association="agroalim_qaModel.FK_empresa_sitio">
-            <End Role="empresa" EntitySet="empresas" />
-            <End Role="sitio" EntitySet="sitios" />
-          </AssociationSet>
-          <AssociationSet Name="FK_empresa_telefono" Association="agroalim_qaModel.FK_empresa_telefono">
-            <End Role="empresa" EntitySet="empresas" />
-            <End Role="telefono" EntitySet="telefonos" />
-          </AssociationSet>
-          <AssociationSet Name="FK_responsable_empresa" Association="agroalim_qaModel.FK_responsable_empresa">
-            <End Role="empresa" EntitySet="empresas" />
-            <End Role="responsable" EntitySet="responsables" />
-          </AssociationSet>
-          <AssociationSet Name="FK_responsable_profesion" Association="agroalim_qaModel.FK_responsable_profesion">
-            <End Role="profesione" EntitySet="profesiones" />
-            <End Role="responsable" EntitySet="responsables" />
-          </AssociationSet>
-          <AssociationSet Name="FK_responsable_puesto" Association="agroalim_qaModel.FK_responsable_puesto">
-            <End Role="puesto" EntitySet="puestos" />
-            <End Role="responsable" EntitySet="responsables" />
-          </AssociationSet>
-        </EntityContainer>
-        <EntityType Name="actividade">
-          <Key>
-            <PropertyRef Name="id_actividad" />
-          </Key>
-          <Property Name="id_actividad" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="nombre" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="false" />
-          <Property Name="activo" Type="Boolean" Nullable="false" />
-          <Property Name="baja" Type="Boolean" Nullable="false" />
-          <Property Name="fecha_actualizacion" Type="DateTime" Nullable="false" Precision="3" />
-        </EntityType>
-        <EntityType Name="comite">
+        <EntityType Name="comites">
           <Key>
             <PropertyRef Name="id_comite" />
           </Key>
           <Property Name="id_comite" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="nombre" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="nombre" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="activo" Type="Boolean" Nullable="false" />
           <Property Name="baja" Type="Boolean" Nullable="false" />
           <Property Name="fecha_actualizacion" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="responsables" Relationship="agroalim_qaModel.FK_responsable_comite" FromRole="comite" ToRole="responsable" />
+          <NavigationProperty Name="responsables" Relationship="Self.FK_responsable_comite" FromRole="comites" ToRole="responsables" />
         </EntityType>
-        <EntityType Name="domicilio">
+        <EntityType Name="domicilios">
           <Key>
             <PropertyRef Name="id_domicilio" />
           </Key>
           <Property Name="id_domicilio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="calle" Type="String" Nullable="false" MaxLength="1024" FixedLength="false" Unicode="false" />
-          <Property Name="numero" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="false" />
-          <Property Name="codigo_postal" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="calle" Type="String" MaxLength="1024" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="numero" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="codigo_postal" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="activo" Type="Boolean" Nullable="false" />
           <Property Name="baja" Type="Boolean" Nullable="false" />
           <Property Name="fecha_actualizacion" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="id_empresa" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="empresa" Relationship="agroalim_qaModel.FK_empresa_domicilio" FromRole="domicilio" ToRole="empresa" />
+          <NavigationProperty Name="empresas" Relationship="Self.FK_empresa_domicilio" FromRole="domicilios" ToRole="empresas" />
         </EntityType>
-        <EntityType Name="empresa">
+        <EntityType Name="empresas">
           <Key>
             <PropertyRef Name="id_empresa" />
           </Key>
           <Property Name="id_empresa" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="razon_social" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="false" />
-          <Property Name="rfc" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="false" />
-          <Property Name="nombre_comercial" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="false" />
-          <Property Name="descripcion" Type="String" Nullable="false" MaxLength="1024" FixedLength="false" Unicode="false" />
+          <Property Name="razon_social" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="rfc" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nombre_comercial" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="1024" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="productos" Type="Boolean" Nullable="false" />
           <Property Name="servicios" Type="Boolean" Nullable="false" />
           <Property Name="solicitud_aceptada" Type="Boolean" Nullable="false" />
           <Property Name="activo" Type="Boolean" Nullable="false" />
           <Property Name="baja" Type="Boolean" Nullable="false" />
           <Property Name="fecha_actualizacion" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="domicilios" Relationship="agroalim_qaModel.FK_empresa_domicilio" FromRole="empresa" ToRole="domicilio" />
-          <NavigationProperty Name="sitios" Relationship="agroalim_qaModel.FK_empresa_sitio" FromRole="empresa" ToRole="sitio" />
-          <NavigationProperty Name="telefonos" Relationship="agroalim_qaModel.FK_empresa_telefono" FromRole="empresa" ToRole="telefono" />
-          <NavigationProperty Name="responsables" Relationship="agroalim_qaModel.FK_responsable_empresa" FromRole="empresa" ToRole="responsable" />
+          <NavigationProperty Name="domicilios" Relationship="Self.FK_empresa_domicilio" FromRole="empresas" ToRole="domicilios" />
+          <NavigationProperty Name="sitios" Relationship="Self.FK_empresa_sitio" FromRole="empresas" ToRole="sitios" />
+          <NavigationProperty Name="telefonos" Relationship="Self.FK_empresa_telefono" FromRole="empresas" ToRole="telefonos" />
+          <NavigationProperty Name="responsables" Relationship="Self.FK_responsable_empresa" FromRole="empresas" ToRole="responsables" />
+          <NavigationProperty Name="empresa_norma" Relationship="bdModel.FK_empresa_norma_empresa" FromRole="empresas" ToRole="empresa_norma" />
+          <NavigationProperty Name="empresa_organizacion" Relationship="bdModel.FK_empresa_organizacion_empresa" FromRole="empresas" ToRole="empresa_organizacion" />
+          <NavigationProperty Name="empresa_tema" Relationship="bdModel.FK_empresa_tema_empresa" FromRole="empresas" ToRole="empresa_tema" />
         </EntityType>
         <EntityType Name="facturacion">
           <Key>
             <PropertyRef Name="id_facturacion" />
           </Key>
           <Property Name="id_facturacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="nombre" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="nombre" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="activo" Type="Boolean" Nullable="false" />
           <Property Name="baja" Type="Boolean" Nullable="false" />
           <Property Name="fecha_actualizacion" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
-        <EntityType Name="norma">
+        <EntityType Name="normas">
           <Key>
             <PropertyRef Name="id_norma" />
           </Key>
           <Property Name="id_norma" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="nombre" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="nombre" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="activo" Type="Boolean" Nullable="false" />
           <Property Name="baja" Type="Boolean" Nullable="false" />
           <Property Name="fecha_actualizacion" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="empresa_norma" Relationship="bdModel.FK_empresa_norma_norma" FromRole="normas" ToRole="empresa_norma" />
         </EntityType>
-        <EntityType Name="organizacione">
+        <EntityType Name="organizaciones">
           <Key>
             <PropertyRef Name="id_organizacion" />
           </Key>
           <Property Name="id_organizacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="nombre" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="nombre" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="activo" Type="Boolean" Nullable="false" />
           <Property Name="baja" Type="Boolean" Nullable="false" />
           <Property Name="fecha_actualizacion" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="empresa_organizacion" Relationship="bdModel.FK_empresa_organizacion_organizacion" FromRole="organizaciones" ToRole="empresa_organizacion" />
         </EntityType>
-        <EntityType Name="profesione">
+        <EntityType Name="profesiones">
           <Key>
             <PropertyRef Name="id_profesion" />
           </Key>
           <Property Name="id_profesion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="nombre" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="nombre" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="activo" Type="Boolean" Nullable="false" />
           <Property Name="baja" Type="Boolean" Nullable="false" />
           <Property Name="fecha_actualizacion" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="responsables" Relationship="agroalim_qaModel.FK_responsable_profesion" FromRole="profesione" ToRole="responsable" />
+          <NavigationProperty Name="responsables" Relationship="Self.FK_responsable_profesion" FromRole="profesiones" ToRole="responsables" />
         </EntityType>
-        <EntityType Name="puesto">
+        <EntityType Name="puestos">
           <Key>
             <PropertyRef Name="id_puesto" />
           </Key>
           <Property Name="id_puesto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="nombre" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="nombre" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="activo" Type="Boolean" Nullable="false" />
           <Property Name="baja" Type="Boolean" Nullable="false" />
           <Property Name="fecha_actualizacion" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="responsables" Relationship="agroalim_qaModel.FK_responsable_puesto" FromRole="puesto" ToRole="responsable" />
+          <NavigationProperty Name="responsables" Relationship="Self.FK_responsable_puesto" FromRole="puestos" ToRole="responsables" />
         </EntityType>
-        <EntityType Name="responsable">
+        <EntityType Name="responsables">
           <Key>
             <PropertyRef Name="id_responsable" />
           </Key>
           <Property Name="id_responsable" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="nombre" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="false" />
-          <Property Name="apellido" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="false" />
-          <Property Name="correo" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="false" />
-          <Property Name="password" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="false" />
-          <Property Name="telefono_oficina" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="false" />
-          <Property Name="telefono_whatsapp" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="nombre" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="apellido" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="correo" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="telefono_oficina" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="telefono_whatsapp" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="activo" Type="Boolean" Nullable="false" />
           <Property Name="baja" Type="Boolean" Nullable="false" />
-          <Property Name="id_empresa" Type="Int32" Nullable="false" />
-          <Property Name="id_puesto" Type="Int32" Nullable="false" />
-          <Property Name="id_profesion" Type="Int32" Nullable="false" />
-          <Property Name="id_comite" Type="Int32" Nullable="false" />
           <Property Name="fecha_actualizacion" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="comite" Relationship="agroalim_qaModel.FK_responsable_comite" FromRole="responsable" ToRole="comite" />
-          <NavigationProperty Name="empresa" Relationship="agroalim_qaModel.FK_responsable_empresa" FromRole="responsable" ToRole="empresa" />
-          <NavigationProperty Name="profesione" Relationship="agroalim_qaModel.FK_responsable_profesion" FromRole="responsable" ToRole="profesione" />
-          <NavigationProperty Name="puesto" Relationship="agroalim_qaModel.FK_responsable_puesto" FromRole="responsable" ToRole="puesto" />
+          <NavigationProperty Name="comites" Relationship="Self.FK_responsable_comite" FromRole="responsables" ToRole="comites" />
+          <NavigationProperty Name="empresas" Relationship="Self.FK_responsable_empresa" FromRole="responsables" ToRole="empresas" />
+          <NavigationProperty Name="profesiones" Relationship="Self.FK_responsable_profesion" FromRole="responsables" ToRole="profesiones" />
+          <NavigationProperty Name="puestos" Relationship="Self.FK_responsable_puesto" FromRole="responsables" ToRole="puestos" />
         </EntityType>
-        <EntityType Name="sitio">
+        <EntityType Name="sitios">
           <Key>
             <PropertyRef Name="id_sitios" />
           </Key>
           <Property Name="id_sitios" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="sitio1" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="sitio" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="activo" Type="Boolean" Nullable="false" />
           <Property Name="baja" Type="Boolean" Nullable="false" />
           <Property Name="fecha_actualizacion" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="id_empresa" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="empresa" Relationship="agroalim_qaModel.FK_empresa_sitio" FromRole="sitio" ToRole="empresa" />
+          <NavigationProperty Name="empresas" Relationship="Self.FK_empresa_sitio" FromRole="sitios" ToRole="empresas" />
         </EntityType>
-        <EntityType Name="telefono">
+        <EntityType Name="telefonos">
           <Key>
             <PropertyRef Name="id_telefono" />
           </Key>
           <Property Name="id_telefono" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="telefono1" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="telefono" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="activo" Type="Boolean" Nullable="false" />
           <Property Name="baja" Type="Boolean" Nullable="false" />
           <Property Name="fecha_actualizacion" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="id_empresa" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="empresa" Relationship="agroalim_qaModel.FK_empresa_telefono" FromRole="telefono" ToRole="empresa" />
+          <NavigationProperty Name="empresas" Relationship="Self.FK_empresa_telefono" FromRole="telefonos" ToRole="empresas" />
         </EntityType>
-        <EntityType Name="tema">
+        <EntityType Name="temas">
           <Key>
             <PropertyRef Name="id_tema" />
           </Key>
           <Property Name="id_tema" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="nombre" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="nombre" Type="String" MaxLength="16" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="activo" Type="Boolean" Nullable="false" />
           <Property Name="baja" Type="Boolean" Nullable="false" />
           <Property Name="fecha_actualizacion" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="empresa_tema" Relationship="bdModel.FK_empresa_tema_tema" FromRole="temas" ToRole="empresa_tema" />
         </EntityType>
         <Association Name="FK_responsable_comite">
-          <End Type="agroalim_qaModel.comite" Role="comite" Multiplicity="1" />
-          <End Type="agroalim_qaModel.responsable" Role="responsable" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="comite">
-              <PropertyRef Name="id_comite" />
-            </Principal>
-            <Dependent Role="responsable">
-              <PropertyRef Name="id_comite" />
-            </Dependent>
-          </ReferentialConstraint>
+          <End Role="comites" Type="Self.comites" Multiplicity="1" />
+          <End Role="responsables" Type="Self.responsables" Multiplicity="*" />
         </Association>
         <Association Name="FK_empresa_domicilio">
-          <End Type="agroalim_qaModel.empresa" Role="empresa" Multiplicity="1" />
-          <End Type="agroalim_qaModel.domicilio" Role="domicilio" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="empresa">
-              <PropertyRef Name="id_empresa" />
-            </Principal>
-            <Dependent Role="domicilio">
-              <PropertyRef Name="id_empresa" />
-            </Dependent>
-          </ReferentialConstraint>
+          <End Role="empresas" Type="Self.empresas" Multiplicity="1" />
+          <End Role="domicilios" Type="Self.domicilios" Multiplicity="*" />
         </Association>
         <Association Name="FK_empresa_sitio">
-          <End Type="agroalim_qaModel.empresa" Role="empresa" Multiplicity="1" />
-          <End Type="agroalim_qaModel.sitio" Role="sitio" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="empresa">
-              <PropertyRef Name="id_empresa" />
-            </Principal>
-            <Dependent Role="sitio">
-              <PropertyRef Name="id_empresa" />
-            </Dependent>
-          </ReferentialConstraint>
+          <End Role="empresas" Type="Self.empresas" Multiplicity="1" />
+          <End Role="sitios" Type="Self.sitios" Multiplicity="*" />
         </Association>
         <Association Name="FK_empresa_telefono">
-          <End Type="agroalim_qaModel.empresa" Role="empresa" Multiplicity="1" />
-          <End Type="agroalim_qaModel.telefono" Role="telefono" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="empresa">
-              <PropertyRef Name="id_empresa" />
-            </Principal>
-            <Dependent Role="telefono">
-              <PropertyRef Name="id_empresa" />
-            </Dependent>
-          </ReferentialConstraint>
+          <End Role="empresas" Type="Self.empresas" Multiplicity="1" />
+          <End Role="telefonos" Type="Self.telefonos" Multiplicity="*" />
         </Association>
         <Association Name="FK_responsable_empresa">
-          <End Type="agroalim_qaModel.empresa" Role="empresa" Multiplicity="1" />
-          <End Type="agroalim_qaModel.responsable" Role="responsable" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="empresa">
-              <PropertyRef Name="id_empresa" />
-            </Principal>
-            <Dependent Role="responsable">
-              <PropertyRef Name="id_empresa" />
-            </Dependent>
-          </ReferentialConstraint>
+          <End Role="empresas" Type="Self.empresas" Multiplicity="1" />
+          <End Role="responsables" Type="Self.responsables" Multiplicity="*" />
         </Association>
         <Association Name="FK_responsable_profesion">
-          <End Type="agroalim_qaModel.profesione" Role="profesione" Multiplicity="1" />
-          <End Type="agroalim_qaModel.responsable" Role="responsable" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="profesione">
-              <PropertyRef Name="id_profesion" />
-            </Principal>
-            <Dependent Role="responsable">
-              <PropertyRef Name="id_profesion" />
-            </Dependent>
-          </ReferentialConstraint>
+          <End Role="profesiones" Type="Self.profesiones" Multiplicity="1" />
+          <End Role="responsables" Type="Self.responsables" Multiplicity="*" />
         </Association>
         <Association Name="FK_responsable_puesto">
-          <End Type="agroalim_qaModel.puesto" Role="puesto" Multiplicity="1" />
-          <End Type="agroalim_qaModel.responsable" Role="responsable" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="puesto">
-              <PropertyRef Name="id_puesto" />
-            </Principal>
-            <Dependent Role="responsable">
-              <PropertyRef Name="id_puesto" />
-            </Dependent>
-          </ReferentialConstraint>
+          <End Role="puestos" Type="Self.puestos" Multiplicity="1" />
+          <End Role="responsables" Type="Self.responsables" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="bdEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="actividades" EntityType="Self.actividades" />
+          <EntitySet Name="administradores" EntityType="Self.administradores" />
+          <EntitySet Name="comites" EntityType="Self.comites" />
+          <EntitySet Name="domicilios" EntityType="Self.domicilios" />
+          <EntitySet Name="empresas" EntityType="Self.empresas" />
+          <EntitySet Name="facturacion" EntityType="Self.facturacion" />
+          <EntitySet Name="normas" EntityType="Self.normas" />
+          <EntitySet Name="organizaciones" EntityType="Self.organizaciones" />
+          <EntitySet Name="profesiones" EntityType="Self.profesiones" />
+          <EntitySet Name="puestos" EntityType="Self.puestos" />
+          <EntitySet Name="responsables" EntityType="Self.responsables" />
+          <EntitySet Name="sitios" EntityType="Self.sitios" />
+          <EntitySet Name="telefonos" EntityType="Self.telefonos" />
+          <EntitySet Name="temas" EntityType="Self.temas" />
+          <AssociationSet Name="FK_responsable_comite" Association="Self.FK_responsable_comite">
+            <End Role="comites" EntitySet="comites" />
+            <End Role="responsables" EntitySet="responsables" />
+          </AssociationSet>
+          <AssociationSet Name="FK_empresa_domicilio" Association="Self.FK_empresa_domicilio">
+            <End Role="empresas" EntitySet="empresas" />
+            <End Role="domicilios" EntitySet="domicilios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_empresa_sitio" Association="Self.FK_empresa_sitio">
+            <End Role="empresas" EntitySet="empresas" />
+            <End Role="sitios" EntitySet="sitios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_empresa_telefono" Association="Self.FK_empresa_telefono">
+            <End Role="empresas" EntitySet="empresas" />
+            <End Role="telefonos" EntitySet="telefonos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_responsable_empresa" Association="Self.FK_responsable_empresa">
+            <End Role="empresas" EntitySet="empresas" />
+            <End Role="responsables" EntitySet="responsables" />
+          </AssociationSet>
+          <AssociationSet Name="FK_responsable_profesion" Association="Self.FK_responsable_profesion">
+            <End Role="profesiones" EntitySet="profesiones" />
+            <End Role="responsables" EntitySet="responsables" />
+          </AssociationSet>
+          <AssociationSet Name="FK_responsable_puesto" Association="Self.FK_responsable_puesto">
+            <End Role="puestos" EntitySet="puestos" />
+            <End Role="responsables" EntitySet="responsables" />
+          </AssociationSet>
+          <EntitySet Name="empresa_norma" EntityType="bdModel.empresa_norma" />
+          <EntitySet Name="empresa_organizacion" EntityType="bdModel.empresa_organizacion" />
+          <EntitySet Name="empresa_tema" EntityType="bdModel.empresa_tema" />
+          <AssociationSet Name="FK_empresa_norma_empresa" Association="bdModel.FK_empresa_norma_empresa">
+            <End Role="empresas" EntitySet="empresas" />
+            <End Role="empresa_norma" EntitySet="empresa_norma" />
+          </AssociationSet>
+          <AssociationSet Name="FK_empresa_norma_norma" Association="bdModel.FK_empresa_norma_norma">
+            <End Role="normas" EntitySet="normas" />
+            <End Role="empresa_norma" EntitySet="empresa_norma" />
+          </AssociationSet>
+          <AssociationSet Name="FK_empresa_organizacion_empresa" Association="bdModel.FK_empresa_organizacion_empresa">
+            <End Role="empresas" EntitySet="empresas" />
+            <End Role="empresa_organizacion" EntitySet="empresa_organizacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_empresa_organizacion_organizacion" Association="bdModel.FK_empresa_organizacion_organizacion">
+            <End Role="organizaciones" EntitySet="organizaciones" />
+            <End Role="empresa_organizacion" EntitySet="empresa_organizacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_empresa_tema_empresa" Association="bdModel.FK_empresa_tema_empresa">
+            <End Role="empresas" EntitySet="empresas" />
+            <End Role="empresa_tema" EntitySet="empresa_tema" />
+          </AssociationSet>
+          <AssociationSet Name="FK_empresa_tema_tema" Association="bdModel.FK_empresa_tema_tema">
+            <End Role="temas" EntitySet="temas" />
+            <End Role="empresa_tema" EntitySet="empresa_tema" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="empresa_norma">
+          <Key>
+            <PropertyRef Name="id_empresa_norma" />
+          </Key>
+          <Property Name="id_empresa_norma" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="empresas" Relationship="bdModel.FK_empresa_norma_empresa" FromRole="empresa_norma" ToRole="empresas" />
+          <NavigationProperty Name="normas" Relationship="bdModel.FK_empresa_norma_norma" FromRole="empresa_norma" ToRole="normas" />
+        </EntityType>
+        <EntityType Name="empresa_organizacion">
+          <Key>
+            <PropertyRef Name="id_empresa_organizacion" />
+          </Key>
+          <Property Name="id_empresa_organizacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="empresas" Relationship="bdModel.FK_empresa_organizacion_empresa" FromRole="empresa_organizacion" ToRole="empresas" />
+          <NavigationProperty Name="organizaciones" Relationship="bdModel.FK_empresa_organizacion_organizacion" FromRole="empresa_organizacion" ToRole="organizaciones" />
+        </EntityType>
+        <EntityType Name="empresa_tema">
+          <Key>
+            <PropertyRef Name="id_empresa_tema" />
+          </Key>
+          <Property Name="id_empresa_tema" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="empresas" Relationship="bdModel.FK_empresa_tema_empresa" FromRole="empresa_tema" ToRole="empresas" />
+          <NavigationProperty Name="temas" Relationship="bdModel.FK_empresa_tema_tema" FromRole="empresa_tema" ToRole="temas" />
+        </EntityType>
+        <Association Name="FK_empresa_norma_empresa">
+          <End Type="bdModel.empresas" Role="empresas" Multiplicity="1" />
+          <End Type="bdModel.empresa_norma" Role="empresa_norma" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_empresa_norma_norma">
+          <End Type="bdModel.normas" Role="normas" Multiplicity="1" />
+          <End Type="bdModel.empresa_norma" Role="empresa_norma" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_empresa_organizacion_empresa">
+          <End Type="bdModel.empresas" Role="empresas" Multiplicity="1" />
+          <End Type="bdModel.empresa_organizacion" Role="empresa_organizacion" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_empresa_organizacion_organizacion">
+          <End Type="bdModel.organizaciones" Role="organizaciones" Multiplicity="1" />
+          <End Type="bdModel.empresa_organizacion" Role="empresa_organizacion" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_empresa_tema_empresa">
+          <End Type="bdModel.empresas" Role="empresas" Multiplicity="1" />
+          <End Type="bdModel.empresa_tema" Role="empresa_tema" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_empresa_tema_tema">
+          <End Type="bdModel.temas" Role="temas" Multiplicity="1" />
+          <End Type="bdModel.empresa_tema" Role="empresa_tema" Multiplicity="*" />
         </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="agroalim_qaModelStoreContainer" CdmEntityContainer="dbEntities">
+        <EntityContainerMapping StorageEntityContainer="bdModelStoreContainer" CdmEntityContainer="bdEntities">
+          <EntitySetMapping Name="actividades">
+            <EntityTypeMapping TypeName="bdModel.actividades">
+              <MappingFragment StoreEntitySet="actividades">
+                <ScalarProperty Name="id_actividad" ColumnName="id_actividad" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="baja" ColumnName="baja" />
+                <ScalarProperty Name="fecha_actualizacion" ColumnName="fecha_actualizacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="administradores">
-            <EntityTypeMapping TypeName="agroalim_qaModel.administradore">
+            <EntityTypeMapping TypeName="bdModel.administradores">
               <MappingFragment StoreEntitySet="administradores">
                 <ScalarProperty Name="id_administrador" ColumnName="id_administrador" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
@@ -661,169 +777,276 @@ error 6004: Una relación hace referencia a la tabla 'agroalim_qa.dbo.empresa_te
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="actividades">
-            <EntityTypeMapping TypeName="agroalim_qaModel.actividade">
-              <MappingFragment StoreEntitySet="actividades">
-                <ScalarProperty Name="fecha_actualizacion" ColumnName="fecha_actualizacion" />
-                <ScalarProperty Name="baja" ColumnName="baja" />
-                <ScalarProperty Name="activo" ColumnName="activo" />
-                <ScalarProperty Name="nombre" ColumnName="nombre" />
-                <ScalarProperty Name="id_actividad" ColumnName="id_actividad" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="comites">
-            <EntityTypeMapping TypeName="agroalim_qaModel.comite">
+            <EntityTypeMapping TypeName="bdModel.comites">
               <MappingFragment StoreEntitySet="comites">
-                <ScalarProperty Name="fecha_actualizacion" ColumnName="fecha_actualizacion" />
-                <ScalarProperty Name="baja" ColumnName="baja" />
-                <ScalarProperty Name="activo" ColumnName="activo" />
-                <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="id_comite" ColumnName="id_comite" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="baja" ColumnName="baja" />
+                <ScalarProperty Name="fecha_actualizacion" ColumnName="fecha_actualizacion" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="domicilios">
-            <EntityTypeMapping TypeName="agroalim_qaModel.domicilio">
+            <EntityTypeMapping TypeName="bdModel.domicilios">
               <MappingFragment StoreEntitySet="domicilios">
-                <ScalarProperty Name="id_empresa" ColumnName="id_empresa" />
-                <ScalarProperty Name="fecha_actualizacion" ColumnName="fecha_actualizacion" />
-                <ScalarProperty Name="baja" ColumnName="baja" />
-                <ScalarProperty Name="activo" ColumnName="activo" />
-                <ScalarProperty Name="codigo_postal" ColumnName="codigo_postal" />
-                <ScalarProperty Name="numero" ColumnName="numero" />
-                <ScalarProperty Name="calle" ColumnName="calle" />
                 <ScalarProperty Name="id_domicilio" ColumnName="id_domicilio" />
+                <ScalarProperty Name="calle" ColumnName="calle" />
+                <ScalarProperty Name="numero" ColumnName="numero" />
+                <ScalarProperty Name="codigo_postal" ColumnName="codigo_postal" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="baja" ColumnName="baja" />
+                <ScalarProperty Name="fecha_actualizacion" ColumnName="fecha_actualizacion" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="empresas">
-            <EntityTypeMapping TypeName="agroalim_qaModel.empresa">
+            <EntityTypeMapping TypeName="bdModel.empresas">
               <MappingFragment StoreEntitySet="empresas">
-                <ScalarProperty Name="fecha_actualizacion" ColumnName="fecha_actualizacion" />
-                <ScalarProperty Name="baja" ColumnName="baja" />
-                <ScalarProperty Name="activo" ColumnName="activo" />
-                <ScalarProperty Name="solicitud_aceptada" ColumnName="solicitud_aceptada" />
-                <ScalarProperty Name="servicios" ColumnName="servicios" />
-                <ScalarProperty Name="productos" ColumnName="productos" />
-                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
-                <ScalarProperty Name="nombre_comercial" ColumnName="nombre_comercial" />
-                <ScalarProperty Name="rfc" ColumnName="rfc" />
-                <ScalarProperty Name="razon_social" ColumnName="razon_social" />
                 <ScalarProperty Name="id_empresa" ColumnName="id_empresa" />
+                <ScalarProperty Name="razon_social" ColumnName="razon_social" />
+                <ScalarProperty Name="rfc" ColumnName="rfc" />
+                <ScalarProperty Name="nombre_comercial" ColumnName="nombre_comercial" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="productos" ColumnName="productos" />
+                <ScalarProperty Name="servicios" ColumnName="servicios" />
+                <ScalarProperty Name="solicitud_aceptada" ColumnName="solicitud_aceptada" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="baja" ColumnName="baja" />
+                <ScalarProperty Name="fecha_actualizacion" ColumnName="fecha_actualizacion" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="facturacions">
-            <EntityTypeMapping TypeName="agroalim_qaModel.facturacion">
+          <EntitySetMapping Name="facturacion">
+            <EntityTypeMapping TypeName="bdModel.facturacion">
               <MappingFragment StoreEntitySet="facturacion">
-                <ScalarProperty Name="fecha_actualizacion" ColumnName="fecha_actualizacion" />
-                <ScalarProperty Name="baja" ColumnName="baja" />
-                <ScalarProperty Name="activo" ColumnName="activo" />
-                <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="id_facturacion" ColumnName="id_facturacion" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="baja" ColumnName="baja" />
+                <ScalarProperty Name="fecha_actualizacion" ColumnName="fecha_actualizacion" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="normas">
-            <EntityTypeMapping TypeName="agroalim_qaModel.norma">
+            <EntityTypeMapping TypeName="bdModel.normas">
               <MappingFragment StoreEntitySet="normas">
-                <ScalarProperty Name="fecha_actualizacion" ColumnName="fecha_actualizacion" />
-                <ScalarProperty Name="baja" ColumnName="baja" />
-                <ScalarProperty Name="activo" ColumnName="activo" />
-                <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="id_norma" ColumnName="id_norma" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="baja" ColumnName="baja" />
+                <ScalarProperty Name="fecha_actualizacion" ColumnName="fecha_actualizacion" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="organizaciones">
-            <EntityTypeMapping TypeName="agroalim_qaModel.organizacione">
+            <EntityTypeMapping TypeName="bdModel.organizaciones">
               <MappingFragment StoreEntitySet="organizaciones">
-                <ScalarProperty Name="fecha_actualizacion" ColumnName="fecha_actualizacion" />
-                <ScalarProperty Name="baja" ColumnName="baja" />
-                <ScalarProperty Name="activo" ColumnName="activo" />
-                <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="id_organizacion" ColumnName="id_organizacion" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="baja" ColumnName="baja" />
+                <ScalarProperty Name="fecha_actualizacion" ColumnName="fecha_actualizacion" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="profesiones">
-            <EntityTypeMapping TypeName="agroalim_qaModel.profesione">
+            <EntityTypeMapping TypeName="bdModel.profesiones">
               <MappingFragment StoreEntitySet="profesiones">
-                <ScalarProperty Name="fecha_actualizacion" ColumnName="fecha_actualizacion" />
-                <ScalarProperty Name="baja" ColumnName="baja" />
-                <ScalarProperty Name="activo" ColumnName="activo" />
-                <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="id_profesion" ColumnName="id_profesion" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="baja" ColumnName="baja" />
+                <ScalarProperty Name="fecha_actualizacion" ColumnName="fecha_actualizacion" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="puestos">
-            <EntityTypeMapping TypeName="agroalim_qaModel.puesto">
+            <EntityTypeMapping TypeName="bdModel.puestos">
               <MappingFragment StoreEntitySet="puestos">
-                <ScalarProperty Name="fecha_actualizacion" ColumnName="fecha_actualizacion" />
-                <ScalarProperty Name="baja" ColumnName="baja" />
-                <ScalarProperty Name="activo" ColumnName="activo" />
-                <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="id_puesto" ColumnName="id_puesto" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="baja" ColumnName="baja" />
+                <ScalarProperty Name="fecha_actualizacion" ColumnName="fecha_actualizacion" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="responsables">
-            <EntityTypeMapping TypeName="agroalim_qaModel.responsable">
+            <EntityTypeMapping TypeName="bdModel.responsables">
               <MappingFragment StoreEntitySet="responsables">
-                <ScalarProperty Name="fecha_actualizacion" ColumnName="fecha_actualizacion" />
-                <ScalarProperty Name="id_comite" ColumnName="id_comite" />
-                <ScalarProperty Name="id_profesion" ColumnName="id_profesion" />
-                <ScalarProperty Name="id_puesto" ColumnName="id_puesto" />
-                <ScalarProperty Name="id_empresa" ColumnName="id_empresa" />
-                <ScalarProperty Name="baja" ColumnName="baja" />
-                <ScalarProperty Name="activo" ColumnName="activo" />
-                <ScalarProperty Name="telefono_whatsapp" ColumnName="telefono_whatsapp" />
-                <ScalarProperty Name="telefono_oficina" ColumnName="telefono_oficina" />
-                <ScalarProperty Name="password" ColumnName="password" />
-                <ScalarProperty Name="correo" ColumnName="correo" />
-                <ScalarProperty Name="apellido" ColumnName="apellido" />
-                <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="id_responsable" ColumnName="id_responsable" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apellido" ColumnName="apellido" />
+                <ScalarProperty Name="correo" ColumnName="correo" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="telefono_oficina" ColumnName="telefono_oficina" />
+                <ScalarProperty Name="telefono_whatsapp" ColumnName="telefono_whatsapp" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="baja" ColumnName="baja" />
+                <ScalarProperty Name="fecha_actualizacion" ColumnName="fecha_actualizacion" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sitios">
-            <EntityTypeMapping TypeName="agroalim_qaModel.sitio">
+            <EntityTypeMapping TypeName="bdModel.sitios">
               <MappingFragment StoreEntitySet="sitios">
-                <ScalarProperty Name="id_empresa" ColumnName="id_empresa" />
-                <ScalarProperty Name="fecha_actualizacion" ColumnName="fecha_actualizacion" />
-                <ScalarProperty Name="baja" ColumnName="baja" />
-                <ScalarProperty Name="activo" ColumnName="activo" />
-                <ScalarProperty Name="sitio1" ColumnName="sitio" />
                 <ScalarProperty Name="id_sitios" ColumnName="id_sitios" />
+                <ScalarProperty Name="sitio" ColumnName="sitio" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="baja" ColumnName="baja" />
+                <ScalarProperty Name="fecha_actualizacion" ColumnName="fecha_actualizacion" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="telefonos">
-            <EntityTypeMapping TypeName="agroalim_qaModel.telefono">
+            <EntityTypeMapping TypeName="bdModel.telefonos">
               <MappingFragment StoreEntitySet="telefonos">
-                <ScalarProperty Name="id_empresa" ColumnName="id_empresa" />
-                <ScalarProperty Name="fecha_actualizacion" ColumnName="fecha_actualizacion" />
-                <ScalarProperty Name="baja" ColumnName="baja" />
-                <ScalarProperty Name="activo" ColumnName="activo" />
-                <ScalarProperty Name="telefono1" ColumnName="telefono" />
                 <ScalarProperty Name="id_telefono" ColumnName="id_telefono" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="baja" ColumnName="baja" />
+                <ScalarProperty Name="fecha_actualizacion" ColumnName="fecha_actualizacion" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="temas">
-            <EntityTypeMapping TypeName="agroalim_qaModel.tema">
+            <EntityTypeMapping TypeName="bdModel.temas">
               <MappingFragment StoreEntitySet="temas">
-                <ScalarProperty Name="fecha_actualizacion" ColumnName="fecha_actualizacion" />
-                <ScalarProperty Name="baja" ColumnName="baja" />
-                <ScalarProperty Name="activo" ColumnName="activo" />
-                <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="id_tema" ColumnName="id_tema" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="baja" ColumnName="baja" />
+                <ScalarProperty Name="fecha_actualizacion" ColumnName="fecha_actualizacion" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <AssociationSetMapping Name="FK_responsable_comite" TypeName="bdModel.FK_responsable_comite" StoreEntitySet="responsables">
+            <EndProperty Name="comites">
+              <ScalarProperty Name="id_comite" ColumnName="id_comite" />
+            </EndProperty>
+            <EndProperty Name="responsables">
+              <ScalarProperty Name="id_responsable" ColumnName="id_responsable" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_empresa_domicilio" TypeName="bdModel.FK_empresa_domicilio" StoreEntitySet="domicilios">
+            <EndProperty Name="empresas">
+              <ScalarProperty Name="id_empresa" ColumnName="id_empresa" />
+            </EndProperty>
+            <EndProperty Name="domicilios">
+              <ScalarProperty Name="id_domicilio" ColumnName="id_domicilio" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_empresa_sitio" TypeName="bdModel.FK_empresa_sitio" StoreEntitySet="sitios">
+            <EndProperty Name="empresas">
+              <ScalarProperty Name="id_empresa" ColumnName="id_empresa" />
+            </EndProperty>
+            <EndProperty Name="sitios">
+              <ScalarProperty Name="id_sitios" ColumnName="id_sitios" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_empresa_telefono" TypeName="bdModel.FK_empresa_telefono" StoreEntitySet="telefonos">
+            <EndProperty Name="empresas">
+              <ScalarProperty Name="id_empresa" ColumnName="id_empresa" />
+            </EndProperty>
+            <EndProperty Name="telefonos">
+              <ScalarProperty Name="id_telefono" ColumnName="id_telefono" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_responsable_empresa" TypeName="bdModel.FK_responsable_empresa" StoreEntitySet="responsables">
+            <EndProperty Name="empresas">
+              <ScalarProperty Name="id_empresa" ColumnName="id_empresa" />
+            </EndProperty>
+            <EndProperty Name="responsables">
+              <ScalarProperty Name="id_responsable" ColumnName="id_responsable" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_responsable_profesion" TypeName="bdModel.FK_responsable_profesion" StoreEntitySet="responsables">
+            <EndProperty Name="profesiones">
+              <ScalarProperty Name="id_profesion" ColumnName="id_profesion" />
+            </EndProperty>
+            <EndProperty Name="responsables">
+              <ScalarProperty Name="id_responsable" ColumnName="id_responsable" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_responsable_puesto" TypeName="bdModel.FK_responsable_puesto" StoreEntitySet="responsables">
+            <EndProperty Name="puestos">
+              <ScalarProperty Name="id_puesto" ColumnName="id_puesto" />
+            </EndProperty>
+            <EndProperty Name="responsables">
+              <ScalarProperty Name="id_responsable" ColumnName="id_responsable" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="empresa_norma">
+            <EntityTypeMapping TypeName="bdModel.empresa_norma">
+              <MappingFragment StoreEntitySet="empresa_norma">
+                <ScalarProperty Name="id_empresa_norma" ColumnName="id_empresa_norma" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="empresa_organizacion">
+            <EntityTypeMapping TypeName="bdModel.empresa_organizacion">
+              <MappingFragment StoreEntitySet="empresa_organizacion">
+                <ScalarProperty Name="id_empresa_organizacion" ColumnName="id_empresa_organizacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="empresa_tema">
+            <EntityTypeMapping TypeName="bdModel.empresa_tema">
+              <MappingFragment StoreEntitySet="empresa_tema">
+                <ScalarProperty Name="id_empresa_tema" ColumnName="id_empresa_tema" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="FK_empresa_norma_empresa" TypeName="bdModel.FK_empresa_norma_empresa" StoreEntitySet="empresa_norma">
+            <EndProperty Name="empresa_norma">
+              <ScalarProperty Name="id_empresa_norma" ColumnName="id_empresa_norma" />
+            </EndProperty>
+            <EndProperty Name="empresas">
+              <ScalarProperty Name="id_empresa" ColumnName="id_empresa" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_empresa_norma_norma" TypeName="bdModel.FK_empresa_norma_norma" StoreEntitySet="empresa_norma">
+            <EndProperty Name="empresa_norma">
+              <ScalarProperty Name="id_empresa_norma" ColumnName="id_empresa_norma" />
+            </EndProperty>
+            <EndProperty Name="normas">
+              <ScalarProperty Name="id_norma" ColumnName="id_norma" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_empresa_organizacion_empresa" TypeName="bdModel.FK_empresa_organizacion_empresa" StoreEntitySet="empresa_organizacion">
+            <EndProperty Name="empresa_organizacion">
+              <ScalarProperty Name="id_empresa_organizacion" ColumnName="id_empresa_organizacion" />
+            </EndProperty>
+            <EndProperty Name="empresas">
+              <ScalarProperty Name="id_empresa" ColumnName="id_empresa" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_empresa_organizacion_organizacion" TypeName="bdModel.FK_empresa_organizacion_organizacion" StoreEntitySet="empresa_organizacion">
+            <EndProperty Name="empresa_organizacion">
+              <ScalarProperty Name="id_empresa_organizacion" ColumnName="id_empresa_organizacion" />
+            </EndProperty>
+            <EndProperty Name="organizaciones">
+              <ScalarProperty Name="id_organizacion" ColumnName="id_organizacion" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_empresa_tema_empresa" TypeName="bdModel.FK_empresa_tema_empresa" StoreEntitySet="empresa_tema">
+            <EndProperty Name="empresa_tema">
+              <ScalarProperty Name="id_empresa_tema" ColumnName="id_empresa_tema" />
+            </EndProperty>
+            <EndProperty Name="empresas">
+              <ScalarProperty Name="id_empresa" ColumnName="id_empresa" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_empresa_tema_tema" TypeName="bdModel.FK_empresa_tema_tema" StoreEntitySet="empresa_tema">
+            <EndProperty Name="empresa_tema">
+              <ScalarProperty Name="id_empresa_tema" ColumnName="id_empresa_tema" />
+            </EndProperty>
+            <EndProperty Name="temas">
+              <ScalarProperty Name="id_tema" ColumnName="id_tema" />
+            </EndProperty>
+          </AssociationSetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -838,8 +1061,8 @@ error 6004: Una relación hace referencia a la tabla 'agroalim_qa.dbo.empresa_te
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="true" />
-        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="false" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
       </DesignerInfoPropertySet>

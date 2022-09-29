@@ -12,15 +12,21 @@ namespace backend.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class administradore
+    public partial class comites
     {
-        public int id_administrador { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public comites()
+        {
+            this.responsables = new HashSet<responsables>();
+        }
+    
+        public int id_comite { get; set; }
         public string nombre { get; set; }
-        public string apellido { get; set; }
-        public string correo { get; set; }
-        public string password { get; set; }
         public bool activo { get; set; }
         public bool baja { get; set; }
         public System.DateTime fecha_actualizacion { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<responsables> responsables { get; set; }
     }
 }

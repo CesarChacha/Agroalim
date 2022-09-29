@@ -12,17 +12,21 @@ namespace backend.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class domicilio
+    public partial class temas
     {
-        public int id_domicilio { get; set; }
-        public string calle { get; set; }
-        public string numero { get; set; }
-        public string codigo_postal { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public temas()
+        {
+            this.empresa_tema = new HashSet<empresa_tema>();
+        }
+    
+        public int id_tema { get; set; }
+        public string nombre { get; set; }
         public bool activo { get; set; }
         public bool baja { get; set; }
         public System.DateTime fecha_actualizacion { get; set; }
-        public int id_empresa { get; set; }
     
-        public virtual empresa empresa { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<empresa_tema> empresa_tema { get; set; }
     }
 }

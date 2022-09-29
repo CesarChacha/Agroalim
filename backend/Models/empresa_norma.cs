@@ -12,15 +12,11 @@ namespace backend.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class sitio
+    public partial class empresa_norma
     {
-        public int id_sitios { get; set; }
-        public string sitio1 { get; set; }
-        public bool activo { get; set; }
-        public bool baja { get; set; }
-        public System.DateTime fecha_actualizacion { get; set; }
-        public int id_empresa { get; set; }
+        public int id_empresa_norma { get; set; }
     
-        public virtual empresa empresa { get; set; }
+        public virtual empresas empresas { get; set; }
+        public virtual normas normas { get; set; }
     }
 }

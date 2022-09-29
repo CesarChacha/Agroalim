@@ -11,13 +11,13 @@ namespace backend.Controllers
 {
     public class LoginController : ApiController
     {
-        dbEntities db = new dbEntities();
+        bdEntities db = new bdEntities();
 
         public LoginData Post([FromBody] LoginData data)
         {
             try
             {
-                administradore user = db.administradores.First(
+                administradores user = db.administradores.First(
                     adm => adm.activo == true &&
                     adm.baja == false &&
                     adm.correo == data.user &&

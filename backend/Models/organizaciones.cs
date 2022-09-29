@@ -12,21 +12,21 @@ namespace backend.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class comite
+    public partial class organizaciones
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public comite()
+        public organizaciones()
         {
-            this.responsables = new HashSet<responsable>();
+            this.empresa_organizacion = new HashSet<empresa_organizacion>();
         }
     
-        public int id_comite { get; set; }
+        public int id_organizacion { get; set; }
         public string nombre { get; set; }
         public bool activo { get; set; }
         public bool baja { get; set; }
         public System.DateTime fecha_actualizacion { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<responsable> responsables { get; set; }
+        public virtual ICollection<empresa_organizacion> empresa_organizacion { get; set; }
     }
 }

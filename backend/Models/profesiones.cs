@@ -12,12 +12,12 @@ namespace backend.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class profesione
+    public partial class profesiones
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public profesione()
+        public profesiones()
         {
-            this.responsables = new HashSet<responsable>();
+            this.responsables = new HashSet<responsables>();
         }
     
         public int id_profesion { get; set; }
@@ -27,6 +27,6 @@ namespace backend.Models
         public System.DateTime fecha_actualizacion { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<responsable> responsables { get; set; }
+        public virtual ICollection<responsables> responsables { get; set; }
     }
 }

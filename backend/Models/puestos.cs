@@ -12,15 +12,21 @@ namespace backend.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class telefono
+    public partial class puestos
     {
-        public int id_telefono { get; set; }
-        public string telefono1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public puestos()
+        {
+            this.responsables = new HashSet<responsables>();
+        }
+    
+        public int id_puesto { get; set; }
+        public string nombre { get; set; }
         public bool activo { get; set; }
         public bool baja { get; set; }
         public System.DateTime fecha_actualizacion { get; set; }
-        public int id_empresa { get; set; }
     
-        public virtual empresa empresa { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<responsables> responsables { get; set; }
     }
 }

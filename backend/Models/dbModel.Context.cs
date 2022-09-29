@@ -13,10 +13,10 @@ namespace backend.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class dbEntities : DbContext
+    public partial class bdEntities : DbContext
     {
-        public dbEntities()
-            : base("name=dbEntities")
+        public bdEntities()
+            : base("name=bdEntities")
         {
         }
     
@@ -25,19 +25,22 @@ namespace backend.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<administradore> administradores { get; set; }
-        public virtual DbSet<actividade> actividades { get; set; }
-        public virtual DbSet<comite> comites { get; set; }
-        public virtual DbSet<domicilio> domicilios { get; set; }
-        public virtual DbSet<empresa> empresas { get; set; }
-        public virtual DbSet<facturacion> facturacions { get; set; }
-        public virtual DbSet<norma> normas { get; set; }
-        public virtual DbSet<organizacione> organizaciones { get; set; }
-        public virtual DbSet<profesione> profesiones { get; set; }
-        public virtual DbSet<puesto> puestos { get; set; }
-        public virtual DbSet<responsable> responsables { get; set; }
-        public virtual DbSet<sitio> sitios { get; set; }
-        public virtual DbSet<telefono> telefonos { get; set; }
-        public virtual DbSet<tema> temas { get; set; }
+        public virtual DbSet<actividades> actividades { get; set; }
+        public virtual DbSet<administradores> administradores { get; set; }
+        public virtual DbSet<comites> comites { get; set; }
+        public virtual DbSet<domicilios> domicilios { get; set; }
+        public virtual DbSet<empresas> empresas { get; set; }
+        public virtual DbSet<facturacion> facturacion { get; set; }
+        public virtual DbSet<normas> normas { get; set; }
+        public virtual DbSet<organizaciones> organizaciones { get; set; }
+        public virtual DbSet<profesiones> profesiones { get; set; }
+        public virtual DbSet<puestos> puestos { get; set; }
+        public virtual DbSet<responsables> responsables { get; set; }
+        public virtual DbSet<sitios> sitios { get; set; }
+        public virtual DbSet<telefonos> telefonos { get; set; }
+        public virtual DbSet<temas> temas { get; set; }
+        public virtual DbSet<empresa_norma> empresa_norma { get; set; }
+        public virtual DbSet<empresa_organizacion> empresa_organizacion { get; set; }
+        public virtual DbSet<empresa_tema> empresa_tema { get; set; }
     }
 }

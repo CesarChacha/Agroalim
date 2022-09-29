@@ -12,12 +12,14 @@ namespace backend.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class tema
+    public partial class sitios
     {
-        public int id_tema { get; set; }
-        public string nombre { get; set; }
+        public int id_sitios { get; set; }
+        public string sitio { get; set; }
         public bool activo { get; set; }
         public bool baja { get; set; }
         public System.DateTime fecha_actualizacion { get; set; }
+    
+        public virtual empresas empresas { get; set; }
     }
 }

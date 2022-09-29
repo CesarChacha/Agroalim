@@ -4,28 +4,37 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="6657cc9dde1d411392af89ea7c7ffb8a" Name="Diagram1">
-        <EntityTypeShape EntityType="agroalim_qaModel.administradore" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="agroalim_qaModel.actividade" Width="1.5" PointX="3.75" PointY="1" />
-        <EntityTypeShape EntityType="agroalim_qaModel.comite" Width="1.5" PointX="6.75" PointY="7.875" />
-        <EntityTypeShape EntityType="agroalim_qaModel.domicilio" Width="1.5" PointX="6" PointY="12.75" />
-        <EntityTypeShape EntityType="agroalim_qaModel.empresa" Width="1.5" PointX="3.75" PointY="6.875" />
-        <EntityTypeShape EntityType="agroalim_qaModel.facturacion" Width="1.5" PointX="0.75" PointY="5" />
-        <EntityTypeShape EntityType="agroalim_qaModel.norma" Width="1.5" PointX="0.75" PointY="8" />
-        <EntityTypeShape EntityType="agroalim_qaModel.organizacione" Width="1.5" PointX="8.75" PointY="1" />
-        <EntityTypeShape EntityType="agroalim_qaModel.profesione" Width="1.5" PointX="6.75" PointY="0.75" />
-        <EntityTypeShape EntityType="agroalim_qaModel.puesto" Width="1.5" PointX="6.75" PointY="19.625" />
-        <EntityTypeShape EntityType="agroalim_qaModel.responsable" Width="1.5" PointX="9" PointY="6.625" />
-        <EntityTypeShape EntityType="agroalim_qaModel.sitio" Width="1.5" PointX="6" PointY="16.25" />
-        <EntityTypeShape EntityType="agroalim_qaModel.telefono" Width="1.5" PointX="6" PointY="4.375" />
-        <EntityTypeShape EntityType="agroalim_qaModel.tema" Width="1.5" PointX="10.75" PointY="1" />
-        <AssociationConnector Association="agroalim_qaModel.FK_responsable_comite" />
-        <AssociationConnector Association="agroalim_qaModel.FK_empresa_domicilio" />
-        <AssociationConnector Association="agroalim_qaModel.FK_empresa_sitio" />
-        <AssociationConnector Association="agroalim_qaModel.FK_empresa_telefono" />
-        <AssociationConnector Association="agroalim_qaModel.FK_responsable_empresa" />
-        <AssociationConnector Association="agroalim_qaModel.FK_responsable_profesion" />
-        <AssociationConnector Association="agroalim_qaModel.FK_responsable_puesto" />
+      <Diagram DiagramId="09415519042942648a52f924e3006bf7" Name="Diagram1">
+        <EntityTypeShape EntityType="bdModel.actividades" Width="1.5" PointX="0.75" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="bdModel.administradores" Width="1.5" PointX="5.75" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="bdModel.comites" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="bdModel.domicilios" Width="1.5" PointX="3" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="bdModel.empresas" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="bdModel.facturacion" Width="1.5" PointX="7.75" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="bdModel.normas" Width="1.5" PointX="8.75" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="bdModel.organizaciones" Width="1.5" PointX="8.75" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="bdModel.profesiones" Width="1.5" PointX="3.75" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="bdModel.puestos" Width="1.5" PointX="3.75" PointY="18.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="bdModel.responsables" Width="1.5" PointX="6" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="bdModel.sitios" Width="1.5" PointX="3" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="bdModel.telefonos" Width="1.5" PointX="3" PointY="15.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="bdModel.temas" Width="1.5" PointX="9.75" PointY="1.625" IsExpanded="true" />
+        <AssociationConnector Association="bdModel.FK_responsable_comite" ManuallyRouted="false" />
+        <AssociationConnector Association="bdModel.FK_empresa_domicilio" ManuallyRouted="false" />
+        <AssociationConnector Association="bdModel.FK_empresa_sitio" ManuallyRouted="false" />
+        <AssociationConnector Association="bdModel.FK_empresa_telefono" ManuallyRouted="false" />
+        <AssociationConnector Association="bdModel.FK_responsable_empresa" ManuallyRouted="false" />
+        <AssociationConnector Association="bdModel.FK_responsable_profesion" ManuallyRouted="false" />
+        <AssociationConnector Association="bdModel.FK_responsable_puesto" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="bdModel.empresa_norma" Width="1.5" PointX="11" PointY="8.125" />
+        <EntityTypeShape EntityType="bdModel.empresa_organizacion" Width="1.5" PointX="11" PointY="11.375" />
+        <EntityTypeShape EntityType="bdModel.empresa_tema" Width="1.5" PointX="12" PointY="5.625" />
+        <AssociationConnector Association="bdModel.FK_empresa_norma_empresa" />
+        <AssociationConnector Association="bdModel.FK_empresa_norma_norma" />
+        <AssociationConnector Association="bdModel.FK_empresa_organizacion_empresa" />
+        <AssociationConnector Association="bdModel.FK_empresa_organizacion_organizacion" />
+        <AssociationConnector Association="bdModel.FK_empresa_tema_empresa" />
+        <AssociationConnector Association="bdModel.FK_empresa_tema_tema" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
