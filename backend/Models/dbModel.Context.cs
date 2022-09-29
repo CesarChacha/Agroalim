@@ -26,5 +26,18 @@ namespace backend.Models
         }
     
         public virtual DbSet<administradore> administradores { get; set; }
+        public virtual DbSet<actividade> actividades { get; set; }
+        public virtual DbSet<comite> comites { get; set; }
+        public virtual DbSet<domicilio> domicilios { get; set; }
+        public virtual DbSet<empresa> empresas { get; set; }
+        public virtual DbSet<facturacion> facturacions { get; set; }
+        public virtual DbSet<norma> normas { get; set; }
+        public virtual DbSet<organizacione> organizaciones { get; set; }
+        public virtual DbSet<profesione> profesiones { get; set; }
+        public virtual DbSet<puesto> puestos { get; set; }
+        public virtual DbSet<responsable> responsables { get; set; }
+        public virtual DbSet<sitio> sitios { get; set; }
+        public virtual DbSet<telefono> telefonos { get; set; }
+        public virtual DbSet<tema> temas { get; set; }
     }
 }

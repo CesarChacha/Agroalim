@@ -223,13 +223,20 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\Catalogos\puestosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\actividade.cs">
+      <DependentUpon>dbModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\administradore.cs">
+      <DependentUpon>dbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\comite.cs">
       <DependentUpon>dbModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\custom\LoginData.cs" />
@@ -247,6 +254,39 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>dbModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\domicilio.cs">
+      <DependentUpon>dbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\empresa.cs">
+      <DependentUpon>dbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\facturacion.cs">
+      <DependentUpon>dbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\norma.cs">
+      <DependentUpon>dbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\organizacione.cs">
+      <DependentUpon>dbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\profesione.cs">
+      <DependentUpon>dbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\puesto.cs">
+      <DependentUpon>dbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\responsable.cs">
+      <DependentUpon>dbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sitio.cs">
+      <DependentUpon>dbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\telefono.cs">
+      <DependentUpon>dbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tema.cs">
+      <DependentUpon>dbModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

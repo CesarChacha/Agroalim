@@ -6,6 +6,26 @@
     <edmx:Diagrams>
       <Diagram DiagramId="6657cc9dde1d411392af89ea7c7ffb8a" Name="Diagram1">
         <EntityTypeShape EntityType="agroalim_qaModel.administradore" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="agroalim_qaModel.actividade" Width="1.5" PointX="3.75" PointY="1" />
+        <EntityTypeShape EntityType="agroalim_qaModel.comite" Width="1.5" PointX="6.75" PointY="7.875" />
+        <EntityTypeShape EntityType="agroalim_qaModel.domicilio" Width="1.5" PointX="6" PointY="12.75" />
+        <EntityTypeShape EntityType="agroalim_qaModel.empresa" Width="1.5" PointX="3.75" PointY="6.875" />
+        <EntityTypeShape EntityType="agroalim_qaModel.facturacion" Width="1.5" PointX="0.75" PointY="5" />
+        <EntityTypeShape EntityType="agroalim_qaModel.norma" Width="1.5" PointX="0.75" PointY="8" />
+        <EntityTypeShape EntityType="agroalim_qaModel.organizacione" Width="1.5" PointX="8.75" PointY="1" />
+        <EntityTypeShape EntityType="agroalim_qaModel.profesione" Width="1.5" PointX="6.75" PointY="0.75" />
+        <EntityTypeShape EntityType="agroalim_qaModel.puesto" Width="1.5" PointX="6.75" PointY="19.625" />
+        <EntityTypeShape EntityType="agroalim_qaModel.responsable" Width="1.5" PointX="9" PointY="6.625" />
+        <EntityTypeShape EntityType="agroalim_qaModel.sitio" Width="1.5" PointX="6" PointY="16.25" />
+        <EntityTypeShape EntityType="agroalim_qaModel.telefono" Width="1.5" PointX="6" PointY="4.375" />
+        <EntityTypeShape EntityType="agroalim_qaModel.tema" Width="1.5" PointX="10.75" PointY="1" />
+        <AssociationConnector Association="agroalim_qaModel.FK_responsable_comite" />
+        <AssociationConnector Association="agroalim_qaModel.FK_empresa_domicilio" />
+        <AssociationConnector Association="agroalim_qaModel.FK_empresa_sitio" />
+        <AssociationConnector Association="agroalim_qaModel.FK_empresa_telefono" />
+        <AssociationConnector Association="agroalim_qaModel.FK_responsable_empresa" />
+        <AssociationConnector Association="agroalim_qaModel.FK_responsable_profesion" />
+        <AssociationConnector Association="agroalim_qaModel.FK_responsable_puesto" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

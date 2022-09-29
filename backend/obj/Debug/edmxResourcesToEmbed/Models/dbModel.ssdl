@@ -1,5 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="agroalim_qaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="actividades">
+    <Key>
+      <PropertyRef Name="id_actividad" />
+    </Key>
+    <Property Name="id_actividad" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="16" Nullable="false" />
+    <Property Name="activo" Type="bit" Nullable="false" />
+    <Property Name="baja" Type="bit" Nullable="false" />
+    <Property Name="fecha_actualizacion" Type="datetime" Nullable="false" />
+  </EntityType>
   <EntityType Name="administradores">
     <Key>
       <PropertyRef Name="id_administrador" />
@@ -13,7 +23,308 @@
     <Property Name="baja" Type="bit" Nullable="false" />
     <Property Name="fecha_actualizacion" Type="datetime" Nullable="false" />
   </EntityType>
+  <EntityType Name="comites">
+    <Key>
+      <PropertyRef Name="id_comite" />
+    </Key>
+    <Property Name="id_comite" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="16" Nullable="false" />
+    <Property Name="activo" Type="bit" Nullable="false" />
+    <Property Name="baja" Type="bit" Nullable="false" />
+    <Property Name="fecha_actualizacion" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="domicilios">
+    <Key>
+      <PropertyRef Name="id_domicilio" />
+    </Key>
+    <Property Name="id_domicilio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="calle" Type="varchar" MaxLength="1024" Nullable="false" />
+    <Property Name="numero" Type="varchar" MaxLength="32" Nullable="false" />
+    <Property Name="codigo_postal" Type="varchar" MaxLength="8" Nullable="false" />
+    <Property Name="activo" Type="bit" Nullable="false" />
+    <Property Name="baja" Type="bit" Nullable="false" />
+    <Property Name="fecha_actualizacion" Type="datetime" Nullable="false" />
+    <Property Name="id_empresa" Type="int" Nullable="false" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6013: La tabla o vista 'agroalim_qa.dbo.empresa_norma' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
+        <EntityType Name="empresa_norma">
+          <Property Name="id_empresa" Type="int" />
+          <Property Name="id_norma" Type="int" />
+        </EntityType>-->
+  <!--Errores durante la generación:
+advertencia 6013: La tabla o vista 'agroalim_qa.dbo.empresa_organizacion' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
+        <EntityType Name="empresa_organizacion">
+          <Property Name="id_empresa" Type="int" />
+          <Property Name="id_organizacion" Type="int" />
+        </EntityType>-->
+  <!--Errores durante la generación:
+advertencia 6013: La tabla o vista 'agroalim_qa.dbo.empresa_tema' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
+        <EntityType Name="empresa_tema">
+          <Property Name="id_empresa" Type="int" />
+          <Property Name="id_tema" Type="int" />
+        </EntityType>-->
+  <EntityType Name="empresas">
+    <Key>
+      <PropertyRef Name="id_empresa" />
+    </Key>
+    <Property Name="id_empresa" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="razon_social" Type="varchar" MaxLength="256" Nullable="false" />
+    <Property Name="rfc" Type="varchar" MaxLength="16" Nullable="false" />
+    <Property Name="nombre_comercial" Type="varchar" MaxLength="256" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="1024" Nullable="false" />
+    <Property Name="productos" Type="bit" Nullable="false" />
+    <Property Name="servicios" Type="bit" Nullable="false" />
+    <Property Name="solicitud_aceptada" Type="bit" Nullable="false" />
+    <Property Name="activo" Type="bit" Nullable="false" />
+    <Property Name="baja" Type="bit" Nullable="false" />
+    <Property Name="fecha_actualizacion" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="facturacion">
+    <Key>
+      <PropertyRef Name="id_facturacion" />
+    </Key>
+    <Property Name="id_facturacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="16" Nullable="false" />
+    <Property Name="activo" Type="bit" Nullable="false" />
+    <Property Name="baja" Type="bit" Nullable="false" />
+    <Property Name="fecha_actualizacion" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="normas">
+    <Key>
+      <PropertyRef Name="id_norma" />
+    </Key>
+    <Property Name="id_norma" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="16" Nullable="false" />
+    <Property Name="activo" Type="bit" Nullable="false" />
+    <Property Name="baja" Type="bit" Nullable="false" />
+    <Property Name="fecha_actualizacion" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="organizaciones">
+    <Key>
+      <PropertyRef Name="id_organizacion" />
+    </Key>
+    <Property Name="id_organizacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="16" Nullable="false" />
+    <Property Name="activo" Type="bit" Nullable="false" />
+    <Property Name="baja" Type="bit" Nullable="false" />
+    <Property Name="fecha_actualizacion" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="profesiones">
+    <Key>
+      <PropertyRef Name="id_profesion" />
+    </Key>
+    <Property Name="id_profesion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="16" Nullable="false" />
+    <Property Name="activo" Type="bit" Nullable="false" />
+    <Property Name="baja" Type="bit" Nullable="false" />
+    <Property Name="fecha_actualizacion" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="puestos">
+    <Key>
+      <PropertyRef Name="id_puesto" />
+    </Key>
+    <Property Name="id_puesto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="16" Nullable="false" />
+    <Property Name="activo" Type="bit" Nullable="false" />
+    <Property Name="baja" Type="bit" Nullable="false" />
+    <Property Name="fecha_actualizacion" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="responsables">
+    <Key>
+      <PropertyRef Name="id_responsable" />
+    </Key>
+    <Property Name="id_responsable" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="64" Nullable="false" />
+    <Property Name="apellido" Type="varchar" MaxLength="64" Nullable="false" />
+    <Property Name="correo" Type="varchar" MaxLength="64" Nullable="false" />
+    <Property Name="password" Type="varchar" MaxLength="64" Nullable="false" />
+    <Property Name="telefono_oficina" Type="varchar" MaxLength="16" Nullable="false" />
+    <Property Name="telefono_whatsapp" Type="varchar" MaxLength="16" Nullable="false" />
+    <Property Name="activo" Type="bit" Nullable="false" />
+    <Property Name="baja" Type="bit" Nullable="false" />
+    <Property Name="id_empresa" Type="int" Nullable="false" />
+    <Property Name="id_puesto" Type="int" Nullable="false" />
+    <Property Name="id_profesion" Type="int" Nullable="false" />
+    <Property Name="id_comite" Type="int" Nullable="false" />
+    <Property Name="fecha_actualizacion" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sitios">
+    <Key>
+      <PropertyRef Name="id_sitios" />
+    </Key>
+    <Property Name="id_sitios" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="sitio" Type="varchar" MaxLength="16" Nullable="false" />
+    <Property Name="activo" Type="bit" Nullable="false" />
+    <Property Name="baja" Type="bit" Nullable="false" />
+    <Property Name="fecha_actualizacion" Type="datetime" Nullable="false" />
+    <Property Name="id_empresa" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="telefonos">
+    <Key>
+      <PropertyRef Name="id_telefono" />
+    </Key>
+    <Property Name="id_telefono" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="telefono" Type="varchar" MaxLength="16" Nullable="false" />
+    <Property Name="activo" Type="bit" Nullable="false" />
+    <Property Name="baja" Type="bit" Nullable="false" />
+    <Property Name="fecha_actualizacion" Type="datetime" Nullable="false" />
+    <Property Name="id_empresa" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="temas">
+    <Key>
+      <PropertyRef Name="id_tema" />
+    </Key>
+    <Property Name="id_tema" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="16" Nullable="false" />
+    <Property Name="activo" Type="bit" Nullable="false" />
+    <Property Name="baja" Type="bit" Nullable="false" />
+    <Property Name="fecha_actualizacion" Type="datetime" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_empresa_domicilio">
+    <End Role="empresas" Type="Self.empresas" Multiplicity="1" />
+    <End Role="domicilios" Type="Self.domicilios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="empresas">
+        <PropertyRef Name="id_empresa" />
+      </Principal>
+      <Dependent Role="domicilios">
+        <PropertyRef Name="id_empresa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <!--Errores durante la generación:
+error 6004: Una relación hace referencia a la tabla 'agroalim_qa.dbo.empresa_norma', pero no se encuentra la tabla.
+        <Association Name="FK_empresa_norma_empresa" />-->
+  <!--Errores durante la generación:
+error 6004: Una relación hace referencia a la tabla 'agroalim_qa.dbo.empresa_norma', pero no se encuentra la tabla.
+        <Association Name="FK_empresa_norma_norma" />-->
+  <!--Errores durante la generación:
+error 6004: Una relación hace referencia a la tabla 'agroalim_qa.dbo.empresa_organizacion', pero no se encuentra la tabla.
+        <Association Name="FK_empresa_organizacion_empresa" />-->
+  <!--Errores durante la generación:
+error 6004: Una relación hace referencia a la tabla 'agroalim_qa.dbo.empresa_organizacion', pero no se encuentra la tabla.
+        <Association Name="FK_empresa_organizacion_organizacion" />-->
+  <Association Name="FK_empresa_sitio">
+    <End Role="empresas" Type="Self.empresas" Multiplicity="1" />
+    <End Role="sitios" Type="Self.sitios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="empresas">
+        <PropertyRef Name="id_empresa" />
+      </Principal>
+      <Dependent Role="sitios">
+        <PropertyRef Name="id_empresa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_empresa_telefono">
+    <End Role="empresas" Type="Self.empresas" Multiplicity="1" />
+    <End Role="telefonos" Type="Self.telefonos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="empresas">
+        <PropertyRef Name="id_empresa" />
+      </Principal>
+      <Dependent Role="telefonos">
+        <PropertyRef Name="id_empresa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <!--Errores durante la generación:
+error 6004: Una relación hace referencia a la tabla 'agroalim_qa.dbo.empresa_tema', pero no se encuentra la tabla.
+        <Association Name="FK_empresa_tema_empresa" />-->
+  <!--Errores durante la generación:
+error 6004: Una relación hace referencia a la tabla 'agroalim_qa.dbo.empresa_tema', pero no se encuentra la tabla.
+        <Association Name="FK_empresa_tema_norma" />-->
+  <Association Name="FK_responsable_comite">
+    <End Role="comites" Type="Self.comites" Multiplicity="1" />
+    <End Role="responsables" Type="Self.responsables" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="comites">
+        <PropertyRef Name="id_comite" />
+      </Principal>
+      <Dependent Role="responsables">
+        <PropertyRef Name="id_comite" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_responsable_empresa">
+    <End Role="empresas" Type="Self.empresas" Multiplicity="1" />
+    <End Role="responsables" Type="Self.responsables" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="empresas">
+        <PropertyRef Name="id_empresa" />
+      </Principal>
+      <Dependent Role="responsables">
+        <PropertyRef Name="id_empresa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_responsable_profesion">
+    <End Role="profesiones" Type="Self.profesiones" Multiplicity="1" />
+    <End Role="responsables" Type="Self.responsables" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="profesiones">
+        <PropertyRef Name="id_profesion" />
+      </Principal>
+      <Dependent Role="responsables">
+        <PropertyRef Name="id_profesion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_responsable_puesto">
+    <End Role="puestos" Type="Self.puestos" Multiplicity="1" />
+    <End Role="responsables" Type="Self.responsables" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="puestos">
+        <PropertyRef Name="id_puesto" />
+      </Principal>
+      <Dependent Role="responsables">
+        <PropertyRef Name="id_puesto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="agroalim_qaModelStoreContainer">
+    <EntitySet Name="actividades" EntityType="Self.actividades" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="administradores" EntityType="Self.administradores" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="comites" EntityType="Self.comites" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="domicilios" EntityType="Self.domicilios" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="empresas" EntityType="Self.empresas" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="facturacion" EntityType="Self.facturacion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="normas" EntityType="Self.normas" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="organizaciones" EntityType="Self.organizaciones" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="profesiones" EntityType="Self.profesiones" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="puestos" EntityType="Self.puestos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="responsables" EntityType="Self.responsables" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sitios" EntityType="Self.sitios" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="telefonos" EntityType="Self.telefonos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="temas" EntityType="Self.temas" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_empresa_domicilio" Association="Self.FK_empresa_domicilio">
+      <End Role="empresas" EntitySet="empresas" />
+      <End Role="domicilios" EntitySet="domicilios" />
+    </AssociationSet>
+    <AssociationSet Name="FK_empresa_sitio" Association="Self.FK_empresa_sitio">
+      <End Role="empresas" EntitySet="empresas" />
+      <End Role="sitios" EntitySet="sitios" />
+    </AssociationSet>
+    <AssociationSet Name="FK_empresa_telefono" Association="Self.FK_empresa_telefono">
+      <End Role="empresas" EntitySet="empresas" />
+      <End Role="telefonos" EntitySet="telefonos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_responsable_comite" Association="Self.FK_responsable_comite">
+      <End Role="comites" EntitySet="comites" />
+      <End Role="responsables" EntitySet="responsables" />
+    </AssociationSet>
+    <AssociationSet Name="FK_responsable_empresa" Association="Self.FK_responsable_empresa">
+      <End Role="empresas" EntitySet="empresas" />
+      <End Role="responsables" EntitySet="responsables" />
+    </AssociationSet>
+    <AssociationSet Name="FK_responsable_profesion" Association="Self.FK_responsable_profesion">
+      <End Role="profesiones" EntitySet="profesiones" />
+      <End Role="responsables" EntitySet="responsables" />
+    </AssociationSet>
+    <AssociationSet Name="FK_responsable_puesto" Association="Self.FK_responsable_puesto">
+      <End Role="puestos" EntitySet="puestos" />
+      <End Role="responsables" EntitySet="responsables" />
+    </AssociationSet>
   </EntityContainer>
 </Schema>

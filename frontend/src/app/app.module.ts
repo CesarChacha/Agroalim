@@ -17,6 +17,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatListModule} from '@angular/material/list';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatTabsModule} from '@angular/material/tabs';
 
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { LoginComponent } from './login/login.component';
@@ -59,7 +60,8 @@ import { HttpClientModule } from '@angular/common/http';
     MatListModule,
     HttpClientModule,
     MatProgressBarModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatTabsModule
   ],
   providers: [
     OnlyLoggedGuard,
