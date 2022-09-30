@@ -6,65 +6,11 @@
     <div class="row">
         <div class="col">
             <mat-tab-group mat-align-tabs="center">
-                <mat-tab label="Puestos">
+                <mat-tab label="{{catalogo.nombre}}" *ngFor="let catalogo of catalogos">
                     <div class="container">
                         <div class="row">
                             <div class="col">
-                                <app-catalogo [tableName]="'puestos'" [tableIndexName]="'id_puesto'"></app-catalogo>
-                            </div>
-                        </div>
-                    </div>
-                </mat-tab>
-                <mat-tab label="Normas">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col">
-                                <app-catalogo [tableName]="'normas'" [tableIndexName]="'id_norma'"></app-catalogo>
-                            </div>
-                        </div>
-                    </div>
-                </mat-tab>
-                <mat-tab label="Comites">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col">
-                                <app-catalogo [tableName]="'comites'" [tableIndexName]="'id_comite'"></app-catalogo>
-                            </div>
-                        </div>
-                    </div>
-                </mat-tab>
-                <mat-tab label="Facturacion">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col">
-                                <app-catalogo [tableName]="'facturacion'" [tableIndexName]="'id_facturacion'"></app-catalogo>
-                            </div>
-                        </div>
-                    </div>
-                </mat-tab>
-                <mat-tab label="Actividades">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col">
-                                <app-catalogo [tableName]="'actividades'" [tableIndexName]="'id_actividad'"></app-catalogo>
-                            </div>
-                        </div>
-                    </div>
-                </mat-tab>
-                <mat-tab label="Temas">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col">
-                                <app-catalogo [tableName]="'temas'" [tableIndexName]="'id_tema'"></app-catalogo>
-                            </div>
-                        </div>
-                    </div>
-                </mat-tab>
-                <mat-tab label="Organizaciones">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col">
-                                <app-catalogo [tableName]="'organizaciones'" [tableIndexName]="'id_organizacion'"></app-catalogo>
+                                <app-catalogo [tableName]="catalogo.nombre_tabla" [tableIndexName]="catalogo.nombre_pk"  [endpoint]="catalogo.endpoint"></app-catalogo>
                             </div>
                         </div>
                     </div>
