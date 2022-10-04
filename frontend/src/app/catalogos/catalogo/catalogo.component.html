@@ -1,7 +1,7 @@
 
 <mat-form-field appearance="standard" class="w-100">
-    <mat-label>Filtrar</mat-label>
-    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+    <mat-label>Filtrar (En caso de que no exista, escriba el nuevo item y de enter)</mat-label>
+    <input matInput (keyup)="applyFilter($event)" (keyup.enter)="save($event)" placeholder="Ex. Mia" #input>
 </mat-form-field>
   
 
@@ -16,12 +16,18 @@
       <tr *ngFor="let row of dataTable; let idx = index">
         <th scope="row">{{idx+1}}</th>
         <td>{{row.nombre}}</td>
-        <td>{{row.fecha_actualizacion}}</td>
+        <td>{{row.fecha_actualizacion | date:'medium'}}</td>
         <td>{{row.baja?'Eliminado permanente':row.activo?'Habilitado':'Deshabilitado'}}</td>
         <td>
-          <a href="#">Editar</a>
-          <a href="#">Habilitar</a>
-          <a href="#">Eliminar</a>
+          <button mat-icon-button matTooltip="Deshabilitar" color="accent" *ngIf="row.activo"  [disabled]="row.baja" (click)="update(idx,'upd')">
+            <mat-icon>visibility_off</mat-icon>
+          </button>
+          <button mat-icon-button matTooltip="Habilitar" color="accent" *ngIf="!row.activo" [disabled]="row.baja" (click)="update(idx,'upd')">
+            <mat-icon>visibility</mat-icon>
+          </button>
+          <button mat-icon-button matTooltip="Eliminar permanente" color="warn"  [disabled]="row.baja" (click)="update(idx,'del')">
+            <mat-icon>delete</mat-icon>
+          </button>
         </td>
       </tr>
     </tbody>

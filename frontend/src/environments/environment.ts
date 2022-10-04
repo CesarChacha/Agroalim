@@ -8,7 +8,7 @@ export const environment = {
 };
 
 function api (endpoint: string) {
-  return `https://localhost:44384/api/${endpoint}`;
+  return `http://localhost:44384/api/${endpoint}`;
 }
 
 

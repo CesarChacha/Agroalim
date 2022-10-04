@@ -30,7 +30,6 @@ namespace backend.Models
         public virtual DbSet<comites> comites { get; set; }
         public virtual DbSet<domicilios> domicilios { get; set; }
         public virtual DbSet<empresas> empresas { get; set; }
-        public virtual DbSet<facturacion> facturacion { get; set; }
         public virtual DbSet<normas> normas { get; set; }
         public virtual DbSet<organizaciones> organizaciones { get; set; }
         public virtual DbSet<profesiones> profesiones { get; set; }
@@ -38,9 +37,10 @@ namespace backend.Models
         public virtual DbSet<responsables> responsables { get; set; }
         public virtual DbSet<sitios> sitios { get; set; }
         public virtual DbSet<telefonos> telefonos { get; set; }
-        public virtual DbSet<temas> temas { get; set; }
         public virtual DbSet<empresa_norma> empresa_norma { get; set; }
         public virtual DbSet<empresa_organizacion> empresa_organizacion { get; set; }
         public virtual DbSet<empresa_tema> empresa_tema { get; set; }
+        public virtual DbSet<temas> temas { get; set; }
+        public virtual DbSet<facturacion> facturacion { get; set; }
     }
 }

@@ -8,9 +8,8 @@
         <EntityTypeShape EntityType="bdModel.actividades" Width="1.5" PointX="0.75" PointY="1.625" IsExpanded="true" />
         <EntityTypeShape EntityType="bdModel.administradores" Width="1.5" PointX="5.75" PointY="1.625" IsExpanded="true" />
         <EntityTypeShape EntityType="bdModel.comites" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="bdModel.domicilios" Width="1.5" PointX="3" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="bdModel.domicilios" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
         <EntityTypeShape EntityType="bdModel.empresas" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="bdModel.facturacion" Width="1.5" PointX="7.75" PointY="1.625" IsExpanded="true" />
         <EntityTypeShape EntityType="bdModel.normas" Width="1.5" PointX="8.75" PointY="4.625" IsExpanded="true" />
         <EntityTypeShape EntityType="bdModel.organizaciones" Width="1.5" PointX="8.75" PointY="7.625" IsExpanded="true" />
         <EntityTypeShape EntityType="bdModel.profesiones" Width="1.5" PointX="3.75" PointY="8.625" IsExpanded="true" />
@@ -18,23 +17,24 @@
         <EntityTypeShape EntityType="bdModel.responsables" Width="1.5" PointX="6" PointY="6.875" IsExpanded="true" />
         <EntityTypeShape EntityType="bdModel.sitios" Width="1.5" PointX="3" PointY="12.375" IsExpanded="true" />
         <EntityTypeShape EntityType="bdModel.telefonos" Width="1.5" PointX="3" PointY="15.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="bdModel.temas" Width="1.5" PointX="9.75" PointY="1.625" IsExpanded="true" />
-        <AssociationConnector Association="bdModel.FK_responsable_comite" ManuallyRouted="false" />
-        <AssociationConnector Association="bdModel.FK_empresa_domicilio" ManuallyRouted="false" />
-        <AssociationConnector Association="bdModel.FK_empresa_sitio" ManuallyRouted="false" />
-        <AssociationConnector Association="bdModel.FK_empresa_telefono" ManuallyRouted="false" />
-        <AssociationConnector Association="bdModel.FK_responsable_empresa" ManuallyRouted="false" />
-        <AssociationConnector Association="bdModel.FK_responsable_profesion" ManuallyRouted="false" />
-        <AssociationConnector Association="bdModel.FK_responsable_puesto" ManuallyRouted="false" />
         <EntityTypeShape EntityType="bdModel.empresa_norma" Width="1.5" PointX="11" PointY="8.125" />
-        <EntityTypeShape EntityType="bdModel.empresa_organizacion" Width="1.5" PointX="11" PointY="11.375" />
+        <EntityTypeShape EntityType="bdModel.empresa_organizacion" Width="1.5" PointX="6.375" PointY="10.75" />
         <EntityTypeShape EntityType="bdModel.empresa_tema" Width="1.5" PointX="12" PointY="5.625" />
+        <EntityTypeShape EntityType="bdModel.temas" Width="1.5" PointX="10.375" PointY="0.875" />
+        <EntityTypeShape EntityType="bdModel.facturacion" Width="1.5" PointX="8.375" PointY="10.75" />
+        <AssociationConnector Association="bdModel.FK_responsable_comite" />
+        <AssociationConnector Association="bdModel.FK_empresa_domicilio" />
         <AssociationConnector Association="bdModel.FK_empresa_norma_empresa" />
         <AssociationConnector Association="bdModel.FK_empresa_norma_norma" />
         <AssociationConnector Association="bdModel.FK_empresa_organizacion_empresa" />
         <AssociationConnector Association="bdModel.FK_empresa_organizacion_organizacion" />
         <AssociationConnector Association="bdModel.FK_empresa_tema_empresa" />
         <AssociationConnector Association="bdModel.FK_empresa_tema_tema" />
+        <AssociationConnector Association="bdModel.FK_empresa_sitio" />
+        <AssociationConnector Association="bdModel.FK_empresa_telefono" />
+        <AssociationConnector Association="bdModel.FK_responsable_empresa" />
+        <AssociationConnector Association="bdModel.FK_responsable_profesion" />
+        <AssociationConnector Association="bdModel.FK_responsable_puesto" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

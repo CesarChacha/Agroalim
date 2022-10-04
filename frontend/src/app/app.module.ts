@@ -18,8 +18,7 @@ import {MatListModule} from '@angular/material/list';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatTabsModule} from '@angular/material/tabs';
-import {MatTableModule} from '@angular/material/table';
-import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { LoginComponent } from './login/login.component';
@@ -34,6 +33,8 @@ import { OnlyNotLoggedGuard } from "./utils/guards/only-not-logged.guard";
 
 import { HttpClientModule } from '@angular/common/http';
 import { CatalogoComponent } from './catalogos/catalogo/catalogo.component';
+import { SolicitudComponent } from './solicitudes/solicitud/solicitud.component';
+import { EmpresaComponent } from './empresas/empresa/empresa.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,9 @@ import { CatalogoComponent } from './catalogos/catalogo/catalogo.component';
     EmpresasComponent,
     CatalogosComponent,
     MiCuentaComponent,
-    CatalogoComponent
+    CatalogoComponent,
+    SolicitudComponent,
+    EmpresaComponent
   ],
   imports: [
     BrowserModule,
@@ -66,8 +69,7 @@ import { CatalogoComponent } from './catalogos/catalogo/catalogo.component';
     MatProgressBarModule,
     MatSnackBarModule,
     MatTabsModule,
-    MatTableModule,
-    MatPaginatorModule
+    MatTooltipModule
   ],
   providers: [
     OnlyLoggedGuard,

@@ -51,7 +51,7 @@ CREATE TABLE telefonos (
 
 CREATE TABLE sitios (
 	id_sitios INT PRIMARY KEY IDENTITY(1,1),
-	sitio VARCHAR(16) NOT NULL,
+	sitio VARCHAR(256) NOT NULL,
 	activo BIT NOT NULL,
 	baja BIT NOT NULL,
 	fecha_actualizacion DATETIME NOT NULL,
@@ -63,56 +63,56 @@ CREATE TABLE sitios (
 
 CREATE TABLE puestos (
 	id_puesto INT PRIMARY KEY IDENTITY(1,1),
-	nombre VARCHAR(16) NOT NULL,
+	nombre VARCHAR(256) NOT NULL,
 	activo BIT NOT NULL,
 	baja BIT NOT NULL,
 	fecha_actualizacion DATETIME NOT NULL
 )
 CREATE TABLE profesiones (
 	id_profesion INT PRIMARY KEY IDENTITY(1,1),
-	nombre VARCHAR(16) NOT NULL,
+	nombre VARCHAR(256) NOT NULL,
 	activo BIT NOT NULL,
 	baja BIT NOT NULL,
 	fecha_actualizacion DATETIME NOT NULL
 )
 CREATE TABLE comites (
 	id_comite INT PRIMARY KEY IDENTITY(1,1),
-	nombre VARCHAR(16) NOT NULL,
+	nombre VARCHAR(256) NOT NULL,
 	activo BIT NOT NULL,
 	baja BIT NOT NULL,
 	fecha_actualizacion DATETIME NOT NULL
 )
 CREATE TABLE actividades (
 	id_actividad INT PRIMARY KEY IDENTITY(1,1),
-	nombre VARCHAR(16) NOT NULL,
+	nombre VARCHAR(256) NOT NULL,
 	activo BIT NOT NULL,
 	baja BIT NOT NULL,
 	fecha_actualizacion DATETIME NOT NULL
 )
 CREATE TABLE facturacion (
 	id_facturacion INT PRIMARY KEY IDENTITY(1,1),
-	nombre VARCHAR(16) NOT NULL,
+	nombre VARCHAR(256) NOT NULL,
 	activo BIT NOT NULL,
 	baja BIT NOT NULL,
 	fecha_actualizacion DATETIME NOT NULL
 )
 CREATE TABLE organizaciones (
 	id_organizacion INT PRIMARY KEY IDENTITY(1,1),
-	nombre VARCHAR(16) NOT NULL,
+	nombre VARCHAR(256) NOT NULL,
 	activo BIT NOT NULL,
 	baja BIT NOT NULL,
 	fecha_actualizacion DATETIME NOT NULL
 )
 CREATE TABLE normas (
 	id_norma INT PRIMARY KEY IDENTITY(1,1),
-	nombre VARCHAR(16) NOT NULL,
+	nombre VARCHAR(256) NOT NULL,
 	activo BIT NOT NULL,
 	baja BIT NOT NULL,
 	fecha_actualizacion DATETIME NOT NULL
 )
 CREATE TABLE temas (
 	id_tema INT PRIMARY KEY IDENTITY(1,1),
-	nombre VARCHAR(16) NOT NULL,
+	nombre VARCHAR(256) NOT NULL,
 	activo BIT NOT NULL,
 	baja BIT NOT NULL,
 	fecha_actualizacion DATETIME NOT NULL

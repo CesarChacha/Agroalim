@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="agroalim_qaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+<Schema Namespace="bdModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityType Name="actividades">
     <Key>
       <PropertyRef Name="id_actividad" />
     </Key>
     <Property Name="id_actividad" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="nombre" Type="varchar" MaxLength="16" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="256" />
     <Property Name="activo" Type="bit" Nullable="false" />
     <Property Name="baja" Type="bit" Nullable="false" />
     <Property Name="fecha_actualizacion" Type="datetime" Nullable="false" />
@@ -28,7 +28,7 @@
       <PropertyRef Name="id_comite" />
     </Key>
     <Property Name="id_comite" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="nombre" Type="varchar" MaxLength="16" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="256" />
     <Property Name="activo" Type="bit" Nullable="false" />
     <Property Name="baja" Type="bit" Nullable="false" />
     <Property Name="fecha_actualizacion" Type="datetime" Nullable="false" />
@@ -46,24 +46,30 @@
     <Property Name="fecha_actualizacion" Type="datetime" Nullable="false" />
     <Property Name="id_empresa" Type="int" Nullable="false" />
   </EntityType>
-  <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'agroalim_qa.dbo.empresa_norma' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
-        <EntityType Name="empresa_norma">
-          <Property Name="id_empresa" Type="int" />
-          <Property Name="id_norma" Type="int" />
-        </EntityType>-->
-  <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'agroalim_qa.dbo.empresa_organizacion' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
-        <EntityType Name="empresa_organizacion">
-          <Property Name="id_empresa" Type="int" />
-          <Property Name="id_organizacion" Type="int" />
-        </EntityType>-->
-  <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'agroalim_qa.dbo.empresa_tema' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
-        <EntityType Name="empresa_tema">
-          <Property Name="id_empresa" Type="int" />
-          <Property Name="id_tema" Type="int" />
-        </EntityType>-->
+  <EntityType Name="empresa_norma">
+    <Key>
+      <PropertyRef Name="id_empresa_norma" />
+    </Key>
+    <Property Name="id_empresa_norma" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_empresa" Type="int" Nullable="false" />
+    <Property Name="id_norma" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="empresa_organizacion">
+    <Key>
+      <PropertyRef Name="id_empresa_organizacion" />
+    </Key>
+    <Property Name="id_empresa_organizacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_empresa" Type="int" Nullable="false" />
+    <Property Name="id_organizacion" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="empresa_tema">
+    <Key>
+      <PropertyRef Name="id_empresa_tema" />
+    </Key>
+    <Property Name="id_empresa_tema" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_empresa" Type="int" Nullable="false" />
+    <Property Name="id_tema" Type="int" Nullable="false" />
+  </EntityType>
   <EntityType Name="empresas">
     <Key>
       <PropertyRef Name="id_empresa" />
@@ -85,7 +91,7 @@ advertencia 6013: La tabla o vista 'agroalim_qa.dbo.empresa_tema' no tiene defin
       <PropertyRef Name="id_facturacion" />
     </Key>
     <Property Name="id_facturacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="nombre" Type="varchar" MaxLength="16" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="256" />
     <Property Name="activo" Type="bit" Nullable="false" />
     <Property Name="baja" Type="bit" Nullable="false" />
     <Property Name="fecha_actualizacion" Type="datetime" Nullable="false" />
@@ -95,7 +101,7 @@ advertencia 6013: La tabla o vista 'agroalim_qa.dbo.empresa_tema' no tiene defin
       <PropertyRef Name="id_norma" />
     </Key>
     <Property Name="id_norma" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="nombre" Type="varchar" MaxLength="16" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="256" />
     <Property Name="activo" Type="bit" Nullable="false" />
     <Property Name="baja" Type="bit" Nullable="false" />
     <Property Name="fecha_actualizacion" Type="datetime" Nullable="false" />
@@ -105,7 +111,7 @@ advertencia 6013: La tabla o vista 'agroalim_qa.dbo.empresa_tema' no tiene defin
       <PropertyRef Name="id_organizacion" />
     </Key>
     <Property Name="id_organizacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="nombre" Type="varchar" MaxLength="16" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="256" />
     <Property Name="activo" Type="bit" Nullable="false" />
     <Property Name="baja" Type="bit" Nullable="false" />
     <Property Name="fecha_actualizacion" Type="datetime" Nullable="false" />
@@ -115,7 +121,7 @@ advertencia 6013: La tabla o vista 'agroalim_qa.dbo.empresa_tema' no tiene defin
       <PropertyRef Name="id_profesion" />
     </Key>
     <Property Name="id_profesion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="nombre" Type="varchar" MaxLength="16" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="256" />
     <Property Name="activo" Type="bit" Nullable="false" />
     <Property Name="baja" Type="bit" Nullable="false" />
     <Property Name="fecha_actualizacion" Type="datetime" Nullable="false" />
@@ -125,7 +131,7 @@ advertencia 6013: La tabla o vista 'agroalim_qa.dbo.empresa_tema' no tiene defin
       <PropertyRef Name="id_puesto" />
     </Key>
     <Property Name="id_puesto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="nombre" Type="varchar" MaxLength="16" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="256" />
     <Property Name="activo" Type="bit" Nullable="false" />
     <Property Name="baja" Type="bit" Nullable="false" />
     <Property Name="fecha_actualizacion" Type="datetime" Nullable="false" />
@@ -176,7 +182,7 @@ advertencia 6013: La tabla o vista 'agroalim_qa.dbo.empresa_tema' no tiene defin
       <PropertyRef Name="id_tema" />
     </Key>
     <Property Name="id_tema" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="nombre" Type="varchar" MaxLength="16" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="256" />
     <Property Name="activo" Type="bit" Nullable="false" />
     <Property Name="baja" Type="bit" Nullable="false" />
     <Property Name="fecha_actualizacion" Type="datetime" Nullable="false" />
@@ -193,18 +199,54 @@ advertencia 6013: La tabla o vista 'agroalim_qa.dbo.empresa_tema' no tiene defin
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <!--Errores durante la generación:
-error 6004: Una relación hace referencia a la tabla 'agroalim_qa.dbo.empresa_norma', pero no se encuentra la tabla.
-        <Association Name="FK_empresa_norma_empresa" />-->
-  <!--Errores durante la generación:
-error 6004: Una relación hace referencia a la tabla 'agroalim_qa.dbo.empresa_norma', pero no se encuentra la tabla.
-        <Association Name="FK_empresa_norma_norma" />-->
-  <!--Errores durante la generación:
-error 6004: Una relación hace referencia a la tabla 'agroalim_qa.dbo.empresa_organizacion', pero no se encuentra la tabla.
-        <Association Name="FK_empresa_organizacion_empresa" />-->
-  <!--Errores durante la generación:
-error 6004: Una relación hace referencia a la tabla 'agroalim_qa.dbo.empresa_organizacion', pero no se encuentra la tabla.
-        <Association Name="FK_empresa_organizacion_organizacion" />-->
+  <Association Name="FK_empresa_norma_empresa">
+    <End Role="empresas" Type="Self.empresas" Multiplicity="1" />
+    <End Role="empresa_norma" Type="Self.empresa_norma" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="empresas">
+        <PropertyRef Name="id_empresa" />
+      </Principal>
+      <Dependent Role="empresa_norma">
+        <PropertyRef Name="id_empresa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_empresa_norma_norma">
+    <End Role="normas" Type="Self.normas" Multiplicity="1" />
+    <End Role="empresa_norma" Type="Self.empresa_norma" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="normas">
+        <PropertyRef Name="id_norma" />
+      </Principal>
+      <Dependent Role="empresa_norma">
+        <PropertyRef Name="id_norma" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_empresa_organizacion_empresa">
+    <End Role="empresas" Type="Self.empresas" Multiplicity="1" />
+    <End Role="empresa_organizacion" Type="Self.empresa_organizacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="empresas">
+        <PropertyRef Name="id_empresa" />
+      </Principal>
+      <Dependent Role="empresa_organizacion">
+        <PropertyRef Name="id_empresa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_empresa_organizacion_organizacion">
+    <End Role="organizaciones" Type="Self.organizaciones" Multiplicity="1" />
+    <End Role="empresa_organizacion" Type="Self.empresa_organizacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="organizaciones">
+        <PropertyRef Name="id_organizacion" />
+      </Principal>
+      <Dependent Role="empresa_organizacion">
+        <PropertyRef Name="id_organizacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_empresa_sitio">
     <End Role="empresas" Type="Self.empresas" Multiplicity="1" />
     <End Role="sitios" Type="Self.sitios" Multiplicity="*" />
@@ -229,12 +271,30 @@ error 6004: Una relación hace referencia a la tabla 'agroalim_qa.dbo.empresa_or
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <!--Errores durante la generación:
-error 6004: Una relación hace referencia a la tabla 'agroalim_qa.dbo.empresa_tema', pero no se encuentra la tabla.
-        <Association Name="FK_empresa_tema_empresa" />-->
-  <!--Errores durante la generación:
-error 6004: Una relación hace referencia a la tabla 'agroalim_qa.dbo.empresa_tema', pero no se encuentra la tabla.
-        <Association Name="FK_empresa_tema_norma" />-->
+  <Association Name="FK_empresa_tema_empresa">
+    <End Role="empresas" Type="Self.empresas" Multiplicity="1" />
+    <End Role="empresa_tema" Type="Self.empresa_tema" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="empresas">
+        <PropertyRef Name="id_empresa" />
+      </Principal>
+      <Dependent Role="empresa_tema">
+        <PropertyRef Name="id_empresa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_empresa_tema_tema">
+    <End Role="temas" Type="Self.temas" Multiplicity="1" />
+    <End Role="empresa_tema" Type="Self.empresa_tema" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="temas">
+        <PropertyRef Name="id_tema" />
+      </Principal>
+      <Dependent Role="empresa_tema">
+        <PropertyRef Name="id_tema" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_responsable_comite">
     <End Role="comites" Type="Self.comites" Multiplicity="1" />
     <End Role="responsables" Type="Self.responsables" Multiplicity="*" />
@@ -283,11 +343,14 @@ error 6004: Una relación hace referencia a la tabla 'agroalim_qa.dbo.empresa_te
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="agroalim_qaModelStoreContainer">
+  <EntityContainer Name="bdModelStoreContainer">
     <EntitySet Name="actividades" EntityType="Self.actividades" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="administradores" EntityType="Self.administradores" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="comites" EntityType="Self.comites" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="domicilios" EntityType="Self.domicilios" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="empresa_norma" EntityType="Self.empresa_norma" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="empresa_organizacion" EntityType="Self.empresa_organizacion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="empresa_tema" EntityType="Self.empresa_tema" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="empresas" EntityType="Self.empresas" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="facturacion" EntityType="Self.facturacion" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="normas" EntityType="Self.normas" Schema="dbo" store:Type="Tables" />
@@ -302,6 +365,22 @@ error 6004: Una relación hace referencia a la tabla 'agroalim_qa.dbo.empresa_te
       <End Role="empresas" EntitySet="empresas" />
       <End Role="domicilios" EntitySet="domicilios" />
     </AssociationSet>
+    <AssociationSet Name="FK_empresa_norma_empresa" Association="Self.FK_empresa_norma_empresa">
+      <End Role="empresas" EntitySet="empresas" />
+      <End Role="empresa_norma" EntitySet="empresa_norma" />
+    </AssociationSet>
+    <AssociationSet Name="FK_empresa_norma_norma" Association="Self.FK_empresa_norma_norma">
+      <End Role="normas" EntitySet="normas" />
+      <End Role="empresa_norma" EntitySet="empresa_norma" />
+    </AssociationSet>
+    <AssociationSet Name="FK_empresa_organizacion_empresa" Association="Self.FK_empresa_organizacion_empresa">
+      <End Role="empresas" EntitySet="empresas" />
+      <End Role="empresa_organizacion" EntitySet="empresa_organizacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_empresa_organizacion_organizacion" Association="Self.FK_empresa_organizacion_organizacion">
+      <End Role="organizaciones" EntitySet="organizaciones" />
+      <End Role="empresa_organizacion" EntitySet="empresa_organizacion" />
+    </AssociationSet>
     <AssociationSet Name="FK_empresa_sitio" Association="Self.FK_empresa_sitio">
       <End Role="empresas" EntitySet="empresas" />
       <End Role="sitios" EntitySet="sitios" />
@@ -309,6 +388,14 @@ error 6004: Una relación hace referencia a la tabla 'agroalim_qa.dbo.empresa_te
     <AssociationSet Name="FK_empresa_telefono" Association="Self.FK_empresa_telefono">
       <End Role="empresas" EntitySet="empresas" />
       <End Role="telefonos" EntitySet="telefonos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_empresa_tema_empresa" Association="Self.FK_empresa_tema_empresa">
+      <End Role="empresas" EntitySet="empresas" />
+      <End Role="empresa_tema" EntitySet="empresa_tema" />
+    </AssociationSet>
+    <AssociationSet Name="FK_empresa_tema_tema" Association="Self.FK_empresa_tema_tema">
+      <End Role="temas" EntitySet="temas" />
+      <End Role="empresa_tema" EntitySet="empresa_tema" />
     </AssociationSet>
     <AssociationSet Name="FK_responsable_comite" Association="Self.FK_responsable_comite">
       <End Role="comites" EntitySet="comites" />
