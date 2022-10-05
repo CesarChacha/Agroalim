@@ -1,6 +1,33 @@
 <div class="jumbotron">
-    <h1 class="display-4">Empresas Aceptadas</h1>
-    <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+    <h1 class="display-4">Empresas</h1>
+    <p class="lead">Vea los contactos, encargados de comités y detalles de la empresas aceptadas dentro del Cluster Agroalim de Nuevo León.</p>
     <hr class="my-4">
     
+    <div class="row">
+        <div class="col">
+            <div class="mat-elevation-z1">
+                <table class="table table-hover w-100">
+                  <thead>
+                    <tr>
+                      <th scope="col" *ngFor="let column of columsTable">{{column}}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let empresa of dataTable; let ind = index">
+                      <th scope="row">{{ind + 1}}</th>
+                      <td>{{empresa.nombre_comercial}} ({{empresa.razon_social}})</td>
+                      <td>{{empresa.rfc}}</td>
+                      <td>{{empresa.fecha_actualizacion | date : 'medium'}}</td>
+                      <td>
+                        <button mat-icon-button matTooltip="Ver detalle" routerLink="{{empresa.rfc}}/{{empresa.id_empresa}}" color="primary">
+                          <mat-icon>visibility</mat-icon>
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>  
+        </div>
+    </div>
+
 </div>

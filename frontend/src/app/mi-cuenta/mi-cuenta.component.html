@@ -1,6 +1,45 @@
 <div class="jumbotron">
     <h1 class="display-4">Mi Cuenta</h1>
-    <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+    <p class="lead">Modifique su información personal como administrador de la aplicación.</p>
     <hr class="my-4">
-    
+    <form [formGroup]="formUser" (ngSubmit)="save()" *ngIf="showForm">
+        <div class="row">
+            <div class="col">
+                <mat-form-field class="w-100">
+                    <mat-label>Nombre/s</mat-label>
+                    <input matInput type="text"  formControlName="nombre">
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <mat-form-field class="w-100">
+                    <mat-label>Apellido/s</mat-label>
+                    <input matInput type="text"  formControlName="apellido">
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <mat-form-field class="w-100">
+                    <mat-label>Correo</mat-label>
+                    <input matInput type="text"  formControlName="correo">
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <mat-form-field class="w-100">
+                    <mat-label>Contraseña</mat-label>
+                    <input matInput type="password"  formControlName="password">
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <button class="w-100" mat-raised-button color="primary" type="submit" [disabled]="formUser.invalid">Guardar cambios</button>
+            </div>
+        </div>
+    </form>
 </div>

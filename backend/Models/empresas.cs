@@ -18,12 +18,12 @@ namespace backend.Models
         public empresas()
         {
             this.domicilios = new HashSet<domicilios>();
-            this.sitios = new HashSet<sitios>();
-            this.telefonos = new HashSet<telefonos>();
-            this.responsables = new HashSet<responsables>();
             this.empresa_norma = new HashSet<empresa_norma>();
             this.empresa_organizacion = new HashSet<empresa_organizacion>();
             this.empresa_tema = new HashSet<empresa_tema>();
+            this.sitios = new HashSet<sitios>();
+            this.telefonos = new HashSet<telefonos>();
+            this.responsables = new HashSet<responsables>();
         }
     
         public int id_empresa { get; set; }
@@ -41,16 +41,16 @@ namespace backend.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<domicilios> domicilios { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<sitios> sitios { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<telefonos> telefonos { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<responsables> responsables { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<empresa_norma> empresa_norma { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<empresa_organizacion> empresa_organizacion { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<empresa_tema> empresa_tema { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<sitios> sitios { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<telefonos> telefonos { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<responsables> responsables { get; set; }
     }
 }

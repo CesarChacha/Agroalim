@@ -1,3 +1,4 @@
-table {
-    width: 100%;
-  }
+.table{
+    vertical-align: middle;
+    text-align: center; 
+}

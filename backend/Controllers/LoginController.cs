@@ -25,6 +25,7 @@ namespace backend.Controllers
                 );
 
                 LoginData res = data;
+                res.id_administrador = user.id_administrador;
                 res.nombre = user.nombre;
                 res.apellido = user.apellido;
                 res.token = "RSAKEY";

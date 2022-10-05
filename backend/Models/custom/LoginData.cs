@@ -7,6 +7,7 @@ namespace backend.Models.custom
 {
     public class LoginData
     {
+        public int id_administrador { get; set; }
         public String user { get; set; }
         public String password { get; set; }
         public String token { get; set; }

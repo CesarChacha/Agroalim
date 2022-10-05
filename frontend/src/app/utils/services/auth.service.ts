@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment as env } from '../../../environments/environment';
-import { auth } from '../interfaces/auth.interface';
+import { administrador, auth } from '../interfaces/auth.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -31,6 +31,14 @@ export class AuthService {
 
   public getSession():auth{
     return JSON.parse(sessionStorage.getItem('auth')!);
+  }
+
+  public getSysAdmin(id_administrador: number):Observable<administrador>{
+    return this._ws.get<administrador>(env.api(`administrador/${id_administrador}`));
+  }
+
+  public updateSysAdmin(admin: administrador | any):Observable<administrador>{
+    return this._ws.put<administrador>(env.api(`administrador`),admin);
   }
 
 }

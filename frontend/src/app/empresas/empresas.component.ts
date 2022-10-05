@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { empresas } from '../utils/interfaces/empresas.interface';
+import { EmpresasService } from '../utils/services/empresas.service';
+import { SnackbarService } from '../utils/services/snackbar.service';
 
 @Component({
   selector: 'app-empresas',
@@ -7,9 +10,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EmpresasComponent implements OnInit {
 
-  constructor() { }
+  columsTable:string [] = ["Id","Solicitante","RFC","Fecha solicitud","Acciones"]
+  dataTable: empresas [] = [];
+
+  constructor(
+    private sEmpresas: EmpresasService,
+    private sSb: SnackbarService
+  ) { }
 
   ngOnInit(): void {
+    this.getEmpresas();
   }
 
+  getEmpresas(){
+    this.sEmpresas.getEmpresas().subscribe(
+      res => {
+        this.dataTable = res;
+      },err => {
+        this.sSb.printMessage('Ocurrio un error durante la consulta.')
+      }
+    );
+  }
 }
