@@ -20,6 +20,7 @@ export class LoginComponent implements OnInit {
 
   loginForm!: FormGroup;
   onErrorMessage: string = "";
+  loading:boolean = false;
 
   ngOnInit(): void {
     this.initForm();
@@ -36,6 +37,7 @@ export class LoginComponent implements OnInit {
   }
 
   initSession(){
+    this.loading = true;
     this.sAuth.login(this.loginForm.value).subscribe(
       res => {
         if(res){
@@ -46,11 +48,13 @@ export class LoginComponent implements OnInit {
           this.onErrorMessage = "Credenciales inválidas."
           this.sSnkBar.printMessage(this.onErrorMessage, '¡Ok!')
         }
+        this.loading = false;
       },
       err => {
         this.onErrorMessage = "Servidor no disponible."
         this.sSnkBar.printMessage(this.onErrorMessage, '¡Ok!')
         console.error(err)
+        this.loading = false;
       }
     );
   }

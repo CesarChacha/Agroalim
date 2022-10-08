@@ -15,6 +15,8 @@ namespace backend
             var corsAtt = new EnableCorsAttribute(origins: "*", headers: "*", methods: "*");
             config.EnableCors(corsAtt);
 
+            config.Formatters.XmlFormatter.SupportedMediaTypes.Add(new System.Net.Http.Headers.MediaTypeHeaderValue("multipart/form-data"));
+
             // Rutas de API web
             config.MapHttpAttributeRoutes();
 
