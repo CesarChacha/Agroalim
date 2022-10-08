@@ -28,6 +28,7 @@
             <div class="row">
                 <div class="col">
                     <button class="w-100" mat-raised-button color="primary" [disabled]="loginForm.invalid"  (click)="initSession()">Entrar</button>
+                    <mat-progress-bar mode="query" *ngIf="loading"></mat-progress-bar>
                 </div>
             </div>
         </form>
