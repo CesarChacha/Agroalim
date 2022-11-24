@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="agroalim_qaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="administradores">
+    <Key>
+      <PropertyRef Name="id_administrador" />
+    </Key>
+    <Property Name="id_administrador" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" MaxLength="512" FixedLength="false" Unicode="false" />
+    <Property Name="apellido" Type="String" MaxLength="512" FixedLength="false" Unicode="false" />
+    <Property Name="correo" Type="String" MaxLength="512" FixedLength="false" Unicode="false" />
+    <Property Name="password" Type="String" MaxLength="512" FixedLength="false" Unicode="false" />
+    <Property Name="activo" Type="Boolean" />
+    <Property Name="baja" Type="Boolean" />
+    <Property Name="fecha_actualizacion" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityContainer Name="agroalim_qaEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="administradores" EntityType="Self.administradores" />
+  </EntityContainer>
+</Schema>

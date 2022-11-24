@@ -1,15 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="bdModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-  <EntityType Name="actividades">
-    <Key>
-      <PropertyRef Name="id_actividad" />
-    </Key>
-    <Property Name="id_actividad" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="nombre" Type="varchar" MaxLength="256" />
-    <Property Name="activo" Type="bit" Nullable="false" />
-    <Property Name="baja" Type="bit" Nullable="false" />
-    <Property Name="fecha_actualizacion" Type="datetime" Nullable="false" />
-  </EntityType>
   <EntityType Name="administradores">
     <Key>
       <PropertyRef Name="id_administrador" />
@@ -19,6 +9,16 @@
     <Property Name="apellido" Type="varchar" MaxLength="512" Nullable="false" />
     <Property Name="correo" Type="varchar" MaxLength="512" Nullable="false" />
     <Property Name="password" Type="varchar" MaxLength="512" Nullable="false" />
+    <Property Name="activo" Type="bit" Nullable="false" />
+    <Property Name="baja" Type="bit" Nullable="false" />
+    <Property Name="fecha_actualizacion" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="cadena_productiva">
+    <Key>
+      <PropertyRef Name="id_cadena_productiva" />
+    </Key>
+    <Property Name="id_cadena_productiva" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="256" Nullable="false" />
     <Property Name="activo" Type="bit" Nullable="false" />
     <Property Name="baja" Type="bit" Nullable="false" />
     <Property Name="fecha_actualizacion" Type="datetime" Nullable="false" />
@@ -33,6 +33,21 @@
     <Property Name="baja" Type="bit" Nullable="false" />
     <Property Name="fecha_actualizacion" Type="datetime" Nullable="false" />
   </EntityType>
+  <EntityType Name="detalles_empresa">
+    <Key>
+      <PropertyRef Name="id_detalles_empresa" />
+    </Key>
+    <Property Name="id_detalles_empresa" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_empresa" Type="int" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="1024" Nullable="false" />
+    <Property Name="productos" Type="bit" Nullable="false" />
+    <Property Name="servicios" Type="bit" Nullable="false" />
+    <Property Name="numero_empleados" Type="int" Nullable="false" />
+    <Property Name="id_facturacion" Type="int" Nullable="false" />
+    <Property Name="exporta" Type="bit" Nullable="false" />
+    <Property Name="en_proceso_exportacion" Type="bit" />
+    <Property Name="paises_exportacion" Type="varchar" MaxLength="2048" />
+  </EntityType>
   <EntityType Name="domicilios">
     <Key>
       <PropertyRef Name="id_domicilio" />
@@ -45,6 +60,14 @@
     <Property Name="baja" Type="bit" Nullable="false" />
     <Property Name="fecha_actualizacion" Type="datetime" Nullable="false" />
     <Property Name="id_empresa" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="empresa_cadena_productiva">
+    <Key>
+      <PropertyRef Name="id_empresa_cadena_productiva" />
+    </Key>
+    <Property Name="id_empresa_cadena_productiva" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_empresa" Type="int" Nullable="false" />
+    <Property Name="id_cadena_productiva" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="empresa_norma">
     <Key>
@@ -78,13 +101,12 @@
     <Property Name="razon_social" Type="varchar" MaxLength="256" Nullable="false" />
     <Property Name="rfc" Type="varchar" MaxLength="16" Nullable="false" />
     <Property Name="nombre_comercial" Type="varchar" MaxLength="256" Nullable="false" />
-    <Property Name="descripcion" Type="varchar" MaxLength="1024" Nullable="false" />
-    <Property Name="productos" Type="bit" Nullable="false" />
-    <Property Name="servicios" Type="bit" Nullable="false" />
     <Property Name="solicitud_aceptada" Type="bit" Nullable="false" />
     <Property Name="activo" Type="bit" Nullable="false" />
     <Property Name="baja" Type="bit" Nullable="false" />
     <Property Name="fecha_actualizacion" Type="datetime" Nullable="false" />
+    <Property Name="fecha_solicitud" Type="datetime" />
+    <Property Name="solicitud_rechazada" Type="bit" />
   </EntityType>
   <EntityType Name="facturacion">
     <Key>
@@ -135,6 +157,16 @@
     <Property Name="activo" Type="bit" Nullable="false" />
     <Property Name="baja" Type="bit" Nullable="false" />
     <Property Name="fecha_actualizacion" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="requisitos">
+    <Key>
+      <PropertyRef Name="id_requisitos" />
+    </Key>
+    <Property Name="id_requisitos" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_empresa" Type="int" />
+    <Property Name="file_name" Type="varchar" MaxLength="1024" Nullable="false" />
+    <Property Name="local_file_name" Type="varchar" MaxLength="2048" Nullable="false" />
+    <Property Name="media_type" Type="varchar" MaxLength="1024" Nullable="false" />
   </EntityType>
   <EntityType Name="responsables">
     <Key>
@@ -187,6 +219,42 @@
     <Property Name="baja" Type="bit" Nullable="false" />
     <Property Name="fecha_actualizacion" Type="datetime" Nullable="false" />
   </EntityType>
+  <Association Name="FK_empresa_cadena_productiva_cadena_productiva">
+    <End Role="cadena_productiva" Type="Self.cadena_productiva" Multiplicity="1" />
+    <End Role="empresa_cadena_productiva" Type="Self.empresa_cadena_productiva" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cadena_productiva">
+        <PropertyRef Name="id_cadena_productiva" />
+      </Principal>
+      <Dependent Role="empresa_cadena_productiva">
+        <PropertyRef Name="id_cadena_productiva" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_empresa_cadena_productiva_empresa">
+    <End Role="empresas" Type="Self.empresas" Multiplicity="1" />
+    <End Role="empresa_cadena_productiva" Type="Self.empresa_cadena_productiva" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="empresas">
+        <PropertyRef Name="id_empresa" />
+      </Principal>
+      <Dependent Role="empresa_cadena_productiva">
+        <PropertyRef Name="id_empresa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_empresa_detalles_empresa">
+    <End Role="empresas" Type="Self.empresas" Multiplicity="1" />
+    <End Role="detalles_empresa" Type="Self.detalles_empresa" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="empresas">
+        <PropertyRef Name="id_empresa" />
+      </Principal>
+      <Dependent Role="detalles_empresa">
+        <PropertyRef Name="id_empresa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_empresa_domicilio">
     <End Role="empresas" Type="Self.empresas" Multiplicity="1" />
     <End Role="domicilios" Type="Self.domicilios" Multiplicity="*" />
@@ -247,6 +315,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_empresa_requisito">
+    <End Role="empresas" Type="Self.empresas" Multiplicity="0..1" />
+    <End Role="requisitos" Type="Self.requisitos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="empresas">
+        <PropertyRef Name="id_empresa" />
+      </Principal>
+      <Dependent Role="requisitos">
+        <PropertyRef Name="id_empresa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_empresa_sitio">
     <End Role="empresas" Type="Self.empresas" Multiplicity="1" />
     <End Role="sitios" Type="Self.sitios" Multiplicity="*" />
@@ -292,6 +372,18 @@
       </Principal>
       <Dependent Role="empresa_tema">
         <PropertyRef Name="id_tema" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_facturacion_detalles_empresa">
+    <End Role="facturacion" Type="Self.facturacion" Multiplicity="1" />
+    <End Role="detalles_empresa" Type="Self.detalles_empresa" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="facturacion">
+        <PropertyRef Name="id_facturacion" />
+      </Principal>
+      <Dependent Role="detalles_empresa">
+        <PropertyRef Name="id_facturacion" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -344,10 +436,12 @@
     </ReferentialConstraint>
   </Association>
   <EntityContainer Name="bdModelStoreContainer">
-    <EntitySet Name="actividades" EntityType="Self.actividades" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="administradores" EntityType="Self.administradores" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="cadena_productiva" EntityType="Self.cadena_productiva" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="comites" EntityType="Self.comites" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="detalles_empresa" EntityType="Self.detalles_empresa" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="domicilios" EntityType="Self.domicilios" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="empresa_cadena_productiva" EntityType="Self.empresa_cadena_productiva" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="empresa_norma" EntityType="Self.empresa_norma" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="empresa_organizacion" EntityType="Self.empresa_organizacion" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="empresa_tema" EntityType="Self.empresa_tema" Schema="dbo" store:Type="Tables" />
@@ -357,10 +451,23 @@
     <EntitySet Name="organizaciones" EntityType="Self.organizaciones" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="profesiones" EntityType="Self.profesiones" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="puestos" EntityType="Self.puestos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="requisitos" EntityType="Self.requisitos" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="responsables" EntityType="Self.responsables" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sitios" EntityType="Self.sitios" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="telefonos" EntityType="Self.telefonos" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="temas" EntityType="Self.temas" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_empresa_cadena_productiva_cadena_productiva" Association="Self.FK_empresa_cadena_productiva_cadena_productiva">
+      <End Role="cadena_productiva" EntitySet="cadena_productiva" />
+      <End Role="empresa_cadena_productiva" EntitySet="empresa_cadena_productiva" />
+    </AssociationSet>
+    <AssociationSet Name="FK_empresa_cadena_productiva_empresa" Association="Self.FK_empresa_cadena_productiva_empresa">
+      <End Role="empresas" EntitySet="empresas" />
+      <End Role="empresa_cadena_productiva" EntitySet="empresa_cadena_productiva" />
+    </AssociationSet>
+    <AssociationSet Name="FK_empresa_detalles_empresa" Association="Self.FK_empresa_detalles_empresa">
+      <End Role="empresas" EntitySet="empresas" />
+      <End Role="detalles_empresa" EntitySet="detalles_empresa" />
+    </AssociationSet>
     <AssociationSet Name="FK_empresa_domicilio" Association="Self.FK_empresa_domicilio">
       <End Role="empresas" EntitySet="empresas" />
       <End Role="domicilios" EntitySet="domicilios" />
@@ -381,6 +488,10 @@
       <End Role="organizaciones" EntitySet="organizaciones" />
       <End Role="empresa_organizacion" EntitySet="empresa_organizacion" />
     </AssociationSet>
+    <AssociationSet Name="FK_empresa_requisito" Association="Self.FK_empresa_requisito">
+      <End Role="empresas" EntitySet="empresas" />
+      <End Role="requisitos" EntitySet="requisitos" />
+    </AssociationSet>
     <AssociationSet Name="FK_empresa_sitio" Association="Self.FK_empresa_sitio">
       <End Role="empresas" EntitySet="empresas" />
       <End Role="sitios" EntitySet="sitios" />
@@ -396,6 +507,10 @@
     <AssociationSet Name="FK_empresa_tema_tema" Association="Self.FK_empresa_tema_tema">
       <End Role="temas" EntitySet="temas" />
       <End Role="empresa_tema" EntitySet="empresa_tema" />
+    </AssociationSet>
+    <AssociationSet Name="FK_facturacion_detalles_empresa" Association="Self.FK_facturacion_detalles_empresa">
+      <End Role="facturacion" EntitySet="facturacion" />
+      <End Role="detalles_empresa" EntitySet="detalles_empresa" />
     </AssociationSet>
     <AssociationSet Name="FK_responsable_comite" Association="Self.FK_responsable_comite">
       <End Role="comites" EntitySet="comites" />

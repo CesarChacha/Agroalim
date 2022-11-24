@@ -14,43 +14,15 @@ namespace backend.Models
     
     public partial class empresas
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public empresas()
-        {
-            this.domicilios = new HashSet<domicilios>();
-            this.empresa_norma = new HashSet<empresa_norma>();
-            this.empresa_organizacion = new HashSet<empresa_organizacion>();
-            this.empresa_tema = new HashSet<empresa_tema>();
-            this.sitios = new HashSet<sitios>();
-            this.telefonos = new HashSet<telefonos>();
-            this.responsables = new HashSet<responsables>();
-        }
-    
         public int id_empresa { get; set; }
         public string razon_social { get; set; }
         public string rfc { get; set; }
         public string nombre_comercial { get; set; }
-        public string descripcion { get; set; }
-        public bool productos { get; set; }
-        public bool servicios { get; set; }
-        public bool solicitud_aceptada { get; set; }
-        public bool activo { get; set; }
-        public bool baja { get; set; }
-        public System.DateTime fecha_actualizacion { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<domicilios> domicilios { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<empresa_norma> empresa_norma { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<empresa_organizacion> empresa_organizacion { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<empresa_tema> empresa_tema { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<sitios> sitios { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<telefonos> telefonos { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<responsables> responsables { get; set; }
+        public Nullable<bool> solicitud_aceptada { get; set; }
+        public Nullable<bool> activo { get; set; }
+        public Nullable<bool> baja { get; set; }
+        public Nullable<System.DateTime> fecha_actualizacion { get; set; }
+        public Nullable<System.DateTime> fecha_solicitud { get; set; }
+        public Nullable<bool> solicitud_rechazada { get; set; }
     }
 }

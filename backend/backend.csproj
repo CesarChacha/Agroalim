@@ -383,91 +383,143 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\Administradores\administradorController.cs" />
-    <Compile Include="Controllers\Catalogos\actividades_admController.cs" />
+    <Compile Include="Controllers\Dashboard\metricasController.cs" />
+    <Compile Include="Controllers\Empresas\empresaAceptarController.cs" />
+    <Compile Include="Controllers\Empresas\empresaRechazarController.cs" />
+    <Compile Include="Controllers\vistas\empresaCadenaProductivaController.cs" />
+    <Compile Include="Controllers\Catalogos\cadena_productivaController.cs" />
+    <Compile Include="Controllers\Catalogos\cadena_productiva_admController.cs" />
+    <Compile Include="Controllers\Catalogos\comitesController.cs" />
     <Compile Include="Controllers\Catalogos\comites_admController.cs" />
+    <Compile Include="Controllers\Catalogos\facturacionController.cs" />
     <Compile Include="Controllers\Catalogos\facturacion_admController.cs" />
+    <Compile Include="Controllers\Catalogos\normasController.cs" />
     <Compile Include="Controllers\Catalogos\normas_admController.cs" />
+    <Compile Include="Controllers\Catalogos\organizacionesController.cs" />
     <Compile Include="Controllers\Catalogos\organizaciones_admController.cs" />
+    <Compile Include="Controllers\Catalogos\profesionesController.cs" />
     <Compile Include="Controllers\Catalogos\profesiones_admController.cs" />
     <Compile Include="Controllers\Catalogos\puestosController.cs" />
     <Compile Include="Controllers\Catalogos\puestos_admController.cs" />
+    <Compile Include="Controllers\Catalogos\temasController.cs" />
     <Compile Include="Controllers\Catalogos\temas_admController.cs" />
+    <Compile Include="Controllers\Empresas\empresaController.cs" />
     <Compile Include="Controllers\Empresas\empresasController.cs" />
     <Compile Include="Controllers\Empresas\empresas_solicitantesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\Requisitos\requisitosController.cs" />
+    <Compile Include="Controllers\vistas\empresaNormaController.cs" />
+    <Compile Include="Controllers\vistas\empresaTemaController.cs" />
+    <Compile Include="Controllers\vistas\responsableClusterController.cs" />
+    <Compile Include="Controllers\vistas\responsablesComitesController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\actividades.cs">
-      <DependentUpon>dbModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\administradores.cs">
-      <DependentUpon>dbModel.tt</DependentUpon>
+      <DependentUpon>Modelo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\cadena_productiva.cs">
+      <DependentUpon>Modelo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\cadena_productiva_view.cs">
+      <DependentUpon>Modelo.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\comites.cs">
-      <DependentUpon>dbModel.tt</DependentUpon>
+      <DependentUpon>Modelo.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\custom\EmpresaForm.cs" />
+    <Compile Include="Models\custom\FormRegistro.cs" />
     <Compile Include="Models\custom\LoginData.cs" />
+    <Compile Include="Models\custom\Metricas.cs" />
     <Compile Include="Models\custom\requisito.cs" />
-    <Compile Include="Models\dbModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>dbModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\dbModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>dbModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\dbModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>dbModel.edmx</DependentUpon>
+    <Compile Include="Models\detalles_empresa.cs">
+      <DependentUpon>Modelo.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\domicilios.cs">
-      <DependentUpon>dbModel.tt</DependentUpon>
+      <DependentUpon>Modelo.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\empresas.cs">
-      <DependentUpon>dbModel.tt</DependentUpon>
+      <DependentUpon>Modelo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\empresa_cadena_productiva.cs">
+      <DependentUpon>Modelo.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\empresa_norma.cs">
-      <DependentUpon>dbModel.tt</DependentUpon>
+      <DependentUpon>Modelo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\empresa_norma_view.cs">
+      <DependentUpon>Modelo.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\empresa_organizacion.cs">
-      <DependentUpon>dbModel.tt</DependentUpon>
+      <DependentUpon>Modelo.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\empresa_tema.cs">
-      <DependentUpon>dbModel.tt</DependentUpon>
+      <DependentUpon>Modelo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\empresa_tema_view.cs">
+      <DependentUpon>Modelo.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\facturacion.cs">
-      <DependentUpon>dbModel.tt</DependentUpon>
+      <DependentUpon>Modelo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Modelo.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Modelo.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Modelo.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Modelo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Modelo.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Modelo.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\normas.cs">
-      <DependentUpon>dbModel.tt</DependentUpon>
+      <DependentUpon>Modelo.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\organizaciones.cs">
-      <DependentUpon>dbModel.tt</DependentUpon>
+      <DependentUpon>Modelo.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\profesiones.cs">
-      <DependentUpon>dbModel.tt</DependentUpon>
+      <DependentUpon>Modelo.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\puestos.cs">
-      <DependentUpon>dbModel.tt</DependentUpon>
+      <DependentUpon>Modelo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\requisitos.cs">
+      <DependentUpon>Modelo.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\responsables.cs">
-      <DependentUpon>dbModel.tt</DependentUpon>
+      <DependentUpon>Modelo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\responsables_cluster_view.cs">
+      <DependentUpon>Modelo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\responsables_comites_view.cs">
+      <DependentUpon>Modelo.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sitios.cs">
-      <DependentUpon>dbModel.tt</DependentUpon>
+      <DependentUpon>Modelo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_get_empresa_detalle_by_id_Result.cs">
+      <DependentUpon>Modelo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_get_empresa_detalle_Result.cs">
+      <DependentUpon>Modelo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_get_empresa_Result.cs">
+      <DependentUpon>Modelo.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\telefonos.cs">
-      <DependentUpon>dbModel.tt</DependentUpon>
+      <DependentUpon>Modelo.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\temas.cs">
-      <DependentUpon>dbModel.tt</DependentUpon>
+      <DependentUpon>Modelo.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -480,15 +532,15 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Models\dbModel.Context.tt">
+    <Content Include="Models\Modelo.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>dbModel.edmx</DependentUpon>
-      <LastGenOutput>dbModel.Context.cs</LastGenOutput>
+      <DependentUpon>Modelo.edmx</DependentUpon>
+      <LastGenOutput>Modelo.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\dbModel.tt">
+    <Content Include="Models\Modelo.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>dbModel.edmx</DependentUpon>
-      <LastGenOutput>dbModel.cs</LastGenOutput>
+      <DependentUpon>Modelo.edmx</DependentUpon>
+      <LastGenOutput>Modelo.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -515,13 +567,15 @@
     <None Include=".dockerignore">
       <DependentUpon>Dockerfile</DependentUpon>
     </None>
-    <EntityDeploy Include="Models\dbModel.edmx">
+    <EntityDeploy Include="Models\Modelo.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>dbModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>Modelo.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\dbModel.edmx.diagram">
-      <DependentUpon>dbModel.edmx</DependentUpon>
+    <Content Include="Models\Modelo.edmx.diagram">
+      <DependentUpon>Modelo.edmx</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <None Include="Properties\PublishProfiles\IISProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

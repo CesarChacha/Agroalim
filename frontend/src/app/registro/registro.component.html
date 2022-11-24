@@ -1,28 +1,73 @@
-<div class="jumbotron">
-    <h1 class="display-4">Clúster Agroalimentrario A.C.</h1>
-    <p>Código FAD.01.02 - Revisión 00 - Emisión 15/01/21</p>
-    <p>Requisitos.</p>
-    <ol>
-        <li>Logotipo oficial de la empresa en alta resolución.</li>
-        <li>Copia de alta de registro federal de contribullentes (RFC).</li>
-        <li>Copia simple de la identificacion del representante legal.</li>
-        <li>Copia del poder legal.</li>
-        <li>Copia de comprobante de domicilio.</li>
-        <li>Comprobante de pago de la cuota correspondiente.</li>
-        <li>Llenar la siguiente solicitud con datos completos.</li>
-    </ol>
-    <hr class="my-4">
+<div class="jumbotron" *ngIf="parte!=3">
     <div class="row">
+        <div class="col-lg-2 col-md-2 col-sm-12 text-center"><!-- -->
+            <img src="assets/imgs/favicon.png" class="img-fluid" style="padding-top: auto;">
+        </div>
+        <div class="col-lg-10 col-md-10 col-sm-12">
+            <h1 class="display-4">Clúster Agroalimentrario A.C.</h1>
+            <p>Código FAD.01.02 - Revisión 00 - Emisión 15/01/21</p>
+            <p>Antes de llenar la siguiente solicitud, es necesario contar con los requisitos debidamente escaneados y listos para ser subidos al servidor para que pueda ser tomada en cuenta su solicitud. En caso de que no se cuente con alguno de los requisitos puede que su solicitud sea rechazada.</p>
+            <ol>
+                <li>Logotipo oficial de la empresa en alta resolución.</li>
+                <li>Alta de registro federal de contribullentes (RFC).</li>
+                <li>Imagen o Scan de identificacion del representante legal.</li>
+                <li>Poder legal.</li>
+                <li>Comprobante de domicilio.</li>
+                <li>Comprobante de pago de la cuota correspondiente.</li>
+            </ol>
+            <div class="row">
+                <div class="col text-end">
+                    <p class="text-muted small">* Los tipos de achivos admitidos son .pdf, .jpeg, .jpg, .png</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <hr class="my-4">
+    <div class="row" *ngIf="parte==1">
         <div class="col">
-            <h1 class="display-4">Solicitud de afiliación</h1>
+            <h1 class="display-4">Solicitud de afiliación 1/2</h1>
+        </div>
+    </div>
+
+    <div class="row" *ngIf="parte==2">
+        <div class="col">
+            <h1 class="display-4">Adjunte los requisitos 2/2</h1>
         </div>
     </div>
 </div>
 
-<form  [formGroup]="formRegistro" (ngSubmit)="save()">
+<form  [formGroup]="formFiles" (ngSubmit)="saveRequisitos()" *ngIf="parte==2">
     <div class="row">
         <div class="col">
-            <p class="h5">Datos de la empresa</p>
+            <mat-form-field class="w-100">
+                <ngx-mat-file-input 
+                    formControlName="requisitos"  
+                    [accept]="'.zip'" 
+                    placeholder="Adjunte los requisitos solicitados comprimidos en .zip [Max. 128 MB]" 
+                    (change)="onFileChange($event,'requisitos')">
+                </ngx-mat-file-input>
+                <mat-icon matSuffix>folder_zip</mat-icon>
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <button type="submit" class="w-100" mat-raised-button color="primary" [disabled]="formFiles.invalid">Guardar <mat-icon>send</mat-icon></button>
+            <mat-progress-bar mode="query" *ngIf="guardando"></mat-progress-bar>
+        </div>
+    </div>
+    <div class="row" *ngIf="guardando">
+        <div class="col">
+            <p>{{errorMensaje}}</p>
+        </div>
+    </div>
+</form>
+
+<form  [formGroup]="formRegistro" (ngSubmit)="save()" *ngIf="parte==1">
+    <div class="row">
+        <div class="col">
+            <p class="h5">Datos principales de la empresa</p>
         </div>
     </div>
     <div class="row">
@@ -47,15 +92,23 @@
             </mat-form-field>
         </div>
     </div>
+    
     <div class="row">
         <div class="col">
             <mat-form-field class="w-100">
-                <mat-label>Descripción</mat-label>
-                <textarea matInput type="text"  formControlName="descripcion"></textarea>
+                <mat-label>Teléfono principal</mat-label>
+                <input matInput type="text" formControlName="telefono">
             </mat-form-field>
         </div>
     </div>
-    <hr>
+    <div class="row">
+        <div class="col">
+            <mat-form-field class="w-100">
+                <mat-label>Sitio en la WEB</mat-label>
+                <input matInput type="text" formControlName="sitio">
+            </mat-form-field>
+        </div>
+    </div>
     <div class="row">
         <div class="col">
             <p class="h6">Domicilio</p>
@@ -99,52 +152,6 @@
     <hr>
     <div class="row">
         <div class="col">
-            <p class="h6">Teléfonos</p>
-        </div>
-        <div class="col">
-            <p class="h6 text-end ptb"><a (click)="addTelefono()">+</a></p>
-        </div>
-    </div>
-    <div formArrayName="telefonos">
-        <div class="row" *ngFor="let item of getTelefonos.controls; let PosT = index" [formGroupName]="PosT">
-            <div class="col">
-                <mat-form-field class="w-100">
-                    <mat-label>Teléfono {{PosT+1}}</mat-label>
-                    <input matInput type="text" formControlName="telefono">
-                    <button type="button" (click)="delTelefono(PosT)" matSuffix mat-icon-button aria-label="Clear">
-                      <mat-icon>close</mat-icon>
-                    </button>
-                </mat-form-field>
-            </div>
-        </div>
-    </div>
-
-    <hr>
-    <div class="row">
-        <div class="col">
-            <p class="h6">Sitios en la web</p>
-        </div>
-        <div class="col">
-            <p class="h6 text-end ptb"><a (click)="addSitio()">+</a></p>
-        </div>
-    </div>
-    <div formArrayName="sitios">
-        <div class="row" *ngFor="let item of getSitios.controls; let PosS = index" [formGroupName]="PosS">
-            <div class="col">
-                <mat-form-field class="w-100">
-                    <mat-label>Sitio {{PosS+1}}</mat-label>
-                    <input matInput type="text" formControlName="sitio">
-                    <button type="button" (click)="delSitio(PosS)" matSuffix mat-icon-button aria-label="Clear">
-                      <mat-icon>close</mat-icon>
-                    </button>
-                </mat-form-field>
-            </div>
-        </div>
-    </div>
-
-    <hr>
-    <div class="row">
-        <div class="col">
             <p class="h6">Datos de contacto responsable ante el clúster</p>
         </div>
     </div>
@@ -179,7 +186,7 @@
                 <div class="col">
                     <mat-form-field class="w-100">
                         <mat-label>Telefono Móvil (WhatsApp)</mat-label>
-                        <input matInput type="text" formControlName="telefono_movil">
+                        <input matInput type="text" formControlName="telefono_whatsapp">
                     </mat-form-field>
                 </div>
                 <div class="col">
@@ -221,13 +228,17 @@
                 <div class="col">
                     <mat-form-field class="w-100">
                         <mat-label>Puesto</mat-label>
-                        <input matInput type="text" formControlName="puesto">
+                        <mat-select formControlName="puesto">
+                            <mat-option *ngFor="let puesto of puestos" [value]="puesto.id_puesto">{{puesto.nombre}}</mat-option>
+                        </mat-select>
                     </mat-form-field>
                 </div>
                 <div class="col">
                     <mat-form-field class="w-100">
                         <mat-label>Profesión</mat-label>
-                        <input matInput type="text" formControlName="profesion">
+                        <mat-select formControlName="profesion">
+                            <mat-option *ngFor="let profesion of profesiones" [value]="profesion.id_profesion">{{profesion.nombre}}</mat-option>
+                        </mat-select>
                     </mat-form-field>
                 </div>
             </div>
@@ -241,7 +252,7 @@
                 <div class="col">
                     <mat-form-field class="w-100">
                         <mat-label>Telefono Móvil (WhatsApp)</mat-label>
-                        <input matInput type="text" formControlName="telefono_movil">
+                        <input matInput type="text" formControlName="telefono_whatsapp">
                     </mat-form-field>
                 </div>
                 <div class="col">
@@ -263,9 +274,17 @@
     <div class="row">
         <div class="col">
             <mat-form-field class="w-100">
+                <mat-label>Descripción corta de su empresa</mat-label>
+                <textarea matInput type="text"  formControlName="descripcion"></textarea>
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <mat-form-field class="w-100">
                 <mat-label>Indique tipo de negocio</mat-label>
-                <mat-select formControlName="tipo_negocio">
-                    <mat-option *ngFor="let tipo of tipos_negocio" [value]="tipo.id_tipo_negocio">{{tipo.nombre}}</mat-option>
+                <mat-select formControlName="tipo_negocio" multiple>
+                    <mat-option *ngFor="let tipo of tipos_negocio" [value]="tipo.nombre">{{tipo.nombre}}</mat-option>
                 </mat-select>
             </mat-form-field>
         </div>
@@ -274,8 +293,8 @@
         <div class="col">
             <mat-form-field class="w-100">
                 <mat-label>En que parte de la cadena productiva esta ubicado (Marque con una X)</mat-label>
-                <mat-select formControlName="cadena_prodictiva" multiple>
-                    <mat-option *ngFor="let cadena of candenas_productiva" [value]="cadena.id_cadena_productiva">{{cadena.nombre}}</mat-option>
+                <mat-select formControlName="cadena_productiva" multiple>
+                    <mat-option *ngFor="let cadena of cadenas_productiva" [value]="cadena.id_cadena_productiva">{{cadena.nombre}}</mat-option>
                 </mat-select>
             </mat-form-field>
         </div>
@@ -311,100 +330,170 @@
         </div>
     </div>
     <div class ="row">
-      <div class="col">
-        <mat-form-field class="w-100">
-        <mat-label>Seleccione la organizacion en la que su empresa participa.</mat-label>
-<mat-select formControlName="proyecto_sectorAlim">
-  <mat-option *ngFor="let sea of proyecto_sectorAlim" [value]="sea.id_sectorAlim">{{sea.nombre}}</mat-option>
-</mat-select>
-</mat-form-field>
-</div>
-</div>
-<div class="row">
-    <div class="col">
-        <p class="h6">Comentarios acerca de la organización en la que la empresa participa.</p>
+        <div class="col">
+            <mat-form-field class="w-100">
+                <mat-label>Seleccione la organizacion en la que su empresa participa.</mat-label>
+                <mat-select formControlName="organizaciones">
+                    <mat-option *ngFor="let organizacion of organizaciones" [value]="organizacion.id_organizacion">{{organizacion.nombre}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
     </div>
-</div>
-<div class="row">
-  <div class ="col">
-    <mat-form-field class="w-100">
-      <mat-label>Comentarios acerca de la participacion de la empresa en la organización.</mat-label>
-      <input matInput type="text" formControlName="comentario">
-</mat-form-field>
+    <div class="row">
+        <div class="col">
+            <p class="h6">Comentarios acerca de la organización en la que la empresa participa.</p>
+        </div>
     </div>
+    <div class="row">
+        <div class ="col">
+            <mat-form-field class="w-100">
+                <mat-label>Comentarios acerca de la participacion de la empresa en la organización.</mat-label>
+                <input matInput type="text" formControlName="comentario">
+            </mat-form-field>
+        </div>
     </div>
     <div class="row">
         <div class="col">
             <p class="h6">¿Su empresa exporta?</p>
         </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <mat-form-field class="w-100">
+                <mat-label>(Marque con una X)</mat-label>
+                <mat-select formControlName="exporta">
+                    <mat-option *ngFor="let opcion of exportaciones" [value]="opcion.nombre">{{opcion.nombre}}</mat-option>
+                </mat-select>
+            </mat-form-field>
         </div>
-        <div class="row">
-            <div class="col">
-                <mat-form-field class="w-100">
-                    <mat-label>(Marque con una X)</mat-label>
-                    <mat-select formControlName="opcione">
-                        <mat-option *ngFor="let cadena of opcione" [value]="cadena.id_opcione">{{cadena.nombre}}</mat-option>
-            </mat-select>
-          </mat-form-field>
-          </div>
-          </div>
-          <div class="row">
-              <div class="col">
-                  <p class="h6">¿A que paises exportan?</p>
-              </div>
-              </div>
-              <div class="row">
-                <div class ="col">
-                  <mat-form-field class="w-100">
-                    <mat-label>Inserte los paises a los que exportan. (en caso de ser NO. Escriba "en proceso")</mat-label>
-                    <input matInput type="text" formControlName="exporta">
-              </mat-form-field>
-                  </div>
-                  </div>
-                  <div class="row">
-                      <div class="col">
-                          <p class="h6">¿Cuales son las normas. regulaciones o estándares mexicanas e internacionales que aplican para el giro de su empresa y que aplican actualmente en su empresa (Puede marcar mas de una segun aplique)?</p>
-                      </div>
-                      </div>
-                      <div class="row">
-                          <div class="col">
-                              <mat-form-field class="w-100">
-                                  <mat-label>Puede seleccionar una o más opciones</mat-label>
-                                  <mat-select formControlName="normas" multiple>
-                                      <mat-option *ngFor="let cadena of normas" [value]="cadena.id_normas">{{cadena.nombre}}</mat-option>
-                          </mat-select>
-                        </mat-form-field>
-                        </div>
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                                <p class="h6">¿En qué temas le gustaria recibir más apoyo del Clúster</p>
-                            </div>
-                            </div>
-                        <div class="row">
-                            <div class="col">
-                                <mat-form-field class="w-100">
-                                    <mat-label>Puede seleccionar una o más opciones</mat-label>
-                                    <mat-select formControlName="temas" multiple>
-                                        <mat-option *ngFor="let cadena of temas" [value]="cadena.id_temas">{{cadena.nombre}}</mat-option>
-                            </mat-select>
-                          </mat-form-field>
-                          </div>
-                          </div>
-                          <div class="row">
-                            <div class ="col">
-                              <mat-form-field class="w-100">
-                                <mat-label>Comentario acerca de algun tema del que lo pueda apoyar el Cluster</mat-label>
-                                <input matInput type="text" formControlName="coment">
-                          </mat-form-field>
-                              </div>
-                              </div>
+    </div>
+    <div class="row" *ngIf="formRegistro.value.exporta == 'Si'">
+        <div class ="col">
+            <mat-form-field class="w-100">
+                <mat-label>Inserte los paises a los que exporta.</mat-label>
+                <input matInput type="text" formControlName="paises_exporta">
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <p class="h6">¿Cuales son las normas. regulaciones o estándares mexicanas e internacionales que aplican para el giro de su empresa y que aplican actualmente en su empresa (Puede marcar mas de una segun aplique)?</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <mat-form-field class="w-100">
+                <mat-label>Puede seleccionar una o más opciones</mat-label>
+                <mat-select formControlName="normas" multiple>
+                    <mat-option *ngFor="let norma of normas" [value]="norma.id_norma">{{norma.nombre}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <p class="h6">¿En qué temas le gustaria recibir más apoyo del Clúster</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <mat-form-field class="w-100">
+                <mat-label>Puede seleccionar una o más opciones</mat-label>
+                <mat-select formControlName="temas" multiple>
+                    <mat-option *ngFor="let tema of temas" [value]="tema.id_tema">{{tema.nombre}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="row">
+        <div class ="col">
+            <mat-form-field class="w-100">
+                <mat-label>Comentario acerca de algun tema del que lo pueda apoyar el Cluster</mat-label>
+                <input matInput type="text" formControlName="sugerencia">
+            </mat-form-field>
+        </div>
+    </div>
 
     <div class="row">
         <div class="col">
             <button type="submit" class="w-100" mat-raised-button color="primary" [disabled]="formRegistro.invalid">Guardar <mat-icon>send</mat-icon></button>
+            <mat-progress-bar mode="query" *ngIf="guardando"></mat-progress-bar>
+        </div>
+    </div>
+    <div class="row" *ngIf="guardando">
+        <div class="col">
+            <p>{{errorMensaje}}</p>
         </div>
     </div>
 
 
 </form>
+
+<div class="card" *ngIf="parte==3">
+    <div class="card-body">
+        <div class="row text-center">
+            <div class="col-sm-12 col-md-4 col-lg-4 offset-md-4 offset-lg-4">
+                <img src="assets/imgs/favicon.png" class="img-fluid" style="padding-top: auto;">
+            </div>
+        </div>
+        <div class="row text-center">
+            <div class="col-sm-12 col-md-4 col-lg-4 offset-md-4 offset-lg-4">
+                <h1 class="display-4">Clúster Agroalimentrario A.C.</h1>
+                <p class="lead">Acuse de solicitud de afiliación.</p>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-sm-12 col-md-8 col-lg-8 offset-md-2 offset-lg-2">
+                <p>Acuse de solicitud para la afiliación al Clúster Agroalimentrario de Nuevo León. Los datos de la empresa solicitante y la fecha de solicitud se lista a continuación.</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-md-8 col-lg-8 offset-md-2 offset-lg-2">
+                <ul class="list-group">
+                    <li class="list-group-item d-flex justify-content-between align-items-start">
+                        <div class="ms-2 me-auto">
+                            <div class="fw-bold">Nombre de empresa</div>
+                            {{formRegistro.value.nombre}}
+                        </div>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-start">
+                        <div class="ms-2 me-auto">
+                            <div class="fw-bold">Razón social</div>
+                            {{formRegistro.value.razon_social}}
+                        </div>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-start">
+                        <div class="ms-2 me-auto">
+                            <div class="fw-bold">RFC</div>
+                            {{formRegistro.value.rfc}}
+                        </div>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-start">
+                        <div class="ms-2 me-auto">
+                            <div class="fw-bold">Fecha solicitud</div>
+                            {{hoy | date}}
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-sm-12 col-md-8 col-lg-8 offset-md-2 offset-lg-2">
+                <p>Su solicitud será procesada y analizada por los administradores del Clúster Agroalimentrario de Nuevo León tomando la consitencia entre los requisitos enviados, serás notificado de la resolución mediante correo electrónico.</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12 col-md-8 col-lg-8 offset-md-2 offset-lg-2 text-end noprint">
+                <p class="text-muted"><small>Ctrl + P para imprimir o convertir en PDF.</small></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-md-8 col-lg-8 offset-md-2 offset-lg-2 text-end noprint">
+                <p class="text-muted"><small>Puede cerrar esta ventana</small></p>
+            </div>
+        </div>
+    </div>
+</div>

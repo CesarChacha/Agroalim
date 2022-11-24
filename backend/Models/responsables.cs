@@ -21,13 +21,14 @@ namespace backend.Models
         public string password { get; set; }
         public string telefono_oficina { get; set; }
         public string telefono_whatsapp { get; set; }
-        public bool activo { get; set; }
-        public bool baja { get; set; }
-        public System.DateTime fecha_actualizacion { get; set; }
+        public Nullable<bool> activo { get; set; }
+        public Nullable<bool> baja { get; set; }
+        public Nullable<int> id_empresa { get; set; }
+        public Nullable<int> id_puesto { get; set; }
+        public Nullable<int> id_profesion { get; set; }
+        public Nullable<int> id_comite { get; set; }
+        public Nullable<System.DateTime> fecha_actualizacion { get; set; }
     
-        public virtual comites comites { get; set; }
         public virtual empresas empresas { get; set; }
-        public virtual profesiones profesiones { get; set; }
-        public virtual puestos puestos { get; set; }
     }
 }

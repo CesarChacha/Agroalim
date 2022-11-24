@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <setParameter name="IIS Web Application Name" value="agroalim" />
+  <setParameter name="bdEntities-Web.config Connection String" value="metadata=res://*/Models.dbModel.csdl|res://*/Models.dbModel.ssdl|res://*/Models.dbModel.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=DESKTOP-93M4OJ7;initial catalog=agroalim_qa;user id=sa;password=raul1234;MultipleActiveResultSets=True;App=EntityFramework&quot;" />
+  <setParameter name="prdEntities-Web.config Connection String" value="metadata=res://*/Models.ModelPrd.csdl|res://*/Models.ModelPrd.ssdl|res://*/Models.ModelPrd.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=sql8001.site4now.net;initial catalog=db_a8ddc5_agroalim;persist security info=True;user id=db_a8ddc5_agroalim_admin;password=raul1234;MultipleActiveResultSets=True;App=EntityFramework&quot;" />
+</parameters>

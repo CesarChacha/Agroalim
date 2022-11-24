@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="0e8a0b7ca29e4a34a93810cb51ebee44" Name="Diagram1" ZoomLevel="74">
+        <EntityTypeShape EntityType="bdModel.administradores" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="bdModel.cadena_productiva" Width="1.5" PointX="0.75" PointY="22.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="bdModel.comites" Width="1.5" PointX="6.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="bdModel.detalles_empresa" Width="1.5" PointX="6" PointY="17" IsExpanded="true" />
+        <EntityTypeShape EntityType="bdModel.domicilios" Width="1.5" PointX="3" PointY="17.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="bdModel.empresa_cadena_productiva" Width="1.5" PointX="3" PointY="20.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="bdModel.empresa_norma" Width="1.5" PointX="3" PointY="13.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="bdModel.empresa_organizacion" Width="1.5" PointX="6" PointY="13.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="bdModel.empresa_tema" Width="1.5" PointX="6" PointY="21.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="bdModel.facturacion" Width="1.5" PointX="3.75" PointY="23.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="bdModel.normas" Width="1.5" PointX="0.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="bdModel.organizaciones" Width="1.5" PointX="3.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="bdModel.profesiones" Width="1.5" PointX="6.75" PointY="24.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="bdModel.puestos" Width="1.5" PointX="6.75" PointY="27.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="bdModel.requisitos" Width="1.5" PointX="3" PointY="31.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="bdModel.responsables" Width="1.5" PointX="9" PointY="16.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="bdModel.sitios" Width="1.5" PointX="3" PointY="40.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="bdModel.telefonos" Width="1.5" PointX="3" PointY="43.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="bdModel.temas" Width="1.5" PointX="3.75" PointY="26.75" IsExpanded="true" />
+        <AssociationConnector Association="bdModel.FK_empresa_cadena_productiva_cadena_productiva" ManuallyRouted="false" />
+        <AssociationConnector Association="bdModel.FK_responsable_comite" ManuallyRouted="false" />
+        <AssociationConnector Association="bdModel.FK_facturacion_detalles_empresa" ManuallyRouted="false" />
+        <AssociationConnector Association="bdModel.FK_empresa_norma_norma" ManuallyRouted="false" />
+        <AssociationConnector Association="bdModel.FK_empresa_organizacion_organizacion" ManuallyRouted="false" />
+        <AssociationConnector Association="bdModel.FK_empresa_tema_tema" ManuallyRouted="false" />
+        <AssociationConnector Association="bdModel.FK_responsable_profesion" ManuallyRouted="false" />
+        <AssociationConnector Association="bdModel.FK_responsable_puesto" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="bdModel.responsables_cluster_view" Width="1.5" PointX="3.375" PointY="0.75" />
+        <EntityTypeShape EntityType="bdModel.responsables_comites_view" Width="1.5" PointX="0.75" PointY="4.75" />
+        <EntityTypeShape EntityType="bdModel.cadena_productiva_view" Width="1.5" PointX="3.375" PointY="4.75" />
+        <EntityTypeShape EntityType="bdModel.empresa_norma_view" Width="1.5" PointX="5.375" PointY="0.75" />
+        <EntityTypeShape EntityType="bdModel.empresa_tema_view" Width="1.5" PointX="5.375" PointY="3.75" />
+        <EntityTypeShape EntityType="bdModel.empresas" Width="1.5" PointX="0.75" PointY="27.25" />
+        <AssociationConnector Association="bdModel.FK_empresa_detalles_empresa" />
+        <AssociationConnector Association="bdModel.FK_empresa_domicilio" />
+        <AssociationConnector Association="bdModel.FK_empresa_cadena_productiva_empresa" />
+        <AssociationConnector Association="bdModel.FK_empresa_norma_empresa" />
+        <AssociationConnector Association="bdModel.FK_empresa_organizacion_empresa" />
+        <AssociationConnector Association="bdModel.FK_empresa_tema_empresa" />
+        <AssociationConnector Association="bdModel.FK_empresa_requisito" />
+        <AssociationConnector Association="bdModel.FK_empresa_sitio" />
+        <AssociationConnector Association="bdModel.FK_empresa_telefono" />
+        <AssociationConnector Association="bdModel.FK_responsable_empresa" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

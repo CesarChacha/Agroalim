@@ -19,8 +19,8 @@ namespace backend.Models
         public string apellido { get; set; }
         public string correo { get; set; }
         public string password { get; set; }
-        public bool activo { get; set; }
-        public bool baja { get; set; }
-        public System.DateTime fecha_actualizacion { get; set; }
+        public Nullable<bool> activo { get; set; }
+        public Nullable<bool> baja { get; set; }
+        public Nullable<System.DateTime> fecha_actualizacion { get; set; }
     }
 }

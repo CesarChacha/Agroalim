@@ -1,6 +1,291 @@
-<div class="jumbotron">
-    <h1 class="display-4">Empresa solicitante **Nombre Empresa (Razon social)**</h1>
-    <p class="lead">Formulario respondido por la empresa antes mencionada para solicitar la afiliación al Cluster Agroalim de Nuevo León.</p>
+<div class="jumbotron" *ngIf="!cargando">
+    <h1 class="display-4">Empresa solicitante - {{empresa_detalles.nombre_comercial}} </h1>
+    <p class="lead">Acepte o rechace la solicitud de la empresa de acuerdo a la información y requisitos capturados.</p>
+
+    <p class="small text-muted"  *ngIf="empresa_detalles.solicitud_rechazada">Actualmente rechazada</p>
     <hr class="my-4">
     
+    <div class="row">
+        <div class="col">
+            <mat-accordion class="example-headers-align">
+                <mat-expansion-panel >
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Datos de la empresa 
+                        </mat-panel-title>
+                        <mat-panel-description>
+                            Datos básicos de la empresa
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <mat-list>
+                        <div mat-subheader>Datos básicos</div>
+                            <mat-list-item>
+                                <mat-icon mat-list-icon>home</mat-icon>
+                                <div mat-line>Nombre comercial</div>
+                                <div mat-line> {{empresa_detalles.nombre_comercial}} </div>
+                            </mat-list-item>
+                            <mat-list-item>
+                                <mat-icon mat-list-icon>store</mat-icon>
+                                <div mat-line>Razón social</div>
+                                <div mat-line> {{empresa_detalles.razon_social}} </div>
+                            </mat-list-item>
+                            <mat-list-item>
+                                <mat-icon mat-list-icon>business</mat-icon>
+                                <div mat-line>RFC</div>
+                                <div mat-line> {{empresa_detalles.rfc}} </div>
+                            </mat-list-item>
+                            <mat-divider></mat-divider>
+                        <div mat-subheader>Domicilio fiscal</div>
+                            <mat-list-item>
+                                <mat-icon mat-list-icon>home</mat-icon>
+                                <div mat-line>Direccion</div>
+                                <div mat-line> {{empresa_detalles.calle}} - CP {{empresa_detalles.codigo_postal}} </div>
+                            </mat-list-item>
+                            <mat-list-item>
+                                <mat-icon mat-list-icon>phone</mat-icon>
+                                <div mat-line>Telefono</div>
+                                <div mat-line> {{empresa_detalles.telefono}} </div>
+                            </mat-list-item>
+                            <mat-list-item>
+                                <mat-icon mat-list-icon>web</mat-icon>
+                                <div mat-line>Página Web</div>
+                                <div mat-line> {{empresa_detalles.sitio}} </div>
+                            </mat-list-item>
+                      </mat-list>
+                </mat-expansion-panel>
+
+                <mat-expansion-panel >
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Datos de contacto
+                        </mat-panel-title>
+                        <mat-panel-description>
+                            Responsables ante el clúster
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <mat-list *ngIf="!this.cargandoResponsablesCluster">
+                        <div *ngFor="let responsable of responsablesCluster">
+                            <div mat-subheader>{{responsable.puesto}}</div>
+                            <mat-list-item>
+                                <mat-icon mat-list-icon>person</mat-icon>
+                                <div mat-line>Nombre</div>
+                                <div mat-line> {{responsable.nombre}} {{responsable.apellido}} </div>
+                            </mat-list-item>
+                            <mat-list-item>
+                                <mat-icon mat-list-icon>email</mat-icon>
+                                <div mat-line>Correo</div>
+                                <div mat-line> {{responsable.correo}}</div>
+                            </mat-list-item>
+                            <mat-list-item>
+                                <mat-icon mat-list-icon>phone</mat-icon>
+                                <div mat-line>Telefono Oficina/Móvil</div>
+                                <div mat-line> {{responsable.telefono_oficina}} / {{responsable.telefono_whatsapp}}</div>
+                            </mat-list-item>
+                        </div>
+                    </mat-list>
+                    <mat-progress-bar mode="query" *ngIf="this.cargandoResponsablesCluster"></mat-progress-bar>
+                </mat-expansion-panel>
+
+                <mat-expansion-panel >
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Responsables
+                        </mat-panel-title>
+                        <mat-panel-description>
+                            Responsables de participar en comités.
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <mat-list *ngIf="!cargandoResponsablesComites">
+                        <div *ngFor="let responsable of responsablesComites">
+                            <div mat-subheader>{{responsable.comite}}</div>
+                            <mat-list-item>
+                                <mat-icon mat-list-icon>person</mat-icon>
+                                <div mat-line>Nombre</div>
+                                <div mat-line> {{responsable.nombre}} {{responsable.apellido}} </div>
+                            </mat-list-item>
+                            <mat-list-item>
+                                <mat-icon mat-list-icon>email</mat-icon>
+                                <div mat-line>Correo</div>
+                                <div mat-line> {{responsable.correo}}</div>
+                            </mat-list-item>
+                            <mat-list-item>
+                                <mat-icon mat-list-icon>phone</mat-icon>
+                                <div mat-line>Telefono Oficina</div>
+                                <div mat-line> {{responsable.telefono_oficina}} </div>
+                            </mat-list-item>
+                            <mat-list-item>
+                                <mat-icon mat-list-icon>phone_iphone</mat-icon>
+                                <div mat-line>Telefono Móvil(Whatsapp)</div>
+                                <div mat-line> {{responsable.telefono_whatsapp}}</div>
+                            </mat-list-item>
+                            <mat-list-item>
+                                <mat-icon mat-list-icon>badge</mat-icon>
+                                <div mat-line>Puesto</div>
+                                <div mat-line> {{responsable.puesto}}</div>
+                            </mat-list-item>
+                            <mat-list-item>
+                                <mat-icon mat-list-icon>workspace_premium</mat-icon>
+                                <div mat-line>Profesión</div>
+                                <div mat-line> {{responsable.profesion}}</div>
+                            </mat-list-item>
+                        </div>
+                    </mat-list>
+                    <mat-progress-bar mode="query" *ngIf="cargandoResponsablesComites"></mat-progress-bar>
+                </mat-expansion-panel>
+
+                <mat-expansion-panel >
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Actividades
+                        </mat-panel-title>
+                        <mat-panel-description>
+                            Datos adicionales
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <mat-list>
+                        <div mat-subheader>Tipo de negocio</div>
+                        <mat-list-item>
+                            <mat-icon mat-list-icon>info</mat-icon>
+                            <div mat-line>Productos</div>
+                            <div mat-line> {{empresa_detalles.servicios?"Si":"No"}} </div>
+                        </mat-list-item>
+                        <mat-list-item>
+                            <mat-icon mat-list-icon>info</mat-icon>
+                            <div mat-line>Servicios</div>
+                            <div mat-line> {{empresa_detalles.productos?"Si":"No"}} </div>
+                        </mat-list-item>
+
+                        <div mat-subheader>Parte de la cadena productiva donde esta ubicada la empresa.</div>
+                        <div *ngIf="!cargandoCadenaProductiva">
+                            <mat-list-item *ngFor="let cp of cadenaProductiva" >
+                                <mat-icon mat-list-icon>list</mat-icon>
+                                <div mat-line> {{cp.nombre}} </div>
+                            </mat-list-item>
+                        </div>
+                        
+                    </mat-list>
+                    <div>
+                        <p class="">
+                            <b>Breve descripción de las actividades de la empresa</b>
+                        </p>
+                        <p class="text-justify">
+                            {{empresa_detalles.descripcion}}
+                        </p>
+                    </div>
+                </mat-expansion-panel>
+
+                <mat-expansion-panel >
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Capacidad
+                        </mat-panel-title>
+                        <mat-panel-description>
+                            Datos de capacidad de la empresa
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <mat-list>
+                        <mat-list-item>
+                            <mat-icon mat-list-icon>groups</mat-icon>
+                            <div mat-line>Numero empleados</div>
+                            <div mat-line> {{empresa_detalles.numero_empleados}} </div>
+                        </mat-list-item>
+                        <mat-list-item>
+                            <mat-icon mat-list-icon>paid</mat-icon>
+                            <div mat-line>Facturación anual promedio</div>
+                            <div mat-line> {{empresa_detalles.facturacion}} </div>
+                        </mat-list-item>
+
+                        <mat-list-item>
+                            <mat-icon mat-list-icon>diversity_3</mat-icon>
+                            <div mat-line>Organización en la que participa dentro del sector agroalimentario </div>
+                            <div mat-line> {{empresa_detalles.organizacion}} </div>
+                        </mat-list-item>
+                        <div>
+                            <p class="">
+                                <b>Comentario sobre la organización en la que participa</b>
+                            </p>
+                            <p class="text-justify">
+                                {{empresa_detalles.comentario_organizacion}}
+                            </p>
+                        </div>
+
+                        <mat-list-item>
+                            <mat-icon mat-list-icon>flight_takeoff</mat-icon>
+                            <div mat-line>¿Exporta?</div>
+                            <div mat-line> {{empresa_detalles.exporta?"Si":"No"}} </div>
+                        </mat-list-item>
+                        <div *ngIf="empresa_detalles.exporta">
+                            <p class="">
+                                <b>Paises a los que exporta</b>
+                            </p>
+                            <p class="text-justify">
+                                {{empresa_detalles.paises_exportacion}}
+                            </p>
+                        </div>
+                        <div *ngIf="!cargandoNorma">
+                            <div mat-subheader>Normas, regulaciones o esquemas</div>
+                            <mat-list-item *ngFor="let norma of normas">
+                                <mat-icon mat-list-icon>straighten</mat-icon>
+                                <div mat-line>Norma</div>
+                                <div mat-line> {{norma.nombre}} </div>
+                            </mat-list-item>
+                        </div>
+
+                        <div *ngIf="!cargandoNorma">
+                            <div mat-subheader>Normas, regulaciones o esquemas</div>
+                            <mat-list-item *ngFor="let norma of normas">
+                                <mat-icon mat-list-icon>straighten</mat-icon>
+                                <div mat-line>Norma</div>
+                                <div mat-line> {{norma.nombre}} </div>
+                            </mat-list-item>
+                        </div>
+                        
+                        <div *ngIf="!cargandoTema">
+                            <div mat-subheader>Temas que le gustaría recibir más apoyo del Clúster</div>
+                            <mat-list-item *ngFor="let tema of temas">
+                                <mat-icon mat-list-icon>topic</mat-icon>
+                                <div mat-line>Tema</div>
+                                <div mat-line> {{tema.nombre}} </div>
+                            </mat-list-item>
+                        </div>
+
+                        <mat-list-item>
+                            <mat-icon mat-list-icon>wb_incandescent</mat-icon>
+                            <div mat-line>Sugerencia a el clúster</div>
+                            <div mat-line> {{empresa_detalles.sugerencia_cluster}} </div>
+                        </mat-list-item>
+                    </mat-list>
+                </mat-expansion-panel>
+
+                <mat-expansion-panel >
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Requisitos
+                        </mat-panel-title>
+                        <mat-panel-description>
+                            Elementos adjuntos por la empresa
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <mat-list *ngIf="!cargandoRequisitos">
+                        <mat-list-item *ngFor="let item of requisitos">
+                            <mat-icon mat-list-icon>attach_file</mat-icon>
+                            <div mat-line>{{item.file_name}}</div>
+                            <div mat-line> <button mat-button (click)="descargar(item.local_file_name,item.file_name,item.media_type)">Descargar</button></div>
+                        </mat-list-item>
+                    </mat-list>
+                    <mat-progress-bar mode="query" *ngIf="cargandoRequisitos"></mat-progress-bar>
+                </mat-expansion-panel>
+
+            </mat-accordion>
+            
+        </div>
+    </div>
+    <hr class="my-4">
+    <button mat-raised-button color="primary" class="w-100" (click)="aceptarSolicitud()"> Aprobar <mat-icon>done</mat-icon></button>
+    <button mat-raised-button color="warn" class="w-100 mt-2" (click)="rechazarSolicitud()" [disabled]="empresa_detalles.solicitud_rechazada"> Rechazar <mat-icon>close</mat-icon></button>
+
+</div>
+
+<div *ngIf="cargando">
+    <mat-progress-bar mode="query"></mat-progress-bar>
 </div>

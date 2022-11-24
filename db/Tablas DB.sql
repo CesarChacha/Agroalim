@@ -9,20 +9,39 @@ CREATE TABLE administradores (
 	fecha_actualizacion DATETIME NOT NULL 
 )
 
---INSERT INTO administradores VALUES('Ra�l','Carvajal','rcarvajal@tecnoap.com','1234567',1,0,GETDATE())
+--INSERT INTO administradores VALUES('Raúl','Carvajal','rcarvajal@tecnoap.com','1234567',1,0,GETDATE())
 
 CREATE TABLE empresas (
 	id_empresa INT PRIMARY KEY IDENTITY(1,1),
 	razon_social VARCHAR(256) NOT NULL,
 	rfc  VARCHAR(16) NOT NULL,
 	nombre_comercial VARCHAR(256) NOT NULL,
+	--descripcion VARCHAR(1024) NOT NULL,
+	--productos BIT NOT NULL,
+	--servicios BIT NOT NULL,
+	solicitud_aceptada BIT NOT NULL,
+	solicitud_rechazada BIT NOT NULL,
+	activo BIT NOT NULL,
+	baja BIT NOT NULL,
+	fecha_solicitud DATETIME NOT NULL,
+	fecha_actualizacion DATETIME NOT NULL
+)
+
+
+CREATE TABLE detalles_empresa(
+	id_detalles_empresa INT PRIMARY KEY IDENTITY(1,1),
+	id_empresa INT NOT NULL,
 	descripcion VARCHAR(1024) NOT NULL,
 	productos BIT NOT NULL,
 	servicios BIT NOT NULL,
-	solicitud_aceptada BIT NOT NULL,
-	activo BIT NOT NULL,
-	baja BIT NOT NULL,
-	fecha_actualizacion DATETIME NOT NULL
+	numero_empleados INT NOT NULL,
+	id_facturacion INT NOT NULL,
+	exporta BIT NOT NULL,
+	en_proceso_exportacion BIT,
+	paises_exportacion VARCHAR(2048)
+
+	CONSTRAINT FK_empresa_detalles_empresa FOREIGN KEY (id_empresa) REFERENCES empresas(id_empresa),
+	CONSTRAINT FK_facturacion_detalles_empresa FOREIGN KEY (id_facturacion) REFERENCES facturacion(id_facturacion)
 )
 
 CREATE TABLE domicilios (
@@ -61,6 +80,13 @@ CREATE TABLE sitios (
 )
 
 
+CREATE TABLE cadena_productiva(
+	id_cadena_productiva INT PRIMARY KEY IDENTITY(1,1),
+	nombre VARCHAR(256) NOT NULL,
+	activo BIT NOT NULL,
+	baja BIT NOT NULL,
+	fecha_actualizacion DATETIME NOT NULL
+)
 CREATE TABLE puestos (
 	id_puesto INT PRIMARY KEY IDENTITY(1,1),
 	nombre VARCHAR(256) NOT NULL,
@@ -77,13 +103,6 @@ CREATE TABLE profesiones (
 )
 CREATE TABLE comites (
 	id_comite INT PRIMARY KEY IDENTITY(1,1),
-	nombre VARCHAR(256) NOT NULL,
-	activo BIT NOT NULL,
-	baja BIT NOT NULL,
-	fecha_actualizacion DATETIME NOT NULL
-)
-CREATE TABLE actividades (
-	id_actividad INT PRIMARY KEY IDENTITY(1,1),
 	nombre VARCHAR(256) NOT NULL,
 	activo BIT NOT NULL,
 	baja BIT NOT NULL,
@@ -162,4 +181,12 @@ CREATE TABLE empresa_tema(
 	id_tema INT NOT NULL,
 	CONSTRAINT FK_empresa_tema_empresa FOREIGN KEY (id_empresa) REFERENCES empresas(id_empresa),
 	CONSTRAINT FK_empresa_tema_tema FOREIGN KEY (id_tema) REFERENCES temas(id_tema),
+)
+
+CREATE TABLE empresa_cadena_productiva(
+	id_empresa_cadena_productiva INT PRIMARY KEY IDENTITY(1,1),
+	id_empresa INT NOT NULL,
+	id_cadena_productiva INT NOT NULL,
+	CONSTRAINT FK_empresa_cadena_productiva_empresa FOREIGN KEY (id_empresa) REFERENCES empresas(id_empresa),
+	CONSTRAINT FK_empresa_cadena_productiva_cadena_productiva FOREIGN KEY (id_cadena_productiva) REFERENCES cadena_productiva(id_cadena_productiva),
 )

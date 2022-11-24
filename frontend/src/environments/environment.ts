@@ -4,11 +4,12 @@
 
 export const environment = {
   production: false,
-  api
+  api,
+  fileServer : 'http://54.234.60.110:8080/Files/'
 };
 
 function api (endpoint: string) {
-  return `http://localhost:44384/api/${endpoint}`;
+  return `http://54.234.60.110:8080/api/${endpoint}`;
 }
 
 

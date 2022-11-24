@@ -10,7 +10,7 @@ import { SnackbarService } from '../utils/services/snackbar.service';
 })
 export class SolicitudesComponent implements OnInit {
 
-  columsTable:string [] = ["Id","Solicitante","RFC","Fecha solicitud","Acciones"]
+  columsTable:string [] = ["Id","Solicitante","RFC","Fecha solicitud","Estatus","Acciones"]
   dataTable: empresas [] = [];
 
   constructor(
@@ -26,6 +26,7 @@ export class SolicitudesComponent implements OnInit {
     this.sEmpresas.getSolicitantes().subscribe(
       res => {
         this.dataTable = res;
+        console.log(res)
       },err => {
         this.sSb.printMessage('Ocurrio un error durante la consulta.')
       }

@@ -9,5 +9,6 @@ export interface empresas {
     razon_social: string,
     rfc: string,
     servicios: boolean,
-    solicitud_aceptada: boolean
+    solicitud_aceptada: boolean,
+    solicitud_rechazada: boolean
 }

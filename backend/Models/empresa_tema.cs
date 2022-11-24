@@ -15,8 +15,9 @@ namespace backend.Models
     public partial class empresa_tema
     {
         public int id_empresa_tema { get; set; }
+        public Nullable<int> id_empresa { get; set; }
+        public Nullable<int> id_tema { get; set; }
     
         public virtual empresas empresas { get; set; }
-        public virtual temas temas { get; set; }
     }
 }

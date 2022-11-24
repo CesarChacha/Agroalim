@@ -1,0 +1,25 @@
+<form  [formGroup]="formFiles" (ngSubmit)="saveRequisitos()">
+    <div class="row">
+        <div class="col">
+            <mat-form-field class="w-100">
+                <ngx-mat-file-input 
+                    formControlName="requisitos"  
+                    [accept]="'.zip'" 
+                    placeholder="Adjunte los requisitos solicitados comprimidos en .zip [Max. 128 MB]" 
+                    (change)="onFileChange($event,'requisitos')">
+                </ngx-mat-file-input>
+                <mat-icon matSuffix>folder_zip</mat-icon>
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <button type="submit" class="w-100" mat-raised-button color="primary" [disabled]="formFiles.invalid">Guardar <mat-icon>send</mat-icon></button>
+            <mat-progress-bar mode="query" *ngIf="guardando"></mat-progress-bar>
+        </div>
+    </div>
+    <div class="row" *ngIf="guardando">
+        <div class="col">
+        </div>
+    </div>
+</form>

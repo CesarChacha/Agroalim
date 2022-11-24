@@ -3,7 +3,7 @@
     <p class="lead">Vea los contactos, encargados de comités y detalles de la empresas aceptadas dentro del Cluster Agroalim de Nuevo León.</p>
     <hr class="my-4">
     
-    <div class="row">
+    <div class="row" *ngIf="dataTable.length>0">
         <div class="col">
             <div class="mat-elevation-z1">
                 <table class="table table-hover w-100">
@@ -28,6 +28,12 @@
                 </table>
               </div>  
         </div>
+    </div>
+
+    <div class="row" *ngIf="dataTable.length==0">
+      <div class="col text-center">
+        <p class="lead">Sin Empresas</p>
+      </div>
     </div>
 
 </div>

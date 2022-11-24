@@ -18,9 +18,10 @@ namespace backend.Models
         public string calle { get; set; }
         public string numero { get; set; }
         public string codigo_postal { get; set; }
-        public bool activo { get; set; }
-        public bool baja { get; set; }
-        public System.DateTime fecha_actualizacion { get; set; }
+        public Nullable<bool> activo { get; set; }
+        public Nullable<bool> baja { get; set; }
+        public Nullable<System.DateTime> fecha_actualizacion { get; set; }
+        public Nullable<int> id_empresa { get; set; }
     
         public virtual empresas empresas { get; set; }
     }

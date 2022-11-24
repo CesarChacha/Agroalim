@@ -15,8 +15,11 @@ namespace backend.Models
     public partial class empresa_organizacion
     {
         public int id_empresa_organizacion { get; set; }
+        public Nullable<int> id_empresa { get; set; }
+        public Nullable<int> id_organizacion { get; set; }
+        public string comentario { get; set; }
+        public string sugerencia { get; set; }
     
         public virtual empresas empresas { get; set; }
-        public virtual organizaciones organizaciones { get; set; }
     }
 }

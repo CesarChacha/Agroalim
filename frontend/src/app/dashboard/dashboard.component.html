@@ -3,4 +3,64 @@
     <p class="lead">Observe las métricas de las empresas solicitantes que aspiran a ser aceptadas dentro del Cluster Agroalim de Nuevo León.</p>
     <hr class="my-4">
     
+    <div class="row">
+        <div class="col text-center">
+            <mat-card>
+                <mat-card-title>Solicitudes Aceptadas</mat-card-title>
+                <mat-card-subtitle></mat-card-subtitle>
+                <p class="display-1">
+                    {{metricas.aceptadas}}
+                </p>
+                <mat-card-actions>
+                </mat-card-actions>
+            </mat-card>
+        </div>
+        <div class="col text-center">
+            <mat-card>
+                <mat-card-title>Solicitudes Pendientes</mat-card-title>
+                <mat-card-subtitle></mat-card-subtitle>
+                <p class="display-1">
+                    {{metricas.pendientes}}
+                </p>
+                <mat-card-actions>
+                </mat-card-actions>
+            </mat-card>
+        </div>
+        <div class="col text-center">
+            <mat-card>
+                <mat-card-title>Solicitudes Rechazadas</mat-card-title>
+                <mat-card-subtitle></mat-card-subtitle>
+                <p class="display-1">
+                    {{metricas.rechazadas}}
+                </p>
+                <mat-card-actions>
+                </mat-card-actions>
+            </mat-card>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col text-center">
+            <mat-card>
+                <mat-card-title>Solicitudes Totales</mat-card-title>
+                <mat-card-subtitle></mat-card-subtitle>
+                <p class="display-1">
+                    {{metricas.totales}}
+                </p>
+                <mat-card-actions>
+                </mat-card-actions>
+            </mat-card>
+        </div>
+        <div class="col text-center">
+            <mat-card>
+                <mat-card-title>Índice de Aceptación</mat-card-title>
+                <mat-card-subtitle></mat-card-subtitle>
+                <p class="display-1">
+                    {{metricas.indice_aceptacion}}
+                </p>
+                <mat-card-actions>
+                </mat-card-actions>
+            </mat-card>
+        </div>
+    </div>
+
 </div>

@@ -36,6 +36,11 @@ import { CatalogoComponent } from './catalogos/catalogo/catalogo.component';
 import { SolicitudComponent } from './solicitudes/solicitud/solicitud.component';
 import { EmpresaComponent } from './empresas/empresa/empresa.component';
 
+import { MaterialFileInputModule } from 'ngx-material-file-input';
+import {MatExpansionModule} from '@angular/material/expansion';
+import { PruebaArchivoComponent } from './prueba-archivo/prueba-archivo.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,7 +53,8 @@ import { EmpresaComponent } from './empresas/empresa/empresa.component';
     MiCuentaComponent,
     CatalogoComponent,
     SolicitudComponent,
-    EmpresaComponent
+    EmpresaComponent,
+    PruebaArchivoComponent
   ],
   imports: [
     BrowserModule,
@@ -69,7 +75,9 @@ import { EmpresaComponent } from './empresas/empresa/empresa.component';
     MatProgressBarModule,
     MatSnackBarModule,
     MatTabsModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MaterialFileInputModule,
+    MatExpansionModule
   ],
   providers: [
     OnlyLoggedGuard,

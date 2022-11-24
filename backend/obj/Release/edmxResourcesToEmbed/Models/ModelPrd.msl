@@ -1,0 +1,244 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="prdModelStoreContainer" CdmEntityContainer="prdEntities">
+    <EntitySetMapping Name="administradores">
+      <EntityTypeMapping TypeName="prdModel.administradores">
+        <MappingFragment StoreEntitySet="administradores">
+          <ScalarProperty Name="id_administrador" ColumnName="id_administrador" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="apellido" ColumnName="apellido" />
+          <ScalarProperty Name="correo" ColumnName="correo" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="baja" ColumnName="baja" />
+          <ScalarProperty Name="fecha_actualizacion" ColumnName="fecha_actualizacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cadena_productiva">
+      <EntityTypeMapping TypeName="prdModel.cadena_productiva">
+        <MappingFragment StoreEntitySet="cadena_productiva">
+          <ScalarProperty Name="fecha_actualizacion" ColumnName="fecha_actualizacion" />
+          <ScalarProperty Name="baja" ColumnName="baja" />
+          <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="id_cadena_productiva" ColumnName="id_cadena_productiva" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="comites">
+      <EntityTypeMapping TypeName="prdModel.comites">
+        <MappingFragment StoreEntitySet="comites">
+          <ScalarProperty Name="fecha_actualizacion" ColumnName="fecha_actualizacion" />
+          <ScalarProperty Name="baja" ColumnName="baja" />
+          <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="id_comite" ColumnName="id_comite" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="detalles_empresa">
+      <EntityTypeMapping TypeName="prdModel.detalles_empresa">
+        <MappingFragment StoreEntitySet="detalles_empresa">
+          <ScalarProperty Name="paises_exportacion" ColumnName="paises_exportacion" />
+          <ScalarProperty Name="en_proceso_exportacion" ColumnName="en_proceso_exportacion" />
+          <ScalarProperty Name="exporta" ColumnName="exporta" />
+          <ScalarProperty Name="id_facturacion" ColumnName="id_facturacion" />
+          <ScalarProperty Name="numero_empleados" ColumnName="numero_empleados" />
+          <ScalarProperty Name="servicios" ColumnName="servicios" />
+          <ScalarProperty Name="productos" ColumnName="productos" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="id_empresa" ColumnName="id_empresa" />
+          <ScalarProperty Name="id_detalles_empresa" ColumnName="id_detalles_empresa" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="domicilios">
+      <EntityTypeMapping TypeName="prdModel.domicilios">
+        <MappingFragment StoreEntitySet="domicilios">
+          <ScalarProperty Name="id_empresa" ColumnName="id_empresa" />
+          <ScalarProperty Name="fecha_actualizacion" ColumnName="fecha_actualizacion" />
+          <ScalarProperty Name="baja" ColumnName="baja" />
+          <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="codigo_postal" ColumnName="codigo_postal" />
+          <ScalarProperty Name="numero" ColumnName="numero" />
+          <ScalarProperty Name="calle" ColumnName="calle" />
+          <ScalarProperty Name="id_domicilio" ColumnName="id_domicilio" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="empresa_cadena_productiva">
+      <EntityTypeMapping TypeName="prdModel.empresa_cadena_productiva">
+        <MappingFragment StoreEntitySet="empresa_cadena_productiva">
+          <ScalarProperty Name="id_cadena_productiva" ColumnName="id_cadena_productiva" />
+          <ScalarProperty Name="id_empresa" ColumnName="id_empresa" />
+          <ScalarProperty Name="id_empresa_cadena_productiva" ColumnName="id_empresa_cadena_productiva" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="empresa_norma">
+      <EntityTypeMapping TypeName="prdModel.empresa_norma">
+        <MappingFragment StoreEntitySet="empresa_norma">
+          <ScalarProperty Name="id_norma" ColumnName="id_norma" />
+          <ScalarProperty Name="id_empresa" ColumnName="id_empresa" />
+          <ScalarProperty Name="id_empresa_norma" ColumnName="id_empresa_norma" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="empresa_organizacion">
+      <EntityTypeMapping TypeName="prdModel.empresa_organizacion">
+        <MappingFragment StoreEntitySet="empresa_organizacion">
+          <ScalarProperty Name="id_organizacion" ColumnName="id_organizacion" />
+          <ScalarProperty Name="id_empresa" ColumnName="id_empresa" />
+          <ScalarProperty Name="id_empresa_organizacion" ColumnName="id_empresa_organizacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="empresa_tema">
+      <EntityTypeMapping TypeName="prdModel.empresa_tema">
+        <MappingFragment StoreEntitySet="empresa_tema">
+          <ScalarProperty Name="id_tema" ColumnName="id_tema" />
+          <ScalarProperty Name="id_empresa" ColumnName="id_empresa" />
+          <ScalarProperty Name="id_empresa_tema" ColumnName="id_empresa_tema" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="empresas">
+      <EntityTypeMapping TypeName="prdModel.empresas">
+        <MappingFragment StoreEntitySet="empresas">
+          <ScalarProperty Name="fecha_actualizacion" ColumnName="fecha_actualizacion" />
+          <ScalarProperty Name="fecha_solicitud" ColumnName="fecha_solicitud" />
+          <ScalarProperty Name="baja" ColumnName="baja" />
+          <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="solicitud_rechazada" ColumnName="solicitud_rechazada" />
+          <ScalarProperty Name="solicitud_aceptada" ColumnName="solicitud_aceptada" />
+          <ScalarProperty Name="nombre_comercial" ColumnName="nombre_comercial" />
+          <ScalarProperty Name="rfc" ColumnName="rfc" />
+          <ScalarProperty Name="razon_social" ColumnName="razon_social" />
+          <ScalarProperty Name="id_empresa" ColumnName="id_empresa" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="facturacion">
+      <EntityTypeMapping TypeName="prdModel.facturacion">
+        <MappingFragment StoreEntitySet="facturacion">
+          <ScalarProperty Name="fecha_actualizacion" ColumnName="fecha_actualizacion" />
+          <ScalarProperty Name="baja" ColumnName="baja" />
+          <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="id_facturacion" ColumnName="id_facturacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="normas">
+      <EntityTypeMapping TypeName="prdModel.normas">
+        <MappingFragment StoreEntitySet="normas">
+          <ScalarProperty Name="fecha_actualizacion" ColumnName="fecha_actualizacion" />
+          <ScalarProperty Name="baja" ColumnName="baja" />
+          <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="id_norma" ColumnName="id_norma" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="organizaciones">
+      <EntityTypeMapping TypeName="prdModel.organizaciones">
+        <MappingFragment StoreEntitySet="organizaciones">
+          <ScalarProperty Name="fecha_actualizacion" ColumnName="fecha_actualizacion" />
+          <ScalarProperty Name="baja" ColumnName="baja" />
+          <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="id_organizacion" ColumnName="id_organizacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="profesiones">
+      <EntityTypeMapping TypeName="prdModel.profesiones">
+        <MappingFragment StoreEntitySet="profesiones">
+          <ScalarProperty Name="fecha_actualizacion" ColumnName="fecha_actualizacion" />
+          <ScalarProperty Name="baja" ColumnName="baja" />
+          <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="id_profesion" ColumnName="id_profesion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="puestos">
+      <EntityTypeMapping TypeName="prdModel.puestos">
+        <MappingFragment StoreEntitySet="puestos">
+          <ScalarProperty Name="fecha_actualizacion" ColumnName="fecha_actualizacion" />
+          <ScalarProperty Name="baja" ColumnName="baja" />
+          <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="id_puesto" ColumnName="id_puesto" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="requisitos">
+      <EntityTypeMapping TypeName="prdModel.requisitos">
+        <MappingFragment StoreEntitySet="requisitos">
+          <ScalarProperty Name="media_type" ColumnName="media_type" />
+          <ScalarProperty Name="local_file_name" ColumnName="local_file_name" />
+          <ScalarProperty Name="file_name" ColumnName="file_name" />
+          <ScalarProperty Name="id_empresa" ColumnName="id_empresa" />
+          <ScalarProperty Name="id_requisitos" ColumnName="id_requisitos" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="responsables">
+      <EntityTypeMapping TypeName="prdModel.responsables">
+        <MappingFragment StoreEntitySet="responsables">
+          <ScalarProperty Name="fecha_actualizacion" ColumnName="fecha_actualizacion" />
+          <ScalarProperty Name="id_comite" ColumnName="id_comite" />
+          <ScalarProperty Name="id_profesion" ColumnName="id_profesion" />
+          <ScalarProperty Name="id_puesto" ColumnName="id_puesto" />
+          <ScalarProperty Name="id_empresa" ColumnName="id_empresa" />
+          <ScalarProperty Name="baja" ColumnName="baja" />
+          <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="telefono_whatsapp" ColumnName="telefono_whatsapp" />
+          <ScalarProperty Name="telefono_oficina" ColumnName="telefono_oficina" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="correo" ColumnName="correo" />
+          <ScalarProperty Name="apellido" ColumnName="apellido" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="id_responsable" ColumnName="id_responsable" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sitios">
+      <EntityTypeMapping TypeName="prdModel.sitios">
+        <MappingFragment StoreEntitySet="sitios">
+          <ScalarProperty Name="id_empresa" ColumnName="id_empresa" />
+          <ScalarProperty Name="fecha_actualizacion" ColumnName="fecha_actualizacion" />
+          <ScalarProperty Name="baja" ColumnName="baja" />
+          <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="sitio" ColumnName="sitio" />
+          <ScalarProperty Name="id_sitios" ColumnName="id_sitios" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="telefonos">
+      <EntityTypeMapping TypeName="prdModel.telefonos">
+        <MappingFragment StoreEntitySet="telefonos">
+          <ScalarProperty Name="id_empresa" ColumnName="id_empresa" />
+          <ScalarProperty Name="fecha_actualizacion" ColumnName="fecha_actualizacion" />
+          <ScalarProperty Name="baja" ColumnName="baja" />
+          <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="telefono" ColumnName="telefono" />
+          <ScalarProperty Name="id_telefono" ColumnName="id_telefono" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="temas">
+      <EntityTypeMapping TypeName="prdModel.temas">
+        <MappingFragment StoreEntitySet="temas">
+          <ScalarProperty Name="fecha_actualizacion" ColumnName="fecha_actualizacion" />
+          <ScalarProperty Name="baja" ColumnName="baja" />
+          <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="id_tema" ColumnName="id_tema" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

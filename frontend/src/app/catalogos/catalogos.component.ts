@@ -19,7 +19,7 @@ export class CatalogosComponent implements OnInit {
     { nombre : "Normas", nombre_tabla : "normas", nombre_pk : "id_norma", endpoint : "normas_adm"},
     { nombre : "Comités", nombre_tabla : "comites", nombre_pk : "id_comite", endpoint : "comites_adm"},
     { nombre : "Facturación anual", nombre_tabla : "facturacion", nombre_pk : "id_factuacion", endpoint : "facturacion_adm"},
-    { nombre : "Actividades", nombre_tabla : "actividades", nombre_pk : "id_actividad", endpoint : "actividades_adm"},
+    { nombre : "Cadena productiva", nombre_tabla : "cadena_productiva", nombre_pk : "id_cadena_productiva", endpoint : "cadena_productiva_adm"},
     { nombre : "Temas", nombre_tabla : "temas", nombre_pk : "id_tema", endpoint : "temas_adm"},
     { nombre : "Organizaciones", nombre_tabla : "organizaciones", nombre_pk : "id_organizacion", endpoint : "organizaciones_adm"},
   ]

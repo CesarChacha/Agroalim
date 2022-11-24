@@ -1,0 +1,244 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="dbModelStoreContainer" CdmEntityContainer="dbEntities">
+    <EntitySetMapping Name="administradores">
+      <EntityTypeMapping TypeName="dbModel.administradores">
+        <MappingFragment StoreEntitySet="administradores">
+          <ScalarProperty Name="id_administrador" ColumnName="id_administrador" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="apellido" ColumnName="apellido" />
+          <ScalarProperty Name="correo" ColumnName="correo" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="baja" ColumnName="baja" />
+          <ScalarProperty Name="fecha_actualizacion" ColumnName="fecha_actualizacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cadena_productiva">
+      <EntityTypeMapping TypeName="dbModel.cadena_productiva">
+        <MappingFragment StoreEntitySet="cadena_productiva">
+          <ScalarProperty Name="id_cadena_productiva" ColumnName="id_cadena_productiva" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="baja" ColumnName="baja" />
+          <ScalarProperty Name="fecha_actualizacion" ColumnName="fecha_actualizacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="comites">
+      <EntityTypeMapping TypeName="dbModel.comites">
+        <MappingFragment StoreEntitySet="comites">
+          <ScalarProperty Name="id_comite" ColumnName="id_comite" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="baja" ColumnName="baja" />
+          <ScalarProperty Name="fecha_actualizacion" ColumnName="fecha_actualizacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="detalles_empresa">
+      <EntityTypeMapping TypeName="dbModel.detalles_empresa">
+        <MappingFragment StoreEntitySet="detalles_empresa">
+          <ScalarProperty Name="id_detalles_empresa" ColumnName="id_detalles_empresa" />
+          <ScalarProperty Name="id_empresa" ColumnName="id_empresa" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="productos" ColumnName="productos" />
+          <ScalarProperty Name="servicios" ColumnName="servicios" />
+          <ScalarProperty Name="numero_empleados" ColumnName="numero_empleados" />
+          <ScalarProperty Name="id_facturacion" ColumnName="id_facturacion" />
+          <ScalarProperty Name="exporta" ColumnName="exporta" />
+          <ScalarProperty Name="en_proceso_exportacion" ColumnName="en_proceso_exportacion" />
+          <ScalarProperty Name="paises_exportacion" ColumnName="paises_exportacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="domicilios">
+      <EntityTypeMapping TypeName="dbModel.domicilios">
+        <MappingFragment StoreEntitySet="domicilios">
+          <ScalarProperty Name="id_domicilio" ColumnName="id_domicilio" />
+          <ScalarProperty Name="calle" ColumnName="calle" />
+          <ScalarProperty Name="numero" ColumnName="numero" />
+          <ScalarProperty Name="codigo_postal" ColumnName="codigo_postal" />
+          <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="baja" ColumnName="baja" />
+          <ScalarProperty Name="fecha_actualizacion" ColumnName="fecha_actualizacion" />
+          <ScalarProperty Name="id_empresa" ColumnName="id_empresa" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="empresa_cadena_productiva">
+      <EntityTypeMapping TypeName="dbModel.empresa_cadena_productiva">
+        <MappingFragment StoreEntitySet="empresa_cadena_productiva">
+          <ScalarProperty Name="id_empresa_cadena_productiva" ColumnName="id_empresa_cadena_productiva" />
+          <ScalarProperty Name="id_empresa" ColumnName="id_empresa" />
+          <ScalarProperty Name="id_cadena_productiva" ColumnName="id_cadena_productiva" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="empresa_norma">
+      <EntityTypeMapping TypeName="dbModel.empresa_norma">
+        <MappingFragment StoreEntitySet="empresa_norma">
+          <ScalarProperty Name="id_empresa_norma" ColumnName="id_empresa_norma" />
+          <ScalarProperty Name="id_empresa" ColumnName="id_empresa" />
+          <ScalarProperty Name="id_norma" ColumnName="id_norma" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="empresa_organizacion">
+      <EntityTypeMapping TypeName="dbModel.empresa_organizacion">
+        <MappingFragment StoreEntitySet="empresa_organizacion">
+          <ScalarProperty Name="id_empresa_organizacion" ColumnName="id_empresa_organizacion" />
+          <ScalarProperty Name="id_empresa" ColumnName="id_empresa" />
+          <ScalarProperty Name="id_organizacion" ColumnName="id_organizacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="empresa_tema">
+      <EntityTypeMapping TypeName="dbModel.empresa_tema">
+        <MappingFragment StoreEntitySet="empresa_tema">
+          <ScalarProperty Name="id_empresa_tema" ColumnName="id_empresa_tema" />
+          <ScalarProperty Name="id_empresa" ColumnName="id_empresa" />
+          <ScalarProperty Name="id_tema" ColumnName="id_tema" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="empresas">
+      <EntityTypeMapping TypeName="dbModel.empresas">
+        <MappingFragment StoreEntitySet="empresas">
+          <ScalarProperty Name="id_empresa" ColumnName="id_empresa" />
+          <ScalarProperty Name="razon_social" ColumnName="razon_social" />
+          <ScalarProperty Name="rfc" ColumnName="rfc" />
+          <ScalarProperty Name="nombre_comercial" ColumnName="nombre_comercial" />
+          <ScalarProperty Name="solicitud_aceptada" ColumnName="solicitud_aceptada" />
+          <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="baja" ColumnName="baja" />
+          <ScalarProperty Name="fecha_actualizacion" ColumnName="fecha_actualizacion" />
+          <ScalarProperty Name="fecha_solicitud" ColumnName="fecha_solicitud" />
+          <ScalarProperty Name="solicitud_rechazada" ColumnName="solicitud_rechazada" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="facturacion">
+      <EntityTypeMapping TypeName="dbModel.facturacion">
+        <MappingFragment StoreEntitySet="facturacion">
+          <ScalarProperty Name="id_facturacion" ColumnName="id_facturacion" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="baja" ColumnName="baja" />
+          <ScalarProperty Name="fecha_actualizacion" ColumnName="fecha_actualizacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="normas">
+      <EntityTypeMapping TypeName="dbModel.normas">
+        <MappingFragment StoreEntitySet="normas">
+          <ScalarProperty Name="id_norma" ColumnName="id_norma" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="baja" ColumnName="baja" />
+          <ScalarProperty Name="fecha_actualizacion" ColumnName="fecha_actualizacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="organizaciones">
+      <EntityTypeMapping TypeName="dbModel.organizaciones">
+        <MappingFragment StoreEntitySet="organizaciones">
+          <ScalarProperty Name="id_organizacion" ColumnName="id_organizacion" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="baja" ColumnName="baja" />
+          <ScalarProperty Name="fecha_actualizacion" ColumnName="fecha_actualizacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="profesiones">
+      <EntityTypeMapping TypeName="dbModel.profesiones">
+        <MappingFragment StoreEntitySet="profesiones">
+          <ScalarProperty Name="id_profesion" ColumnName="id_profesion" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="baja" ColumnName="baja" />
+          <ScalarProperty Name="fecha_actualizacion" ColumnName="fecha_actualizacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="puestos">
+      <EntityTypeMapping TypeName="dbModel.puestos">
+        <MappingFragment StoreEntitySet="puestos">
+          <ScalarProperty Name="id_puesto" ColumnName="id_puesto" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="baja" ColumnName="baja" />
+          <ScalarProperty Name="fecha_actualizacion" ColumnName="fecha_actualizacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="requisitos">
+      <EntityTypeMapping TypeName="dbModel.requisitos">
+        <MappingFragment StoreEntitySet="requisitos">
+          <ScalarProperty Name="id_requisitos" ColumnName="id_requisitos" />
+          <ScalarProperty Name="id_empresa" ColumnName="id_empresa" />
+          <ScalarProperty Name="file_name" ColumnName="file_name" />
+          <ScalarProperty Name="local_file_name" ColumnName="local_file_name" />
+          <ScalarProperty Name="media_type" ColumnName="media_type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="responsables">
+      <EntityTypeMapping TypeName="dbModel.responsables">
+        <MappingFragment StoreEntitySet="responsables">
+          <ScalarProperty Name="id_responsable" ColumnName="id_responsable" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="apellido" ColumnName="apellido" />
+          <ScalarProperty Name="correo" ColumnName="correo" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="telefono_oficina" ColumnName="telefono_oficina" />
+          <ScalarProperty Name="telefono_whatsapp" ColumnName="telefono_whatsapp" />
+          <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="baja" ColumnName="baja" />
+          <ScalarProperty Name="id_empresa" ColumnName="id_empresa" />
+          <ScalarProperty Name="id_puesto" ColumnName="id_puesto" />
+          <ScalarProperty Name="id_profesion" ColumnName="id_profesion" />
+          <ScalarProperty Name="id_comite" ColumnName="id_comite" />
+          <ScalarProperty Name="fecha_actualizacion" ColumnName="fecha_actualizacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sitios">
+      <EntityTypeMapping TypeName="dbModel.sitios">
+        <MappingFragment StoreEntitySet="sitios">
+          <ScalarProperty Name="id_sitios" ColumnName="id_sitios" />
+          <ScalarProperty Name="sitio" ColumnName="sitio" />
+          <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="baja" ColumnName="baja" />
+          <ScalarProperty Name="fecha_actualizacion" ColumnName="fecha_actualizacion" />
+          <ScalarProperty Name="id_empresa" ColumnName="id_empresa" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="telefonos">
+      <EntityTypeMapping TypeName="dbModel.telefonos">
+        <MappingFragment StoreEntitySet="telefonos">
+          <ScalarProperty Name="id_telefono" ColumnName="id_telefono" />
+          <ScalarProperty Name="telefono" ColumnName="telefono" />
+          <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="baja" ColumnName="baja" />
+          <ScalarProperty Name="fecha_actualizacion" ColumnName="fecha_actualizacion" />
+          <ScalarProperty Name="id_empresa" ColumnName="id_empresa" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="temas">
+      <EntityTypeMapping TypeName="dbModel.temas">
+        <MappingFragment StoreEntitySet="temas">
+          <ScalarProperty Name="id_tema" ColumnName="id_tema" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="baja" ColumnName="baja" />
+          <ScalarProperty Name="fecha_actualizacion" ColumnName="fecha_actualizacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

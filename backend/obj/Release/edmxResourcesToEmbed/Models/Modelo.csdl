@@ -1,0 +1,682 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="bdModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="administradores">
+    <Key>
+      <PropertyRef Name="id_administrador" />
+    </Key>
+    <Property Name="id_administrador" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" MaxLength="512" FixedLength="false" Unicode="false" />
+    <Property Name="apellido" Type="String" MaxLength="512" FixedLength="false" Unicode="false" />
+    <Property Name="correo" Type="String" MaxLength="512" FixedLength="false" Unicode="false" />
+    <Property Name="password" Type="String" MaxLength="512" FixedLength="false" Unicode="false" />
+    <Property Name="activo" Type="Boolean" />
+    <Property Name="baja" Type="Boolean" />
+    <Property Name="fecha_actualizacion" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="cadena_productiva">
+    <Key>
+      <PropertyRef Name="id_cadena_productiva" />
+    </Key>
+    <Property Name="id_cadena_productiva" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="activo" Type="Boolean" />
+    <Property Name="baja" Type="Boolean" />
+    <Property Name="fecha_actualizacion" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="comites">
+    <Key>
+      <PropertyRef Name="id_comite" />
+    </Key>
+    <Property Name="id_comite" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="activo" Type="Boolean" />
+    <Property Name="baja" Type="Boolean" />
+    <Property Name="fecha_actualizacion" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="detalles_empresa">
+    <Key>
+      <PropertyRef Name="id_detalles_empresa" />
+    </Key>
+    <Property Name="id_detalles_empresa" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_empresa" Type="Int32" />
+    <Property Name="descripcion" Type="String" MaxLength="1024" FixedLength="false" Unicode="false" />
+    <Property Name="productos" Type="Boolean" />
+    <Property Name="servicios" Type="Boolean" />
+    <Property Name="numero_empleados" Type="Int32" />
+    <Property Name="id_facturacion" Type="Int32" />
+    <Property Name="exporta" Type="Boolean" />
+    <Property Name="en_proceso_exportacion" Type="Boolean" />
+    <Property Name="paises_exportacion" Type="String" MaxLength="2048" FixedLength="false" Unicode="false" />
+    <Property Name="sugerencia" Type="String" MaxLength="1024" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="empresas" Relationship="bdModel.FK_empresa_detalles_empresa" FromRole="detalles_empresa" ToRole="empresas" />
+  </EntityType>
+  <EntityType Name="domicilios">
+    <Key>
+      <PropertyRef Name="id_domicilio" />
+    </Key>
+    <Property Name="id_domicilio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="calle" Type="String" MaxLength="1024" FixedLength="false" Unicode="false" />
+    <Property Name="numero" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Name="codigo_postal" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+    <Property Name="activo" Type="Boolean" />
+    <Property Name="baja" Type="Boolean" />
+    <Property Name="fecha_actualizacion" Type="DateTime" Precision="3" />
+    <Property Name="id_empresa" Type="Int32" />
+    <NavigationProperty Name="empresas" Relationship="bdModel.FK_empresa_domicilio" FromRole="domicilios" ToRole="empresas" />
+  </EntityType>
+  <EntityType Name="empresa_cadena_productiva">
+    <Key>
+      <PropertyRef Name="id_empresa_cadena_productiva" />
+    </Key>
+    <Property Name="id_empresa_cadena_productiva" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_empresa" Type="Int32" />
+    <Property Name="id_cadena_productiva" Type="Int32" />
+    <NavigationProperty Name="empresas" Relationship="bdModel.FK_empresa_cadena_productiva_empresa" FromRole="empresa_cadena_productiva" ToRole="empresas" />
+  </EntityType>
+  <EntityType Name="empresa_norma">
+    <Key>
+      <PropertyRef Name="id_empresa_norma" />
+    </Key>
+    <Property Name="id_empresa_norma" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_empresa" Type="Int32" />
+    <Property Name="id_norma" Type="Int32" />
+    <NavigationProperty Name="empresas" Relationship="bdModel.FK_empresa_norma_empresa" FromRole="empresa_norma" ToRole="empresas" />
+  </EntityType>
+  <EntityType Name="empresa_organizacion">
+    <Key>
+      <PropertyRef Name="id_empresa_organizacion" />
+    </Key>
+    <Property Name="id_empresa_organizacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_empresa" Type="Int32" />
+    <Property Name="id_organizacion" Type="Int32" />
+    <Property Name="comentario" Type="String" MaxLength="1024" FixedLength="false" Unicode="false" />
+    <Property Name="sugerencia" Type="String" MaxLength="1024" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="empresas" Relationship="bdModel.FK_empresa_organizacion_empresa" FromRole="empresa_organizacion" ToRole="empresas" />
+  </EntityType>
+  <EntityType Name="empresa_tema">
+    <Key>
+      <PropertyRef Name="id_empresa_tema" />
+    </Key>
+    <Property Name="id_empresa_tema" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_empresa" Type="Int32" />
+    <Property Name="id_tema" Type="Int32" />
+    <NavigationProperty Name="empresas" Relationship="bdModel.FK_empresa_tema_empresa" FromRole="empresa_tema" ToRole="empresas" />
+  </EntityType>
+  <EntityType Name="facturacion">
+    <Key>
+      <PropertyRef Name="id_facturacion" />
+    </Key>
+    <Property Name="id_facturacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="activo" Type="Boolean" />
+    <Property Name="baja" Type="Boolean" />
+    <Property Name="fecha_actualizacion" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="normas">
+    <Key>
+      <PropertyRef Name="id_norma" />
+    </Key>
+    <Property Name="id_norma" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="activo" Type="Boolean" />
+    <Property Name="baja" Type="Boolean" />
+    <Property Name="fecha_actualizacion" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="organizaciones">
+    <Key>
+      <PropertyRef Name="id_organizacion" />
+    </Key>
+    <Property Name="id_organizacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="activo" Type="Boolean" />
+    <Property Name="baja" Type="Boolean" />
+    <Property Name="fecha_actualizacion" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="profesiones">
+    <Key>
+      <PropertyRef Name="id_profesion" />
+    </Key>
+    <Property Name="id_profesion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="activo" Type="Boolean" />
+    <Property Name="baja" Type="Boolean" />
+    <Property Name="fecha_actualizacion" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="puestos">
+    <Key>
+      <PropertyRef Name="id_puesto" />
+    </Key>
+    <Property Name="id_puesto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="activo" Type="Boolean" />
+    <Property Name="baja" Type="Boolean" />
+    <Property Name="fecha_actualizacion" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="requisitos">
+    <Key>
+      <PropertyRef Name="id_requisitos" />
+    </Key>
+    <Property Name="id_requisitos" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_empresa" Type="Int32" />
+    <Property Name="file_name" Type="String" MaxLength="1024" FixedLength="false" Unicode="false" />
+    <Property Name="local_file_name" Type="String" MaxLength="2048" FixedLength="false" Unicode="false" />
+    <Property Name="media_type" Type="String" MaxLength="1024" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="empresas" Relationship="bdModel.FK_empresa_requisito" FromRole="requisitos" ToRole="empresas" />
+  </EntityType>
+  <EntityType Name="responsables">
+    <Key>
+      <PropertyRef Name="id_responsable" />
+    </Key>
+    <Property Name="id_responsable" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+    <Property Name="apellido" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+    <Property Name="correo" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+    <Property Name="password" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+    <Property Name="telefono_oficina" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+    <Property Name="telefono_whatsapp" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+    <Property Name="activo" Type="Boolean" />
+    <Property Name="baja" Type="Boolean" />
+    <Property Name="id_empresa" Type="Int32" />
+    <Property Name="id_puesto" Type="Int32" />
+    <Property Name="id_profesion" Type="Int32" />
+    <Property Name="id_comite" Type="Int32" />
+    <Property Name="fecha_actualizacion" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="empresas" Relationship="bdModel.FK_responsable_empresa" FromRole="responsables" ToRole="empresas" />
+  </EntityType>
+  <EntityType Name="sitios">
+    <Key>
+      <PropertyRef Name="id_sitios" />
+    </Key>
+    <Property Name="id_sitios" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="sitio" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+    <Property Name="activo" Type="Boolean" />
+    <Property Name="baja" Type="Boolean" />
+    <Property Name="fecha_actualizacion" Type="DateTime" Precision="3" />
+    <Property Name="id_empresa" Type="Int32" />
+    <NavigationProperty Name="empresas" Relationship="bdModel.FK_empresa_sitio" FromRole="sitios" ToRole="empresas" />
+  </EntityType>
+  <EntityType Name="telefonos">
+    <Key>
+      <PropertyRef Name="id_telefono" />
+    </Key>
+    <Property Name="id_telefono" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="telefono" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+    <Property Name="activo" Type="Boolean" />
+    <Property Name="baja" Type="Boolean" />
+    <Property Name="fecha_actualizacion" Type="DateTime" Precision="3" />
+    <Property Name="id_empresa" Type="Int32" />
+    <NavigationProperty Name="empresas" Relationship="bdModel.FK_empresa_telefono" FromRole="telefonos" ToRole="empresas" />
+  </EntityType>
+  <EntityType Name="temas">
+    <Key>
+      <PropertyRef Name="id_tema" />
+    </Key>
+    <Property Name="id_tema" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="activo" Type="Boolean" />
+    <Property Name="baja" Type="Boolean" />
+    <Property Name="fecha_actualizacion" Type="DateTime" Precision="3" />
+  </EntityType>
+  <Association Name="FK_empresa_cadena_productiva_cadena_productiva">
+    <End Role="cadena_productiva" Type="Self.cadena_productiva" Multiplicity="0..1" />
+    <End Role="empresa_cadena_productiva" Type="Self.empresa_cadena_productiva" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cadena_productiva">
+        <PropertyRef Name="id_cadena_productiva" />
+      </Principal>
+      <Dependent Role="empresa_cadena_productiva">
+        <PropertyRef Name="id_cadena_productiva" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_responsable_comite">
+    <End Role="comites" Type="Self.comites" Multiplicity="0..1" />
+    <End Role="responsables" Type="Self.responsables" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="comites">
+        <PropertyRef Name="id_comite" />
+      </Principal>
+      <Dependent Role="responsables">
+        <PropertyRef Name="id_comite" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_facturacion_detalles_empresa">
+    <End Role="facturacion" Type="Self.facturacion" Multiplicity="0..1" />
+    <End Role="detalles_empresa" Type="Self.detalles_empresa" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="facturacion">
+        <PropertyRef Name="id_facturacion" />
+      </Principal>
+      <Dependent Role="detalles_empresa">
+        <PropertyRef Name="id_facturacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_empresa_norma_norma">
+    <End Role="normas" Type="Self.normas" Multiplicity="0..1" />
+    <End Role="empresa_norma" Type="Self.empresa_norma" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="normas">
+        <PropertyRef Name="id_norma" />
+      </Principal>
+      <Dependent Role="empresa_norma">
+        <PropertyRef Name="id_norma" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_empresa_organizacion_organizacion">
+    <End Role="organizaciones" Type="Self.organizaciones" Multiplicity="0..1" />
+    <End Role="empresa_organizacion" Type="Self.empresa_organizacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="organizaciones">
+        <PropertyRef Name="id_organizacion" />
+      </Principal>
+      <Dependent Role="empresa_organizacion">
+        <PropertyRef Name="id_organizacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_empresa_tema_tema">
+    <End Role="temas" Type="Self.temas" Multiplicity="0..1" />
+    <End Role="empresa_tema" Type="Self.empresa_tema" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="temas">
+        <PropertyRef Name="id_tema" />
+      </Principal>
+      <Dependent Role="empresa_tema">
+        <PropertyRef Name="id_tema" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_responsable_profesion">
+    <End Role="profesiones" Type="Self.profesiones" Multiplicity="0..1" />
+    <End Role="responsables" Type="Self.responsables" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="profesiones">
+        <PropertyRef Name="id_profesion" />
+      </Principal>
+      <Dependent Role="responsables">
+        <PropertyRef Name="id_profesion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_responsable_puesto">
+    <End Role="puestos" Type="Self.puestos" Multiplicity="0..1" />
+    <End Role="responsables" Type="Self.responsables" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="puestos">
+        <PropertyRef Name="id_puesto" />
+      </Principal>
+      <Dependent Role="responsables">
+        <PropertyRef Name="id_puesto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="bdEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="administradores" EntityType="Self.administradores" />
+    <EntitySet Name="cadena_productiva" EntityType="Self.cadena_productiva" />
+    <EntitySet Name="comites" EntityType="Self.comites" />
+    <EntitySet Name="detalles_empresa" EntityType="Self.detalles_empresa" />
+    <EntitySet Name="domicilios" EntityType="Self.domicilios" />
+    <EntitySet Name="empresa_cadena_productiva" EntityType="Self.empresa_cadena_productiva" />
+    <EntitySet Name="empresa_norma" EntityType="Self.empresa_norma" />
+    <EntitySet Name="empresa_organizacion" EntityType="Self.empresa_organizacion" />
+    <EntitySet Name="empresa_tema" EntityType="Self.empresa_tema" />
+    <EntitySet Name="facturacion" EntityType="Self.facturacion" />
+    <EntitySet Name="normas" EntityType="Self.normas" />
+    <EntitySet Name="organizaciones" EntityType="Self.organizaciones" />
+    <EntitySet Name="profesiones" EntityType="Self.profesiones" />
+    <EntitySet Name="puestos" EntityType="Self.puestos" />
+    <EntitySet Name="requisitos" EntityType="Self.requisitos" />
+    <EntitySet Name="responsables" EntityType="Self.responsables" />
+    <EntitySet Name="sitios" EntityType="Self.sitios" />
+    <EntitySet Name="telefonos" EntityType="Self.telefonos" />
+    <EntitySet Name="temas" EntityType="Self.temas" />
+    <AssociationSet Name="FK_empresa_cadena_productiva_cadena_productiva" Association="Self.FK_empresa_cadena_productiva_cadena_productiva">
+      <End Role="cadena_productiva" EntitySet="cadena_productiva" />
+      <End Role="empresa_cadena_productiva" EntitySet="empresa_cadena_productiva" />
+    </AssociationSet>
+    <AssociationSet Name="FK_responsable_comite" Association="Self.FK_responsable_comite">
+      <End Role="comites" EntitySet="comites" />
+      <End Role="responsables" EntitySet="responsables" />
+    </AssociationSet>
+    <AssociationSet Name="FK_facturacion_detalles_empresa" Association="Self.FK_facturacion_detalles_empresa">
+      <End Role="facturacion" EntitySet="facturacion" />
+      <End Role="detalles_empresa" EntitySet="detalles_empresa" />
+    </AssociationSet>
+    <AssociationSet Name="FK_empresa_norma_norma" Association="Self.FK_empresa_norma_norma">
+      <End Role="normas" EntitySet="normas" />
+      <End Role="empresa_norma" EntitySet="empresa_norma" />
+    </AssociationSet>
+    <AssociationSet Name="FK_empresa_organizacion_organizacion" Association="Self.FK_empresa_organizacion_organizacion">
+      <End Role="organizaciones" EntitySet="organizaciones" />
+      <End Role="empresa_organizacion" EntitySet="empresa_organizacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_empresa_tema_tema" Association="Self.FK_empresa_tema_tema">
+      <End Role="temas" EntitySet="temas" />
+      <End Role="empresa_tema" EntitySet="empresa_tema" />
+    </AssociationSet>
+    <AssociationSet Name="FK_responsable_profesion" Association="Self.FK_responsable_profesion">
+      <End Role="profesiones" EntitySet="profesiones" />
+      <End Role="responsables" EntitySet="responsables" />
+    </AssociationSet>
+    <AssociationSet Name="FK_responsable_puesto" Association="Self.FK_responsable_puesto">
+      <End Role="puestos" EntitySet="puestos" />
+      <End Role="responsables" EntitySet="responsables" />
+    </AssociationSet>
+    <FunctionImport Name="sp_get_empresa" ReturnType="Collection(bdModel.sp_get_empresa_Result)">
+      <Parameter Name="pIdEmpresa" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_get_empresa_detalle" ReturnType="Collection(bdModel.sp_get_empresa_detalle_Result)">
+      <Parameter Name="pIdEmpresa" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <EntitySet Name="responsables_cluster_view" EntityType="bdModel.responsables_cluster_view" />
+    <EntitySet Name="responsables_comites_view" EntityType="bdModel.responsables_comites_view" />
+    <EntitySet Name="cadena_productiva_view" EntityType="bdModel.cadena_productiva_view" />
+    <EntitySet Name="empresa_norma_view" EntityType="bdModel.empresa_norma_view" />
+    <EntitySet Name="empresa_tema_view" EntityType="bdModel.empresa_tema_view" />
+    <FunctionImport Name="sp_get_empresa_detalle_by_id" ReturnType="Collection(bdModel.sp_get_empresa_detalle_by_id_Result)">
+      <Parameter Name="pIdEmpresa" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <EntitySet Name="empresas" EntityType="bdModel.empresas" />
+    <AssociationSet Name="FK_empresa_detalles_empresa" Association="bdModel.FK_empresa_detalles_empresa">
+      <End Role="empresas" EntitySet="empresas" />
+      <End Role="detalles_empresa" EntitySet="detalles_empresa" />
+    </AssociationSet>
+    <AssociationSet Name="FK_empresa_domicilio" Association="bdModel.FK_empresa_domicilio">
+      <End Role="empresas" EntitySet="empresas" />
+      <End Role="domicilios" EntitySet="domicilios" />
+    </AssociationSet>
+    <AssociationSet Name="FK_empresa_cadena_productiva_empresa" Association="bdModel.FK_empresa_cadena_productiva_empresa">
+      <End Role="empresas" EntitySet="empresas" />
+      <End Role="empresa_cadena_productiva" EntitySet="empresa_cadena_productiva" />
+    </AssociationSet>
+    <AssociationSet Name="FK_empresa_norma_empresa" Association="bdModel.FK_empresa_norma_empresa">
+      <End Role="empresas" EntitySet="empresas" />
+      <End Role="empresa_norma" EntitySet="empresa_norma" />
+    </AssociationSet>
+    <AssociationSet Name="FK_empresa_organizacion_empresa" Association="bdModel.FK_empresa_organizacion_empresa">
+      <End Role="empresas" EntitySet="empresas" />
+      <End Role="empresa_organizacion" EntitySet="empresa_organizacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_empresa_tema_empresa" Association="bdModel.FK_empresa_tema_empresa">
+      <End Role="empresas" EntitySet="empresas" />
+      <End Role="empresa_tema" EntitySet="empresa_tema" />
+    </AssociationSet>
+    <AssociationSet Name="FK_empresa_requisito" Association="bdModel.FK_empresa_requisito">
+      <End Role="empresas" EntitySet="empresas" />
+      <End Role="requisitos" EntitySet="requisitos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_empresa_sitio" Association="bdModel.FK_empresa_sitio">
+      <End Role="empresas" EntitySet="empresas" />
+      <End Role="sitios" EntitySet="sitios" />
+    </AssociationSet>
+    <AssociationSet Name="FK_empresa_telefono" Association="bdModel.FK_empresa_telefono">
+      <End Role="empresas" EntitySet="empresas" />
+      <End Role="telefonos" EntitySet="telefonos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_responsable_empresa" Association="bdModel.FK_responsable_empresa">
+      <End Role="empresas" EntitySet="empresas" />
+      <End Role="responsables" EntitySet="responsables" />
+    </AssociationSet>
+  </EntityContainer>
+  <ComplexType Name="sp_get_empresa_Result">
+    <Property Type="Int32" Name="id_empresa" Nullable="false" />
+    <Property Type="Boolean" Name="solicitud_aceptada" Nullable="true" />
+    <Property Type="String" Name="razon_social" Nullable="true" MaxLength="256" />
+    <Property Type="String" Name="rfc" Nullable="true" MaxLength="16" />
+    <Property Type="String" Name="nombre_comercial" Nullable="true" MaxLength="256" />
+    <Property Type="Boolean" Name="solicitud_aceptada1" Nullable="true" />
+    <Property Type="DateTime" Name="fecha_solicitud" Nullable="true" Precision="23" />
+    <Property Type="String" Name="calle" Nullable="true" MaxLength="1024" />
+    <Property Type="String" Name="codigo_postal" Nullable="true" MaxLength="8" />
+    <Property Type="String" Name="telefono" Nullable="true" MaxLength="16" />
+    <Property Type="String" Name="sitio" Nullable="true" MaxLength="16" />
+    <Property Type="String" Name="descripcion" Nullable="true" MaxLength="1024" />
+    <Property Type="Boolean" Name="productos" Nullable="true" />
+    <Property Type="Boolean" Name="servicios" Nullable="true" />
+    <Property Type="Int32" Name="numero_empleados" Nullable="true" />
+    <Property Type="Boolean" Name="exporta" Nullable="true" />
+    <Property Type="Boolean" Name="en_proceso_exportacion" Nullable="true" />
+    <Property Type="String" Name="paises_exportacion" Nullable="true" MaxLength="2048" />
+    <Property Type="String" Name="sugerencia_cluster" Nullable="true" MaxLength="1024" />
+    <Property Type="String" Name="facturacion" Nullable="true" MaxLength="256" />
+    <Property Type="String" Name="organizacion" Nullable="true" MaxLength="256" />
+    <Property Type="String" Name="comentario_organizacion" Nullable="true" MaxLength="1024" />
+  </ComplexType>
+  <ComplexType Name="sp_get_empresa_detalle_Result">
+    <Property Type="Int32" Name="id_empresa" Nullable="false" />
+    <Property Type="Boolean" Name="solicitud_aceptada" Nullable="true" />
+    <Property Type="String" Name="razon_social" Nullable="true" MaxLength="256" />
+    <Property Type="String" Name="rfc" Nullable="true" MaxLength="16" />
+    <Property Type="String" Name="nombre_comercial" Nullable="true" MaxLength="256" />
+    <Property Type="DateTime" Name="fecha_solicitud" Nullable="true" Precision="23" />
+    <Property Type="String" Name="calle" Nullable="true" MaxLength="1024" />
+    <Property Type="String" Name="codigo_postal" Nullable="true" MaxLength="8" />
+    <Property Type="String" Name="telefono" Nullable="true" MaxLength="16" />
+    <Property Type="String" Name="sitio" Nullable="true" MaxLength="16" />
+    <Property Type="String" Name="descripcion" Nullable="true" MaxLength="1024" />
+    <Property Type="Boolean" Name="productos" Nullable="true" />
+    <Property Type="Boolean" Name="servicios" Nullable="true" />
+    <Property Type="Int32" Name="numero_empleados" Nullable="true" />
+    <Property Type="Boolean" Name="exporta" Nullable="true" />
+    <Property Type="Boolean" Name="en_proceso_exportacion" Nullable="true" />
+    <Property Type="String" Name="paises_exportacion" Nullable="true" MaxLength="2048" />
+    <Property Type="String" Name="sugerencia_cluster" Nullable="true" MaxLength="1024" />
+    <Property Type="String" Name="facturacion" Nullable="true" MaxLength="256" />
+    <Property Type="String" Name="organizacion" Nullable="true" MaxLength="256" />
+    <Property Type="String" Name="comentario_organizacion" Nullable="true" MaxLength="1024" />
+  </ComplexType>
+  <EntityType Name="responsables_cluster_view">
+    <Key>
+      <PropertyRef Name="id_responsable" />
+    </Key>
+    <Property Name="id_empresa" Type="Int32" />
+    <Property Name="id_responsable" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+    <Property Name="apellido" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+    <Property Name="correo" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+    <Property Name="telefono_oficina" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+    <Property Name="telefono_whatsapp" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+    <Property Name="puesto" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="responsables_comites_view">
+    <Key>
+      <PropertyRef Name="id_responsable" />
+    </Key>
+    <Property Name="id_empresa" Type="Int32" />
+    <Property Name="id_responsable" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+    <Property Name="apellido" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+    <Property Name="correo" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+    <Property Name="telefono_oficina" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+    <Property Name="telefono_whatsapp" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+    <Property Name="comite" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="puesto" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="profesion" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="cadena_productiva_view">
+    <Key>
+      <PropertyRef Name="id_empresa_cadena_productiva" />
+    </Key>
+    <Property Name="id_empresa_cadena_productiva" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_empresa" Type="Int32" />
+    <Property Name="nombre" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="empresa_norma_view">
+    <Key>
+      <PropertyRef Name="id_empresa_norma" />
+    </Key>
+    <Property Name="id_empresa_norma" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_empresa" Type="Int32" />
+    <Property Name="nombre" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="empresa_tema_view">
+    <Key>
+      <PropertyRef Name="id_empresa_tema" />
+    </Key>
+    <Property Name="id_empresa_tema" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_empresa" Type="Int32" />
+    <Property Name="nombre" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <ComplexType Name="sp_get_empresa_detalle_by_id_Result">
+    <Property Type="Int32" Name="id_empresa" Nullable="false" />
+    <Property Type="Boolean" Name="solicitud_aceptada" Nullable="true" />
+    <Property Type="Boolean" Name="solicitud_rechazada" Nullable="true" />
+    <Property Type="String" Name="razon_social" Nullable="true" MaxLength="256" />
+    <Property Type="String" Name="rfc" Nullable="true" MaxLength="16" />
+    <Property Type="String" Name="nombre_comercial" Nullable="true" MaxLength="256" />
+    <Property Type="DateTime" Name="fecha_solicitud" Nullable="true" Precision="23" />
+    <Property Type="String" Name="calle" Nullable="true" MaxLength="1024" />
+    <Property Type="String" Name="codigo_postal" Nullable="true" MaxLength="8" />
+    <Property Type="String" Name="telefono" Nullable="true" MaxLength="16" />
+    <Property Type="String" Name="sitio" Nullable="true" MaxLength="16" />
+    <Property Type="String" Name="descripcion" Nullable="true" MaxLength="1024" />
+    <Property Type="Boolean" Name="productos" Nullable="true" />
+    <Property Type="Boolean" Name="servicios" Nullable="true" />
+    <Property Type="Int32" Name="numero_empleados" Nullable="true" />
+    <Property Type="Boolean" Name="exporta" Nullable="true" />
+    <Property Type="Boolean" Name="en_proceso_exportacion" Nullable="true" />
+    <Property Type="String" Name="paises_exportacion" Nullable="true" MaxLength="2048" />
+    <Property Type="String" Name="sugerencia_cluster" Nullable="true" MaxLength="1024" />
+    <Property Type="String" Name="facturacion" Nullable="true" MaxLength="256" />
+    <Property Type="String" Name="organizacion" Nullable="true" MaxLength="256" />
+    <Property Type="String" Name="comentario_organizacion" Nullable="true" MaxLength="1024" />
+  </ComplexType>
+  <EntityType Name="empresas">
+    <Key>
+      <PropertyRef Name="id_empresa" />
+    </Key>
+    <Property Name="id_empresa" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="razon_social" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="rfc" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+    <Property Name="nombre_comercial" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="solicitud_aceptada" Type="Boolean" />
+    <Property Name="activo" Type="Boolean" />
+    <Property Name="baja" Type="Boolean" />
+    <Property Name="fecha_actualizacion" Type="DateTime" Precision="3" />
+    <Property Name="fecha_solicitud" Type="DateTime" Precision="3" />
+    <Property Name="solicitud_rechazada" Type="Boolean" />
+  </EntityType>
+  <Association Name="FK_empresa_detalles_empresa">
+    <End Type="bdModel.empresas" Role="empresas" Multiplicity="0..1" />
+    <End Type="bdModel.detalles_empresa" Role="detalles_empresa" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="empresas">
+        <PropertyRef Name="id_empresa" />
+      </Principal>
+      <Dependent Role="detalles_empresa">
+        <PropertyRef Name="id_empresa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_empresa_domicilio">
+    <End Type="bdModel.empresas" Role="empresas" Multiplicity="0..1" />
+    <End Type="bdModel.domicilios" Role="domicilios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="empresas">
+        <PropertyRef Name="id_empresa" />
+      </Principal>
+      <Dependent Role="domicilios">
+        <PropertyRef Name="id_empresa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_empresa_cadena_productiva_empresa">
+    <End Type="bdModel.empresas" Role="empresas" Multiplicity="0..1" />
+    <End Type="bdModel.empresa_cadena_productiva" Role="empresa_cadena_productiva" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="empresas">
+        <PropertyRef Name="id_empresa" />
+      </Principal>
+      <Dependent Role="empresa_cadena_productiva">
+        <PropertyRef Name="id_empresa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_empresa_norma_empresa">
+    <End Type="bdModel.empresas" Role="empresas" Multiplicity="0..1" />
+    <End Type="bdModel.empresa_norma" Role="empresa_norma" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="empresas">
+        <PropertyRef Name="id_empresa" />
+      </Principal>
+      <Dependent Role="empresa_norma">
+        <PropertyRef Name="id_empresa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_empresa_organizacion_empresa">
+    <End Type="bdModel.empresas" Role="empresas" Multiplicity="0..1" />
+    <End Type="bdModel.empresa_organizacion" Role="empresa_organizacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="empresas">
+        <PropertyRef Name="id_empresa" />
+      </Principal>
+      <Dependent Role="empresa_organizacion">
+        <PropertyRef Name="id_empresa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_empresa_tema_empresa">
+    <End Type="bdModel.empresas" Role="empresas" Multiplicity="0..1" />
+    <End Type="bdModel.empresa_tema" Role="empresa_tema" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="empresas">
+        <PropertyRef Name="id_empresa" />
+      </Principal>
+      <Dependent Role="empresa_tema">
+        <PropertyRef Name="id_empresa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_empresa_requisito">
+    <End Type="bdModel.empresas" Role="empresas" Multiplicity="0..1" />
+    <End Type="bdModel.requisitos" Role="requisitos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="empresas">
+        <PropertyRef Name="id_empresa" />
+      </Principal>
+      <Dependent Role="requisitos">
+        <PropertyRef Name="id_empresa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_empresa_sitio">
+    <End Type="bdModel.empresas" Role="empresas" Multiplicity="0..1" />
+    <End Type="bdModel.sitios" Role="sitios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="empresas">
+        <PropertyRef Name="id_empresa" />
+      </Principal>
+      <Dependent Role="sitios">
+        <PropertyRef Name="id_empresa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_empresa_telefono">
+    <End Type="bdModel.empresas" Role="empresas" Multiplicity="0..1" />
+    <End Type="bdModel.telefonos" Role="telefonos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="empresas">
+        <PropertyRef Name="id_empresa" />
+      </Principal>
+      <Dependent Role="telefonos">
+        <PropertyRef Name="id_empresa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_responsable_empresa">
+    <End Type="bdModel.empresas" Role="empresas" Multiplicity="0..1" />
+    <End Type="bdModel.responsables" Role="responsables" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="empresas">
+        <PropertyRef Name="id_empresa" />
+      </Principal>
+      <Dependent Role="responsables">
+        <PropertyRef Name="id_empresa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

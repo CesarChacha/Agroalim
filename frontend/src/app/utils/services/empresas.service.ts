@@ -1,14 +1,18 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment as env } from '../../../environments/environment';
 import { empresas } from '../interfaces/empresas.interface';
+import { saveAs } from 'file-saver';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class EmpresasService {
 
+  
+  
   constructor(
     private http: HttpClient
   ) { }
@@ -20,4 +24,66 @@ export class EmpresasService {
   getEmpresas():Observable<empresas[]>{
     return this.http.get<empresas[]>(`${env.api('empresas')}`);
   }
+
+  saveEmpresa(formData:any):Observable<empresas | null>{
+    return this.http.post<empresas | null>(`${env.api('empresas')}`, formData);
+  }
+  saveRequisitos(formData:any, id:number){
+    return this.http.post<empresas | null>(`${env.api(`requisitos/${id}`)}`, formData);
+  }
+
+  getEmpresa(id:number){
+    return this.http.get<any>(`${env.api(`empresa/${id}`)}`);
+  }
+
+  getResponsablesCluster(id:number){
+    return this.http.get<any[]>(`${env.api(`responsablecluster/${id}`)}`);
+  }
+
+  getResponsablesComites(id:number){
+    return this.http.get<any[]>(`${env.api(`responsablescomites/${id}`)}`);
+  }
+
+  getEmpresaCadenaProductiva(id:number){
+    return this.http.get<any[]>(`${env.api(`empresaCadenaProductiva/${id}`)}`);
+  }
+
+  getEmpresaNorma(id:number){
+    return this.http.get<any[]>(`${env.api(`empresaNorma/${id}`)}`);
+  }
+
+  getEmpresaTema(id:number){
+    return this.http.get<any[]>(`${env.api(`empresaTema/${id}`)}`);
+  }
+
+  getRequisitos(id:number){
+    return this.http.get<any[]>(`${env.api(`requisitos/${id}`)}`);
+  }
+
+  setAceptada(id:number, rfc:string){
+    return this.http.put<any>(`${env.api(`empresaAceptar/${id}?rfc=${rfc}`)}`,{});
+  }
+
+  setRechazada(id:number, rfc:string){
+    return this.http.put<any>(`${env.api(`empresaRechazar/${id}?rfc=${rfc}`)}`,{});
+  }
+
+
+  downloadItem(url:string, file_name:string, mediaType:string){
+    url = env.fileServer+url.substring(url.lastIndexOf('\\')).replace('\\','/');
+    window.open(url, '_blank');
+
+    /*this.http.get(url, { responseType: 'blob' }).subscribe(
+        (response) => {
+            console.log('Response',response)
+            var blob = new Blob([response], { type: mediaType });
+            console.log(blob.size);
+            saveAs(blob, `${file_name}`);
+        },
+        e => { console.log(e) }
+    );*/
+  }
+  /**
+   * Deshabilitado para descargar con fileSaver y habilitado para que se descarge mediante acceso directo al server
+   */
 }

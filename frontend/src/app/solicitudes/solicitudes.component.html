@@ -3,7 +3,7 @@
     <p class="lead">Acepte o rechace solicitudes de afiliación de empresas solicitantes.</p>
     <hr class="my-4">
     
-    <div class="row">
+    <div class="row"  *ngIf="dataTable.length>0">
         <div class="col">
             <div class="mat-elevation-z1">
                 <table class="table table-hover w-100">
@@ -18,12 +18,10 @@
                       <td>{{empresa.nombre_comercial}} ({{empresa.razon_social}})</td>
                       <td>{{empresa.rfc}}</td>
                       <td>{{empresa.fecha_actualizacion | date : 'medium'}}</td>
+                      <td>{{empresa.solicitud_rechazada?"Rechazada":"Pendiente"}}</td>
                       <td>
                         <button mat-icon-button matTooltip="Ver solicitud" routerLink="{{empresa.rfc}}/{{empresa.id_empresa}}" color="primary">
                           <mat-icon>visibility</mat-icon>
-                        </button>
-                        <button mat-icon-button matTooltip="Eliminar solicitud" color="warn">
-                          <mat-icon>delete</mat-icon>
                         </button>
                       </td>
                     </tr>
@@ -32,5 +30,11 @@
               </div>  
         </div>
     </div>
+
+	<div class="row" *ngIf="dataTable.length==0">
+		<div class="col text-center">
+			<p class="lead">Sin solicitantes</p>
+		</div>
+	</div>
 
 </div>

@@ -1,0 +1,532 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="prdModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="administradores">
+    <Key>
+      <PropertyRef Name="id_administrador" />
+    </Key>
+    <Property Name="id_administrador" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="512" Nullable="false" />
+    <Property Name="apellido" Type="varchar" MaxLength="512" Nullable="false" />
+    <Property Name="correo" Type="varchar" MaxLength="512" Nullable="false" />
+    <Property Name="password" Type="varchar" MaxLength="512" Nullable="false" />
+    <Property Name="activo" Type="bit" Nullable="false" />
+    <Property Name="baja" Type="bit" Nullable="false" />
+    <Property Name="fecha_actualizacion" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="cadena_productiva">
+    <Key>
+      <PropertyRef Name="id_cadena_productiva" />
+    </Key>
+    <Property Name="id_cadena_productiva" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="256" Nullable="false" />
+    <Property Name="activo" Type="bit" Nullable="false" />
+    <Property Name="baja" Type="bit" Nullable="false" />
+    <Property Name="fecha_actualizacion" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="comites">
+    <Key>
+      <PropertyRef Name="id_comite" />
+    </Key>
+    <Property Name="id_comite" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="256" Nullable="false" />
+    <Property Name="activo" Type="bit" Nullable="false" />
+    <Property Name="baja" Type="bit" Nullable="false" />
+    <Property Name="fecha_actualizacion" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="detalles_empresa">
+    <Key>
+      <PropertyRef Name="id_detalles_empresa" />
+    </Key>
+    <Property Name="id_detalles_empresa" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_empresa" Type="int" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="1024" Nullable="false" />
+    <Property Name="productos" Type="bit" Nullable="false" />
+    <Property Name="servicios" Type="bit" Nullable="false" />
+    <Property Name="numero_empleados" Type="int" Nullable="false" />
+    <Property Name="id_facturacion" Type="int" Nullable="false" />
+    <Property Name="exporta" Type="bit" Nullable="false" />
+    <Property Name="en_proceso_exportacion" Type="bit" />
+    <Property Name="paises_exportacion" Type="varchar" MaxLength="2048" />
+  </EntityType>
+  <EntityType Name="domicilios">
+    <Key>
+      <PropertyRef Name="id_domicilio" />
+    </Key>
+    <Property Name="id_domicilio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="calle" Type="varchar" MaxLength="1024" Nullable="false" />
+    <Property Name="numero" Type="varchar" MaxLength="32" Nullable="false" />
+    <Property Name="codigo_postal" Type="varchar" MaxLength="8" Nullable="false" />
+    <Property Name="activo" Type="bit" Nullable="false" />
+    <Property Name="baja" Type="bit" Nullable="false" />
+    <Property Name="fecha_actualizacion" Type="datetime" Nullable="false" />
+    <Property Name="id_empresa" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="empresa_cadena_productiva">
+    <Key>
+      <PropertyRef Name="id_empresa_cadena_productiva" />
+    </Key>
+    <Property Name="id_empresa_cadena_productiva" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_empresa" Type="int" Nullable="false" />
+    <Property Name="id_cadena_productiva" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="empresa_norma">
+    <Key>
+      <PropertyRef Name="id_empresa_norma" />
+    </Key>
+    <Property Name="id_empresa_norma" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_empresa" Type="int" Nullable="false" />
+    <Property Name="id_norma" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="empresa_organizacion">
+    <Key>
+      <PropertyRef Name="id_empresa_organizacion" />
+    </Key>
+    <Property Name="id_empresa_organizacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_empresa" Type="int" Nullable="false" />
+    <Property Name="id_organizacion" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="empresa_tema">
+    <Key>
+      <PropertyRef Name="id_empresa_tema" />
+    </Key>
+    <Property Name="id_empresa_tema" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_empresa" Type="int" Nullable="false" />
+    <Property Name="id_tema" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="empresas">
+    <Key>
+      <PropertyRef Name="id_empresa" />
+    </Key>
+    <Property Name="id_empresa" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="razon_social" Type="varchar" MaxLength="256" Nullable="false" />
+    <Property Name="rfc" Type="varchar" MaxLength="16" Nullable="false" />
+    <Property Name="nombre_comercial" Type="varchar" MaxLength="256" Nullable="false" />
+    <Property Name="solicitud_aceptada" Type="bit" Nullable="false" />
+    <Property Name="solicitud_rechazada" Type="bit" Nullable="false" />
+    <Property Name="activo" Type="bit" Nullable="false" />
+    <Property Name="baja" Type="bit" Nullable="false" />
+    <Property Name="fecha_solicitud" Type="datetime" Nullable="false" />
+    <Property Name="fecha_actualizacion" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="facturacion">
+    <Key>
+      <PropertyRef Name="id_facturacion" />
+    </Key>
+    <Property Name="id_facturacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="256" Nullable="false" />
+    <Property Name="activo" Type="bit" Nullable="false" />
+    <Property Name="baja" Type="bit" Nullable="false" />
+    <Property Name="fecha_actualizacion" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="normas">
+    <Key>
+      <PropertyRef Name="id_norma" />
+    </Key>
+    <Property Name="id_norma" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="256" Nullable="false" />
+    <Property Name="activo" Type="bit" Nullable="false" />
+    <Property Name="baja" Type="bit" Nullable="false" />
+    <Property Name="fecha_actualizacion" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="organizaciones">
+    <Key>
+      <PropertyRef Name="id_organizacion" />
+    </Key>
+    <Property Name="id_organizacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="256" Nullable="false" />
+    <Property Name="activo" Type="bit" Nullable="false" />
+    <Property Name="baja" Type="bit" Nullable="false" />
+    <Property Name="fecha_actualizacion" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="profesiones">
+    <Key>
+      <PropertyRef Name="id_profesion" />
+    </Key>
+    <Property Name="id_profesion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="256" Nullable="false" />
+    <Property Name="activo" Type="bit" Nullable="false" />
+    <Property Name="baja" Type="bit" Nullable="false" />
+    <Property Name="fecha_actualizacion" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="puestos">
+    <Key>
+      <PropertyRef Name="id_puesto" />
+    </Key>
+    <Property Name="id_puesto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="256" Nullable="false" />
+    <Property Name="activo" Type="bit" Nullable="false" />
+    <Property Name="baja" Type="bit" Nullable="false" />
+    <Property Name="fecha_actualizacion" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="requisitos">
+    <Key>
+      <PropertyRef Name="id_requisitos" />
+    </Key>
+    <Property Name="id_requisitos" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_empresa" Type="int" />
+    <Property Name="file_name" Type="varchar" MaxLength="1024" Nullable="false" />
+    <Property Name="local_file_name" Type="varchar" MaxLength="2048" Nullable="false" />
+    <Property Name="media_type" Type="varchar" MaxLength="1024" Nullable="false" />
+  </EntityType>
+  <EntityType Name="responsables">
+    <Key>
+      <PropertyRef Name="id_responsable" />
+    </Key>
+    <Property Name="id_responsable" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="64" Nullable="false" />
+    <Property Name="apellido" Type="varchar" MaxLength="64" Nullable="false" />
+    <Property Name="correo" Type="varchar" MaxLength="64" Nullable="false" />
+    <Property Name="password" Type="varchar" MaxLength="64" Nullable="false" />
+    <Property Name="telefono_oficina" Type="varchar" MaxLength="16" Nullable="false" />
+    <Property Name="telefono_whatsapp" Type="varchar" MaxLength="16" Nullable="false" />
+    <Property Name="activo" Type="bit" Nullable="false" />
+    <Property Name="baja" Type="bit" Nullable="false" />
+    <Property Name="id_empresa" Type="int" Nullable="false" />
+    <Property Name="id_puesto" Type="int" Nullable="false" />
+    <Property Name="id_profesion" Type="int" Nullable="false" />
+    <Property Name="id_comite" Type="int" Nullable="false" />
+    <Property Name="fecha_actualizacion" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sitios">
+    <Key>
+      <PropertyRef Name="id_sitios" />
+    </Key>
+    <Property Name="id_sitios" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="sitio" Type="varchar" MaxLength="256" Nullable="false" />
+    <Property Name="activo" Type="bit" Nullable="false" />
+    <Property Name="baja" Type="bit" Nullable="false" />
+    <Property Name="fecha_actualizacion" Type="datetime" Nullable="false" />
+    <Property Name="id_empresa" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="telefonos">
+    <Key>
+      <PropertyRef Name="id_telefono" />
+    </Key>
+    <Property Name="id_telefono" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="telefono" Type="varchar" MaxLength="16" Nullable="false" />
+    <Property Name="activo" Type="bit" Nullable="false" />
+    <Property Name="baja" Type="bit" Nullable="false" />
+    <Property Name="fecha_actualizacion" Type="datetime" Nullable="false" />
+    <Property Name="id_empresa" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="temas">
+    <Key>
+      <PropertyRef Name="id_tema" />
+    </Key>
+    <Property Name="id_tema" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="256" Nullable="false" />
+    <Property Name="activo" Type="bit" Nullable="false" />
+    <Property Name="baja" Type="bit" Nullable="false" />
+    <Property Name="fecha_actualizacion" Type="datetime" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_empresa_cadena_productiva_cadena_productiva">
+    <End Role="cadena_productiva" Type="Self.cadena_productiva" Multiplicity="1" />
+    <End Role="empresa_cadena_productiva" Type="Self.empresa_cadena_productiva" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cadena_productiva">
+        <PropertyRef Name="id_cadena_productiva" />
+      </Principal>
+      <Dependent Role="empresa_cadena_productiva">
+        <PropertyRef Name="id_cadena_productiva" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_empresa_cadena_productiva_empresa">
+    <End Role="empresas" Type="Self.empresas" Multiplicity="1" />
+    <End Role="empresa_cadena_productiva" Type="Self.empresa_cadena_productiva" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="empresas">
+        <PropertyRef Name="id_empresa" />
+      </Principal>
+      <Dependent Role="empresa_cadena_productiva">
+        <PropertyRef Name="id_empresa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_empresa_detalles_empresa">
+    <End Role="empresas" Type="Self.empresas" Multiplicity="1" />
+    <End Role="detalles_empresa" Type="Self.detalles_empresa" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="empresas">
+        <PropertyRef Name="id_empresa" />
+      </Principal>
+      <Dependent Role="detalles_empresa">
+        <PropertyRef Name="id_empresa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_empresa_domicilio">
+    <End Role="empresas" Type="Self.empresas" Multiplicity="1" />
+    <End Role="domicilios" Type="Self.domicilios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="empresas">
+        <PropertyRef Name="id_empresa" />
+      </Principal>
+      <Dependent Role="domicilios">
+        <PropertyRef Name="id_empresa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_empresa_norma_empresa">
+    <End Role="empresas" Type="Self.empresas" Multiplicity="1" />
+    <End Role="empresa_norma" Type="Self.empresa_norma" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="empresas">
+        <PropertyRef Name="id_empresa" />
+      </Principal>
+      <Dependent Role="empresa_norma">
+        <PropertyRef Name="id_empresa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_empresa_norma_norma">
+    <End Role="normas" Type="Self.normas" Multiplicity="1" />
+    <End Role="empresa_norma" Type="Self.empresa_norma" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="normas">
+        <PropertyRef Name="id_norma" />
+      </Principal>
+      <Dependent Role="empresa_norma">
+        <PropertyRef Name="id_norma" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_empresa_organizacion_empresa">
+    <End Role="empresas" Type="Self.empresas" Multiplicity="1" />
+    <End Role="empresa_organizacion" Type="Self.empresa_organizacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="empresas">
+        <PropertyRef Name="id_empresa" />
+      </Principal>
+      <Dependent Role="empresa_organizacion">
+        <PropertyRef Name="id_empresa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_empresa_organizacion_organizacion">
+    <End Role="organizaciones" Type="Self.organizaciones" Multiplicity="1" />
+    <End Role="empresa_organizacion" Type="Self.empresa_organizacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="organizaciones">
+        <PropertyRef Name="id_organizacion" />
+      </Principal>
+      <Dependent Role="empresa_organizacion">
+        <PropertyRef Name="id_organizacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_empresa_requisito">
+    <End Role="empresas" Type="Self.empresas" Multiplicity="0..1" />
+    <End Role="requisitos" Type="Self.requisitos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="empresas">
+        <PropertyRef Name="id_empresa" />
+      </Principal>
+      <Dependent Role="requisitos">
+        <PropertyRef Name="id_empresa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_empresa_sitio">
+    <End Role="empresas" Type="Self.empresas" Multiplicity="1" />
+    <End Role="sitios" Type="Self.sitios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="empresas">
+        <PropertyRef Name="id_empresa" />
+      </Principal>
+      <Dependent Role="sitios">
+        <PropertyRef Name="id_empresa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_empresa_telefono">
+    <End Role="empresas" Type="Self.empresas" Multiplicity="1" />
+    <End Role="telefonos" Type="Self.telefonos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="empresas">
+        <PropertyRef Name="id_empresa" />
+      </Principal>
+      <Dependent Role="telefonos">
+        <PropertyRef Name="id_empresa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_empresa_tema_empresa">
+    <End Role="empresas" Type="Self.empresas" Multiplicity="1" />
+    <End Role="empresa_tema" Type="Self.empresa_tema" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="empresas">
+        <PropertyRef Name="id_empresa" />
+      </Principal>
+      <Dependent Role="empresa_tema">
+        <PropertyRef Name="id_empresa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_empresa_tema_tema">
+    <End Role="temas" Type="Self.temas" Multiplicity="1" />
+    <End Role="empresa_tema" Type="Self.empresa_tema" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="temas">
+        <PropertyRef Name="id_tema" />
+      </Principal>
+      <Dependent Role="empresa_tema">
+        <PropertyRef Name="id_tema" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_facturacion_detalles_empresa">
+    <End Role="facturacion" Type="Self.facturacion" Multiplicity="1" />
+    <End Role="detalles_empresa" Type="Self.detalles_empresa" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="facturacion">
+        <PropertyRef Name="id_facturacion" />
+      </Principal>
+      <Dependent Role="detalles_empresa">
+        <PropertyRef Name="id_facturacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_responsable_comite">
+    <End Role="comites" Type="Self.comites" Multiplicity="1" />
+    <End Role="responsables" Type="Self.responsables" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="comites">
+        <PropertyRef Name="id_comite" />
+      </Principal>
+      <Dependent Role="responsables">
+        <PropertyRef Name="id_comite" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_responsable_empresa">
+    <End Role="empresas" Type="Self.empresas" Multiplicity="1" />
+    <End Role="responsables" Type="Self.responsables" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="empresas">
+        <PropertyRef Name="id_empresa" />
+      </Principal>
+      <Dependent Role="responsables">
+        <PropertyRef Name="id_empresa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_responsable_profesion">
+    <End Role="profesiones" Type="Self.profesiones" Multiplicity="1" />
+    <End Role="responsables" Type="Self.responsables" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="profesiones">
+        <PropertyRef Name="id_profesion" />
+      </Principal>
+      <Dependent Role="responsables">
+        <PropertyRef Name="id_profesion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_responsable_puesto">
+    <End Role="puestos" Type="Self.puestos" Multiplicity="1" />
+    <End Role="responsables" Type="Self.responsables" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="puestos">
+        <PropertyRef Name="id_puesto" />
+      </Principal>
+      <Dependent Role="responsables">
+        <PropertyRef Name="id_puesto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="prdModelStoreContainer">
+    <EntitySet Name="administradores" EntityType="Self.administradores" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="cadena_productiva" EntityType="Self.cadena_productiva" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="comites" EntityType="Self.comites" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="detalles_empresa" EntityType="Self.detalles_empresa" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="domicilios" EntityType="Self.domicilios" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="empresa_cadena_productiva" EntityType="Self.empresa_cadena_productiva" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="empresa_norma" EntityType="Self.empresa_norma" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="empresa_organizacion" EntityType="Self.empresa_organizacion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="empresa_tema" EntityType="Self.empresa_tema" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="empresas" EntityType="Self.empresas" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="facturacion" EntityType="Self.facturacion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="normas" EntityType="Self.normas" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="organizaciones" EntityType="Self.organizaciones" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="profesiones" EntityType="Self.profesiones" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="puestos" EntityType="Self.puestos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="requisitos" EntityType="Self.requisitos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="responsables" EntityType="Self.responsables" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sitios" EntityType="Self.sitios" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="telefonos" EntityType="Self.telefonos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="temas" EntityType="Self.temas" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_empresa_cadena_productiva_cadena_productiva" Association="Self.FK_empresa_cadena_productiva_cadena_productiva">
+      <End Role="cadena_productiva" EntitySet="cadena_productiva" />
+      <End Role="empresa_cadena_productiva" EntitySet="empresa_cadena_productiva" />
+    </AssociationSet>
+    <AssociationSet Name="FK_empresa_cadena_productiva_empresa" Association="Self.FK_empresa_cadena_productiva_empresa">
+      <End Role="empresas" EntitySet="empresas" />
+      <End Role="empresa_cadena_productiva" EntitySet="empresa_cadena_productiva" />
+    </AssociationSet>
+    <AssociationSet Name="FK_empresa_detalles_empresa" Association="Self.FK_empresa_detalles_empresa">
+      <End Role="empresas" EntitySet="empresas" />
+      <End Role="detalles_empresa" EntitySet="detalles_empresa" />
+    </AssociationSet>
+    <AssociationSet Name="FK_empresa_domicilio" Association="Self.FK_empresa_domicilio">
+      <End Role="empresas" EntitySet="empresas" />
+      <End Role="domicilios" EntitySet="domicilios" />
+    </AssociationSet>
+    <AssociationSet Name="FK_empresa_norma_empresa" Association="Self.FK_empresa_norma_empresa">
+      <End Role="empresas" EntitySet="empresas" />
+      <End Role="empresa_norma" EntitySet="empresa_norma" />
+    </AssociationSet>
+    <AssociationSet Name="FK_empresa_norma_norma" Association="Self.FK_empresa_norma_norma">
+      <End Role="normas" EntitySet="normas" />
+      <End Role="empresa_norma" EntitySet="empresa_norma" />
+    </AssociationSet>
+    <AssociationSet Name="FK_empresa_organizacion_empresa" Association="Self.FK_empresa_organizacion_empresa">
+      <End Role="empresas" EntitySet="empresas" />
+      <End Role="empresa_organizacion" EntitySet="empresa_organizacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_empresa_organizacion_organizacion" Association="Self.FK_empresa_organizacion_organizacion">
+      <End Role="organizaciones" EntitySet="organizaciones" />
+      <End Role="empresa_organizacion" EntitySet="empresa_organizacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_empresa_requisito" Association="Self.FK_empresa_requisito">
+      <End Role="empresas" EntitySet="empresas" />
+      <End Role="requisitos" EntitySet="requisitos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_empresa_sitio" Association="Self.FK_empresa_sitio">
+      <End Role="empresas" EntitySet="empresas" />
+      <End Role="sitios" EntitySet="sitios" />
+    </AssociationSet>
+    <AssociationSet Name="FK_empresa_telefono" Association="Self.FK_empresa_telefono">
+      <End Role="empresas" EntitySet="empresas" />
+      <End Role="telefonos" EntitySet="telefonos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_empresa_tema_empresa" Association="Self.FK_empresa_tema_empresa">
+      <End Role="empresas" EntitySet="empresas" />
+      <End Role="empresa_tema" EntitySet="empresa_tema" />
+    </AssociationSet>
+    <AssociationSet Name="FK_empresa_tema_tema" Association="Self.FK_empresa_tema_tema">
+      <End Role="temas" EntitySet="temas" />
+      <End Role="empresa_tema" EntitySet="empresa_tema" />
+    </AssociationSet>
+    <AssociationSet Name="FK_facturacion_detalles_empresa" Association="Self.FK_facturacion_detalles_empresa">
+      <End Role="facturacion" EntitySet="facturacion" />
+      <End Role="detalles_empresa" EntitySet="detalles_empresa" />
+    </AssociationSet>
+    <AssociationSet Name="FK_responsable_comite" Association="Self.FK_responsable_comite">
+      <End Role="comites" EntitySet="comites" />
+      <End Role="responsables" EntitySet="responsables" />
+    </AssociationSet>
+    <AssociationSet Name="FK_responsable_empresa" Association="Self.FK_responsable_empresa">
+      <End Role="empresas" EntitySet="empresas" />
+      <End Role="responsables" EntitySet="responsables" />
+    </AssociationSet>
+    <AssociationSet Name="FK_responsable_profesion" Association="Self.FK_responsable_profesion">
+      <End Role="profesiones" EntitySet="profesiones" />
+      <End Role="responsables" EntitySet="responsables" />
+    </AssociationSet>
+    <AssociationSet Name="FK_responsable_puesto" Association="Self.FK_responsable_puesto">
+      <End Role="puestos" EntitySet="puestos" />
+      <End Role="responsables" EntitySet="responsables" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

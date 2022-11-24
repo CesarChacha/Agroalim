@@ -16,8 +16,8 @@ namespace backend.Models
     {
         public int id_facturacion { get; set; }
         public string nombre { get; set; }
-        public bool activo { get; set; }
-        public bool baja { get; set; }
-        public System.DateTime fecha_actualizacion { get; set; }
+        public Nullable<bool> activo { get; set; }
+        public Nullable<bool> baja { get; set; }
+        public Nullable<System.DateTime> fecha_actualizacion { get; set; }
     }
 }

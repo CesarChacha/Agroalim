@@ -10,7 +10,7 @@ import { SnackbarService } from '../utils/services/snackbar.service';
 })
 export class EmpresasComponent implements OnInit {
 
-  columsTable:string [] = ["Id","Solicitante","RFC","Fecha solicitud","Acciones"]
+  columsTable:string [] = ["Id","Nombre","RFC","Fecha de aceptación","Acciones"]
   dataTable: empresas [] = [];
 
   constructor(
