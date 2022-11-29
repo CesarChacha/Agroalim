@@ -3,6 +3,7 @@ export interface empresas {
     baja: false,
     descripcion: string,
     fecha_actualizacion: string,
+    fecha_solicitud: string,
     id_empresa: number,
     nombre_comercial: string,
     productos: boolean,

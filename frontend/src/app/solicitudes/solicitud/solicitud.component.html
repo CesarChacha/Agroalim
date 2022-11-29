@@ -230,15 +230,6 @@
                                 <div mat-line> {{norma.nombre}} </div>
                             </mat-list-item>
                         </div>
-
-                        <div *ngIf="!cargandoNorma">
-                            <div mat-subheader>Normas, regulaciones o esquemas</div>
-                            <mat-list-item *ngFor="let norma of normas">
-                                <mat-icon mat-list-icon>straighten</mat-icon>
-                                <div mat-line>Norma</div>
-                                <div mat-line> {{norma.nombre}} </div>
-                            </mat-list-item>
-                        </div>
                         
                         <div *ngIf="!cargandoTema">
                             <div mat-subheader>Temas que le gustaría recibir más apoyo del Clúster</div>

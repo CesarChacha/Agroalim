@@ -19,6 +19,8 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import {MatDialogModule} from '@angular/material/dialog';
 
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { LoginComponent } from './login/login.component';
@@ -39,6 +41,8 @@ import { EmpresaComponent } from './empresas/empresa/empresa.component';
 import { MaterialFileInputModule } from 'ngx-material-file-input';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { PruebaArchivoComponent } from './prueba-archivo/prueba-archivo.component';
+import { ConfirmComponent } from './utils/modals/confirm/confirm.component';
+import { DatePipe } from '@angular/common';
 
 
 @NgModule({
@@ -54,7 +58,8 @@ import { PruebaArchivoComponent } from './prueba-archivo/prueba-archivo.componen
     CatalogoComponent,
     SolicitudComponent,
     EmpresaComponent,
-    PruebaArchivoComponent
+    PruebaArchivoComponent,
+    ConfirmComponent
   ],
   imports: [
     BrowserModule,
@@ -77,11 +82,14 @@ import { PruebaArchivoComponent } from './prueba-archivo/prueba-archivo.componen
     MatTabsModule,
     MatTooltipModule,
     MaterialFileInputModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatSlideToggleModule,
+    MatDialogModule
   ],
   providers: [
     OnlyLoggedGuard,
-    OnlyNotLoggedGuard
+    OnlyNotLoggedGuard,
+    DatePipe
   ],
   bootstrap: [AppComponent]
 })

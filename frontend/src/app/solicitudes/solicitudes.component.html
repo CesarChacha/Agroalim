@@ -2,7 +2,24 @@
     <h1 class="display-4">Empresas Solicitantes</h1>
     <p class="lead">Acepte o rechace solicitudes de afiliación de empresas solicitantes.</p>
     <hr class="my-4">
-    
+    <div class="row">
+      <div class="col text-start">
+        <mat-slide-toggle
+          [(ngModel)]="mostrarRechazados"
+          (click)="filtrarRechazados()"
+        >
+          Mostrar rechazadas
+        </mat-slide-toggle>
+      </div>
+      <div class="col text-end">
+        <button (click)="exportArray()" [disabled]="dataTable.length===0" mat-raised-button matTooltip="Exportar a Excel" color="accent" aria-label="Example icon button with a home icon">
+          Exportar
+          <mat-icon>file_download</mat-icon>
+        </button>
+        
+      </div>
+    </div>
+    <br>
     <div class="row"  *ngIf="dataTable.length>0">
         <div class="col">
             <div class="mat-elevation-z1">

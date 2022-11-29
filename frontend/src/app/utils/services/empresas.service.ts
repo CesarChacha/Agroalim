@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, tap, map } from 'rxjs';
 import { environment as env } from '../../../environments/environment';
 import { empresas } from '../interfaces/empresas.interface';
 import { saveAs } from 'file-saver';
@@ -86,4 +86,16 @@ export class EmpresasService {
   /**
    * Deshabilitado para descargar con fileSaver y habilitado para que se descarge mediante acceso directo al server
    */
+
+  getFile(url: string, file_name: string, mediaType: string){
+    url = 'http://54.234.60.110:8080/Files/BodyPart_77e6f5a5-c812-4454-8f34-21a5c0200dd7'//env.fileServer+url.substring(url.lastIndexOf('\\')).replace('\\','/');
+    console.log(url)
+    this.http.get(url, { responseType: 'blob' }).pipe(
+      tap( fileBlob => {
+        const blob = new Blob([fileBlob], { type : mediaType });
+        saveAs(blob, file_name);
+      }),
+      map(() => true)
+    ).subscribe();
+  }
 }

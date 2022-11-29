@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { actividad, comite, facturacion, norma, organizacion, profesion, puesto, tema } from 'src/app/utils/interfaces/catalogs.interface';
+import { ConfirmComponent } from 'src/app/utils/modals/confirm/confirm.component';
 import { CatalogosService } from 'src/app/utils/services/catalogos.service';
 import { SnackbarService } from 'src/app/utils/services/snackbar.service';
 
@@ -21,7 +23,8 @@ export class CatalogoComponent implements OnInit  {
 
   constructor(
     private sCatalog: CatalogosService,
-    private sSb: SnackbarService
+    private sSb: SnackbarService,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -65,26 +68,33 @@ export class CatalogoComponent implements OnInit  {
   }
 
   update(index: number, task: string){
-    let temp = this.dataTable[index];
-    if(task === 'del'){
-      temp.activo = false;
-      temp.baja = true;
-    }else if(task === 'upd'){
-      temp.activo = !temp.activo;
-    }
-
-    this.sCatalog.updateCatalog(this.endpoint,temp).subscribe(
-      res => {
+    /**/
+    let dialog = this.dialog.open(ConfirmComponent, {
+      data : this.dataTable[index]
+    })
+    dialog.afterClosed().subscribe(result => {
+      if(result==='true'){
+        let temp = this.dataTable[index];
         if(task === 'del'){
-          this.sSb.printMessage("Eliminado")
+          temp.activo = false;
+          temp.baja = true;
         }else if(task === 'upd'){
-          this.sSb.printMessage("Actualizado")
+          temp.activo = !temp.activo;
         }
-      },err => {
-        this.sSb.printMessage("Ocurrio un error en el servidor.")
+    
+        this.sCatalog.updateCatalog(this.endpoint,temp).subscribe(
+          res => {
+            if(task === 'del'){
+              this.sSb.printMessage("Eliminado")
+            }else if(task === 'upd'){
+              this.sSb.printMessage("Actualizado")
+            }
+          },err => {
+            this.sSb.printMessage("Ocurrio un error en el servidor.")
+          }
+        )
       }
-    )
-
+    });
   }
 
 

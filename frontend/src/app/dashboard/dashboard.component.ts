@@ -34,6 +34,8 @@ export class DashboardComponent implements OnInit {
       res => {
         console.log(res)
         this.metricas = res;
+        this.metricas.indice_aceptacion = ((this.metricas.aceptadas)/(this.metricas.aceptadas+this.metricas.rechazadas));
+        this.metricas.indice_aceptacion = this.metricas.indice_aceptacion?this.metricas.indice_aceptacion: 0;
       }
     )
   }
