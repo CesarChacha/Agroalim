@@ -6,6 +6,7 @@ import { CatalogosService } from '../utils/services/catalogos.service';
 import { EmpresasService } from '../utils/services/empresas.service';
 import { SnackbarService } from '../utils/services/snackbar.service';
 import { regex as rgv } from "../utils/regex/regrex.const";
+import { RfcExistsValidator } from "../utils/validators/rfc-exists.validators";
 @Component({
   selector: 'app-registro',
   templateUrl: './registro.component.html',
@@ -48,6 +49,7 @@ export class RegistroComponent implements OnInit {
   parte: number = 1;                       
   empresa!:empresas;
   hoy:string = "";
+
   ngOnInit(): void {
     this.initForm();
     this.initFilesForm();
@@ -97,7 +99,7 @@ export class RegistroComponent implements OnInit {
     this.formRegistro =  this.fb.group({
       nombre : ["",[ Validators.required, Validators.maxLength(256), Validators.pattern(rgv.no_blanks)]],
       razon_social : ["",[ Validators.required, Validators.maxLength(256),  Validators.pattern(rgv.no_blanks)]],
-      rfc : ["",[ Validators.required, Validators.maxLength(16),  Validators.pattern(rgv.rfc)]],
+      rfc : ["",[ Validators.required, Validators.maxLength(16),  Validators.pattern(rgv.rfc), RfcExistsValidator.exists]],
       descripcion : ["",[ Validators.required, Validators.maxLength(1024), Validators.pattern(rgv.no_blanks)]],
       calle_numero:["",[ Validators.required, Validators.maxLength(512),  Validators.pattern(rgv.no_blanks)]],
       codigo_postal : ["",[ Validators.required, Validators.maxLength(8), Validators.pattern(rgv.no_blanks)]],
@@ -224,7 +226,7 @@ export class RegistroComponent implements OnInit {
       ]),
       tipo_negocio : ["",[Validators.required]],
       cadena_productiva : ["",[Validators.required]],
-      numero_empleados : ["",[Validators.required]],
+      numero_empleados : ["",[Validators.required, Validators.min(1)]],
       facturacion_anual : ["",[Validators.required]],
       organizaciones:["",[Validators.required]],
       comentario : ["",[Validators.required, Validators.maxLength(1024), Validators.pattern(rgv.no_blanks)]],
@@ -258,35 +260,45 @@ export class RegistroComponent implements OnInit {
   }
 
   save(){
-    this.guardando = true;
-    this.eService.saveEmpresa(this.formRegistro.value).subscribe(
-      res => {
-        this.guardando = false;
-        if(res){
-          this.sSnackbar.printMessage("Datos guardados","Ok!");
-          this.empresa = res;
-          this.parte = 2;
-        }else{
-          this.sSnackbar.printMessage("Ocurrio un error en el servidor, intente más tarde.","Ok!");
-          this.errorMensaje = "Ocurrio un error";
+    if(!this.formRegistro.invalid){
+      this.guardando = true;
+      this.eService.saveEmpresa(this.formRegistro.value).subscribe(
+        res => {
+          this.guardando = false;
+          if(res){
+            this.sSnackbar.printMessage("Datos guardados","Ok!");
+            this.empresa = res;
+            this.parte = 2;
+          }else{
+            this.sSnackbar.printMessage("Ocurrio un error en el servidor, intente más tarde.","Ok!");
+            this.errorMensaje = "Ocurrio un error";
+          }
+        },err => {
+          console.log(err)
         }
-      },err => {
-        console.log(err)
-      }
-    );
+      );
+    }else{
+      this.formRegistro.markAllAsTouched();
+    }
+    
   }
 
   saveRequisitos(){
-    this.guardando = true;
-    const formData = new FormData();
-    formData.append('requisitos', this.formFiles.get('requisitosFile')!.value);
-    this.eService.saveRequisitos(formData, this.empresa.id_empresa).subscribe(
-      res => {
-        this.sSnackbar.printMessage("Requisitos guardados","Ok!");
-        this.parte = 3;
-      },
-      err => console.log(err)
-    );
+    if(!this.formFiles.invalid){
+      this.guardando = true;
+      const formData = new FormData();
+      formData.append('requisitos', this.formFiles.get('requisitosFile')!.value);
+      this.eService.saveRequisitos(formData, this.empresa.id_empresa).subscribe(
+        res => {
+          this.sSnackbar.printMessage("Requisitos guardados","Ok!");
+          this.parte = 3;
+        },
+        err => console.log(err)
+      );
+    }else{
+      this.formFiles.markAllAsTouched();
+    }
+    
   }
 
   addTelefono(){

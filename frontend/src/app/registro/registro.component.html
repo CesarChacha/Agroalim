@@ -17,7 +17,7 @@
             </ol>
             <div class="row">
                 <div class="col text-end">
-                    <p class="text-muted small">* Los tipos de achivos admitidos son .pdf, .jpeg, .jpg, .png</p>
+                    <p class="text-muted small">* Todos los archivos (requisitos) deberán ser comprimidos en una carpeta <b>.zip</b></p>
                 </div>
             </div>
         </div>
@@ -48,12 +48,15 @@
                     (change)="onFileChange($event,'requisitos')">
                 </ngx-mat-file-input>
                 <mat-icon matSuffix>folder_zip</mat-icon>
+                <mat-error *ngIf="formFiles.get('requisitos')!.touched && formFiles.get('requisitos')!.invalid">
+                    <p *ngIf="formFiles.get('requisitos')!.hasError('required')">Campo requerido</p>
+                </mat-error>
             </mat-form-field>
         </div>
     </div>
     <div class="row">
         <div class="col">
-            <button type="submit" class="w-100" mat-raised-button color="primary" [disabled]="formFiles.invalid">Guardar <mat-icon>send</mat-icon></button>
+            <button type="submit" class="w-100" mat-raised-button color="primary">Guardar <mat-icon>send</mat-icon></button>
             <mat-progress-bar mode="query" *ngIf="guardando"></mat-progress-bar>
         </div>
     </div>
@@ -75,6 +78,11 @@
             <mat-form-field class="w-100">
                 <mat-label>Nombre</mat-label>
                 <input matInput type="text"  formControlName="nombre">
+                <mat-error *ngIf="formRegistro.get('nombre')!.touched && formRegistro.get('nombre')!.invalid">
+                    <p *ngIf="formRegistro.get('nombre')!.hasError('required')">Campo requerido</p>
+                    <p *ngIf="formRegistro.get('nombre')!.hasError('maxlength')">Máximo 250 carácteres</p>
+                    <p *ngIf="formRegistro.get('nombre')!.hasError('pattern')">Dato inválido</p>
+                </mat-error>
             </mat-form-field>
         </div>
     </div>
@@ -83,12 +91,23 @@
             <mat-form-field class="w-100">
                 <mat-label>Razón social</mat-label>
                 <input matInput type="text"  formControlName="razon_social">
+                <mat-error *ngIf="formRegistro.get('razon_social')!.touched && formRegistro.get('razon_social')!.invalid">
+                    <p *ngIf="formRegistro.get('razon_social')!.hasError('required')">Campo requerido</p>
+                    <p *ngIf="formRegistro.get('razon_social')!.hasError('maxlength')">Máximo 250 carácteres</p>
+                    <p *ngIf="formRegistro.get('razon_social')!.hasError('pattern')">Dato inválido</p>
+                </mat-error>
             </mat-form-field>
         </div>
         <div class="col">
             <mat-form-field class="w-100">
                 <mat-label>RFC</mat-label>
                 <input matInput type="text"  formControlName="rfc">
+                <mat-error *ngIf="formRegistro.get('rfc')!.touched && formRegistro.get('rfc')!.invalid">
+                    <p *ngIf="formRegistro.get('rfc')!.hasError('required')">Campo requerido</p>
+                    <p *ngIf="formRegistro.get('rfc')!.hasError('maxlength')">Máximo 16 carácteres</p>
+                    <p *ngIf="formRegistro.get('rfc')!.hasError('pattern')">Dato inválido, no coincide con rfc.</p>
+                    <p *ngIf="formRegistro.get('rfc')!.hasError('exists')">Este RFC ya se encuentra registrado.</p>
+                </mat-error>
             </mat-form-field>
         </div>
     </div>
@@ -97,7 +116,12 @@
         <div class="col">
             <mat-form-field class="w-100">
                 <mat-label>Teléfono principal</mat-label>
-                <input matInput type="text" formControlName="telefono">
+                <input matInput type="tel" formControlName="telefono">
+                <mat-error *ngIf="formRegistro.get('telefono')!.touched && formRegistro.get('telefono')!.invalid">
+                    <p *ngIf="formRegistro.get('telefono')!.hasError('required')">Campo requerido</p>
+                    <p *ngIf="formRegistro.get('telefono')!.hasError('maxlength')">Máximo 16 carácteres</p>
+                    <p *ngIf="formRegistro.get('telefono')!.hasError('pattern')">Dato inválido, no coincide con teléfono.</p>
+                </mat-error>
             </mat-form-field>
         </div>
     </div>
@@ -105,7 +129,12 @@
         <div class="col">
             <mat-form-field class="w-100">
                 <mat-label>Sitio en la WEB</mat-label>
-                <input matInput type="text" formControlName="sitio">
+                <input matInput type="url" formControlName="sitio">
+                <mat-error *ngIf="formRegistro.get('sitio')!.touched && formRegistro.get('sitio')!.invalid">
+                    <p *ngIf="formRegistro.get('sitio')!.hasError('required')">Campo requerido</p>
+                    <p *ngIf="formRegistro.get('sitio')!.hasError('maxlength')">Máximo 16 carácteres</p>
+                    <p *ngIf="formRegistro.get('sitio')!.hasError('pattern')">Dato inválido, no coincide con un sítio.</p>
+                </mat-error>
             </mat-form-field>
         </div>
     </div>
@@ -119,12 +148,22 @@
             <mat-form-field class="w-100">
                 <mat-label>Calle y número</mat-label>
                 <input matInput type="text"  formControlName="calle_numero">
+                <mat-error *ngIf="formRegistro.get('calle_numero')!.touched && formRegistro.get('calle_numero')!.invalid">
+                    <p *ngIf="formRegistro.get('calle_numero')!.hasError('required')">Campo requerido</p>
+                    <p *ngIf="formRegistro.get('calle_numero')!.hasError('maxlength')">Máximo 500 carácteres</p>
+                    <p *ngIf="formRegistro.get('calle_numero')!.hasError('pattern')">Dato inválido</p>
+                </mat-error>
             </mat-form-field>
         </div>
         <div class="col">
             <mat-form-field class="w-100">
                 <mat-label>Código postal</mat-label>
-                <input matInput type="text"  formControlName="codigo_postal">
+                <input matInput type="number"  formControlName="codigo_postal">
+                <mat-error *ngIf="formRegistro.get('codigo_postal')!.touched && formRegistro.get('codigo_postal')!.invalid">
+                    <p *ngIf="formRegistro.get('codigo_postal')!.hasError('required')">Campo requerido</p>
+                    <p *ngIf="formRegistro.get('codigo_postal')!.hasError('maxlength')">Máximo 8 carácteres</p>
+                    <p *ngIf="formRegistro.get('codigo_postal')!.hasError('pattern')">Dato inválido</p>
+                </mat-error>
             </mat-form-field>
         </div>
     </div>
@@ -133,18 +172,33 @@
             <mat-form-field class="w-100">
                 <mat-label>Colonia</mat-label>
                 <input matInput type="text"  formControlName="colonia">
+                <mat-error *ngIf="formRegistro.get('colonia')!.touched && formRegistro.get('colonia')!.invalid">
+                    <p *ngIf="formRegistro.get('colonia')!.hasError('required')">Campo requerido</p>
+                    <p *ngIf="formRegistro.get('colonia')!.hasError('maxlength')">Máximo 120 carácteres</p>
+                    <p *ngIf="formRegistro.get('colonia')!.hasError('pattern')">Dato inválido</p>
+                </mat-error>
             </mat-form-field>
         </div>
         <div class="col">
             <mat-form-field class="w-100">
                 <mat-label>Municipio</mat-label>
                 <input matInput type="text"  formControlName="municipio">
+                <mat-error *ngIf="formRegistro.get('municipio')!.touched && formRegistro.get('municipio')!.invalid">
+                    <p *ngIf="formRegistro.get('municipio')!.hasError('required')">Campo requerido</p>
+                    <p *ngIf="formRegistro.get('municipio')!.hasError('maxlength')">Máximo 120 carácteres</p>
+                    <p *ngIf="formRegistro.get('municipio')!.hasError('pattern')">Dato inválido</p>
+                </mat-error>
             </mat-form-field>
         </div>
         <div class="col">
             <mat-form-field class="w-100">
                 <mat-label>Estado</mat-label>
                 <input matInput type="text"  formControlName="estado">
+                <mat-error *ngIf="formRegistro.get('estado')!.touched && formRegistro.get('estado')!.invalid">
+                    <p *ngIf="formRegistro.get('estado')!.hasError('required')">Campo requerido</p>
+                    <p *ngIf="formRegistro.get('estado')!.hasError('maxlength')">Máximo 120 carácteres</p>
+                    <p *ngIf="formRegistro.get('estado')!.hasError('pattern')">Dato inválido</p>
+                </mat-error>
             </mat-form-field>
         </div>
     </div>
@@ -179,20 +233,20 @@
             <div class="row">
                 <div class="col">
                     <mat-form-field class="w-100">
-                        <mat-label>Telefono Oficina</mat-label>
-                        <input matInput type="text" formControlName="telefono_oficina">
+                        <mat-label>Teléfono Oficina</mat-label>
+                        <input matInput type="tel" formControlName="telefono_oficina">
                     </mat-form-field>
                 </div>
                 <div class="col">
                     <mat-form-field class="w-100">
-                        <mat-label>Telefono Móvil (WhatsApp)</mat-label>
-                        <input matInput type="text" formControlName="telefono_whatsapp">
+                        <mat-label>Teléfono Móvil (WhatsApp)</mat-label>
+                        <input matInput type="tel" formControlName="telefono_whatsapp">
                     </mat-form-field>
                 </div>
                 <div class="col">
                     <mat-form-field class="w-100">
                         <mat-label>Correo</mat-label>
-                        <input matInput type="text" formControlName="correo">
+                        <input matInput type="email" formControlName="correo">
                     </mat-form-field>
                 </div>
             </div>
@@ -245,20 +299,20 @@
             <div class="row">
                 <div class="col">
                     <mat-form-field class="w-100">
-                        <mat-label>Telefono Oficina</mat-label>
-                        <input matInput type="text" formControlName="telefono_oficina">
+                        <mat-label>Teléfono Oficina</mat-label>
+                        <input matInput type="tel" formControlName="telefono_oficina">
                     </mat-form-field>
                 </div>
                 <div class="col">
                     <mat-form-field class="w-100">
-                        <mat-label>Telefono Móvil (WhatsApp)</mat-label>
-                        <input matInput type="text" formControlName="telefono_whatsapp">
+                        <mat-label>Teléfono Móvil (WhatsApp)</mat-label>
+                        <input matInput type="tel" formControlName="telefono_whatsapp">
                     </mat-form-field>
                 </div>
                 <div class="col">
                     <mat-form-field class="w-100">
                         <mat-label>Correo</mat-label>
-                        <input matInput type="text" formControlName="correo">
+                        <input matInput type="email" formControlName="correo">
                     </mat-form-field>
                 </div>
             </div>
@@ -276,6 +330,11 @@
             <mat-form-field class="w-100">
                 <mat-label>Descripción corta de su empresa</mat-label>
                 <textarea matInput type="text"  formControlName="descripcion"></textarea>
+                <mat-error *ngIf="formRegistro.get('descripcion')!.touched && formRegistro.get('descripcion')!.invalid">
+                    <p *ngIf="formRegistro.get('descripcion')!.hasError('required')">Campo requerido</p>
+                    <p *ngIf="formRegistro.get('descripcion')!.hasError('maxlength')">Máximo 1000 carácteres</p>
+                    <p *ngIf="formRegistro.get('descripcion')!.hasError('pattern')">Dato inválido</p>
+                </mat-error>
             </mat-form-field>
         </div>
     </div>
@@ -286,6 +345,9 @@
                 <mat-select formControlName="tipo_negocio" multiple>
                     <mat-option *ngFor="let tipo of tipos_negocio" [value]="tipo.nombre">{{tipo.nombre}}</mat-option>
                 </mat-select>
+                <mat-error *ngIf="formRegistro.get('tipo_negocio')!.touched && formRegistro.get('tipo_negocio')!.invalid">
+                    <p *ngIf="formRegistro.get('tipo_negocio')!.hasError('required')">Campo requerido</p>
+                </mat-error>
             </mat-form-field>
         </div>
     </div>
@@ -296,6 +358,9 @@
                 <mat-select formControlName="cadena_productiva" multiple>
                     <mat-option *ngFor="let cadena of cadenas_productiva" [value]="cadena.id_cadena_productiva">{{cadena.nombre}}</mat-option>
                 </mat-select>
+                <mat-error *ngIf="formRegistro.get('cadena_productiva')!.touched && formRegistro.get('cadena_productiva')!.invalid">
+                    <p *ngIf="formRegistro.get('cadena_productiva')!.hasError('required')">Campo requerido</p>
+                </mat-error>
             </mat-form-field>
         </div>
     </div>
@@ -310,7 +375,11 @@
         <div class="col">
             <mat-form-field class="w-100">
                 <mat-label>Número de empleados</mat-label>
-                <input matInput type="text" formControlName="numero_empleados">
+                <input matInput type="number" formControlName="numero_empleados">
+                <mat-error *ngIf="formRegistro.get('numero_empleados')!.touched && formRegistro.get('numero_empleados')!.invalid">
+                    <p *ngIf="formRegistro.get('numero_empleados')!.hasError('required')">Campo requerido</p>
+                    <p *ngIf="formRegistro.get('numero_empleados')!.hasError('min')">Mínimo 1 empleado. </p>
+                </mat-error>
             </mat-form-field>
         </div>
     </div>
@@ -321,6 +390,9 @@
                 <mat-select formControlName="facturacion_anual">
                     <mat-option *ngFor="let fca of facturacion_anual" [value]="fca.id_facturacion">{{fca.nombre}}</mat-option>
                 </mat-select>
+                <mat-error *ngIf="formRegistro.get('facturacion_anual')!.touched && formRegistro.get('facturacion_anual')!.invalid">
+                    <p *ngIf="formRegistro.get('facturacion_anual')!.hasError('required')">Campo requerido</p>
+                </mat-error>
             </mat-form-field>
         </div>
     </div>
@@ -336,6 +408,9 @@
                 <mat-select formControlName="organizaciones">
                     <mat-option *ngFor="let organizacion of organizaciones" [value]="organizacion.id_organizacion">{{organizacion.nombre}}</mat-option>
                 </mat-select>
+                <mat-error *ngIf="formRegistro.get('organizaciones')!.touched && formRegistro.get('organizaciones')!.invalid">
+                    <p *ngIf="formRegistro.get('organizaciones')!.hasError('required')">Campo requerido</p>
+                </mat-error>
             </mat-form-field>
         </div>
     </div>
@@ -349,6 +424,11 @@
             <mat-form-field class="w-100">
                 <mat-label>Comentarios acerca de la participacion de la empresa en la organización.</mat-label>
                 <input matInput type="text" formControlName="comentario">
+                <mat-error *ngIf="formRegistro.get('comentario')!.touched && formRegistro.get('comentario')!.invalid">
+                    <p *ngIf="formRegistro.get('comentario')!.hasError('required')">Campo requerido</p>
+                    <p *ngIf="formRegistro.get('comentario')!.hasError('maxlength')">Máximo 1000 carácteres</p>
+                    <p *ngIf="formRegistro.get('comentario')!.hasError('pattern')">Dato inválido</p>
+                </mat-error>
             </mat-form-field>
         </div>
     </div>
@@ -364,6 +444,9 @@
                 <mat-select formControlName="exporta">
                     <mat-option *ngFor="let opcion of exportaciones" [value]="opcion.nombre">{{opcion.nombre}}</mat-option>
                 </mat-select>
+                <mat-error *ngIf="formRegistro.get('exporta')!.touched && formRegistro.get('exporta')!.invalid">
+                    <p *ngIf="formRegistro.get('exporta')!.hasError('required')">Campo requerido</p>
+                </mat-error>
             </mat-form-field>
         </div>
     </div>
@@ -372,12 +455,17 @@
             <mat-form-field class="w-100">
                 <mat-label>Inserte los paises a los que exporta.</mat-label>
                 <input matInput type="text" formControlName="paises_exporta">
+                <mat-error *ngIf="formRegistro.get('paises_exporta')!.touched && formRegistro.get('paises_exporta')!.invalid">
+                    <p *ngIf="formRegistro.get('paises_exporta')!.hasError('required')">Campo requerido</p>
+                    <p *ngIf="formRegistro.get('paises_exporta')!.hasError('maxlength')">Máximo 2000 carácteres</p>
+                    <p *ngIf="formRegistro.get('paises_exporta')!.hasError('pattern')">Dato inválido</p>
+                </mat-error>
             </mat-form-field>
         </div>
     </div>
     <div class="row">
         <div class="col">
-            <p class="h6">¿Cuales son las normas. regulaciones o estándares mexicanas e internacionales que aplican para el giro de su empresa y que aplican actualmente en su empresa (Puede marcar mas de una segun aplique)?</p>
+            <p class="h6">¿Cuales son las normas. regulaciones o estándares mexicanas e internacionales que aplican para el giro de su empresa y que aplican actualmente en su empresa (Puede marcar más de una según aplique)?</p>
         </div>
     </div>
     <div class="row">
@@ -387,6 +475,9 @@
                 <mat-select formControlName="normas" multiple>
                     <mat-option *ngFor="let norma of normas" [value]="norma.id_norma">{{norma.nombre}}</mat-option>
                 </mat-select>
+                <mat-error *ngIf="formRegistro.get('normas')!.touched && formRegistro.get('normas')!.invalid">
+                    <p *ngIf="formRegistro.get('normas')!.hasError('required')">Campo requerido</p>
+                </mat-error>
             </mat-form-field>
         </div>
     </div>
@@ -402,6 +493,9 @@
                 <mat-select formControlName="temas" multiple>
                     <mat-option *ngFor="let tema of temas" [value]="tema.id_tema">{{tema.nombre}}</mat-option>
                 </mat-select>
+                <mat-error *ngIf="formRegistro.get('temas')!.touched && formRegistro.get('temas')!.invalid">
+                    <p *ngIf="formRegistro.get('temas')!.hasError('required')">Campo requerido</p>
+                </mat-error>
             </mat-form-field>
         </div>
     </div>
@@ -410,13 +504,18 @@
             <mat-form-field class="w-100">
                 <mat-label>Comentario acerca de algun tema del que lo pueda apoyar el Cluster</mat-label>
                 <input matInput type="text" formControlName="sugerencia">
+                <mat-error *ngIf="formRegistro.get('sugerencia')!.touched && formRegistro.get('sugerencia')!.invalid">
+                    <p *ngIf="formRegistro.get('sugerencia')!.hasError('required')">Campo requerido</p>
+                    <p *ngIf="formRegistro.get('sugerencia')!.hasError('maxlength')">Máximo 1000 carácteres</p>
+                    <p *ngIf="formRegistro.get('sugerencia')!.hasError('pattern')">Dato inválido</p>
+                </mat-error>
             </mat-form-field>
         </div>
     </div>
 
     <div class="row">
         <div class="col">
-            <button type="submit" class="w-100" mat-raised-button color="primary" [disabled]="formRegistro.invalid">Guardar <mat-icon>send</mat-icon></button>
+            <button type="submit" class="w-100" mat-raised-button color="primary">Guardar <mat-icon>send</mat-icon></button>
             <mat-progress-bar mode="query" *ngIf="guardando"></mat-progress-bar>
         </div>
     </div>
