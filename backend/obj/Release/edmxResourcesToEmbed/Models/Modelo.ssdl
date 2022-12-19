@@ -23,6 +23,16 @@
     <Property Name="baja" Type="bit" />
     <Property Name="fecha_actualizacion" Type="datetime" />
   </EntityType>
+  <EntityType Name="causas_baja">
+    <Key>
+      <PropertyRef Name="id_causa_baja" />
+    </Key>
+    <Property Name="id_causa_baja" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="255" />
+    <Property Name="activo" Type="bit" />
+    <Property Name="baja" Type="bit" />
+    <Property Name="fecha_actualizacion" Type="datetime" />
+  </EntityType>
   <EntityType Name="comites">
     <Key>
       <PropertyRef Name="id_comite" />
@@ -110,6 +120,10 @@
     <Property Name="fecha_actualizacion" Type="datetime" />
     <Property Name="fecha_solicitud" Type="datetime" />
     <Property Name="solicitud_rechazada" Type="bit" />
+    <Property Name="id_causa_baja" Type="int" />
+    <Property Name="comentario_baja" Type="varchar" MaxLength="512" />
+    <Property Name="codigo_empresa" Type="varchar" MaxLength="64" />
+    <Property Name="comentario_aceptado" Type="varchar" MaxLength="512" />
   </EntityType>
   <EntityType Name="facturacion">
     <Key>
@@ -305,6 +319,18 @@ advertencia 6002: La tabla o vista 'agroalim_qa.dbo.responsables_comites_view' n
       </Principal>
       <Dependent Role="empresa_cadena_productiva">
         <PropertyRef Name="id_empresa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_empresa_causa_baja">
+    <End Role="causas_baja" Type="Self.causas_baja" Multiplicity="0..1" />
+    <End Role="empresas" Type="Self.empresas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="causas_baja">
+        <PropertyRef Name="id_causa_baja" />
+      </Principal>
+      <Dependent Role="empresas">
+        <PropertyRef Name="id_causa_baja" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -509,6 +535,7 @@ advertencia 6002: La tabla o vista 'agroalim_qa.dbo.responsables_comites_view' n
   <EntityContainer Name="bdModelStoreContainer">
     <EntitySet Name="administradores" EntityType="Self.administradores" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="cadena_productiva" EntityType="Self.cadena_productiva" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="causas_baja" EntityType="Self.causas_baja" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="comites" EntityType="Self.comites" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="detalles_empresa" EntityType="Self.detalles_empresa" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="domicilios" EntityType="Self.domicilios" Schema="dbo" store:Type="Tables" />
@@ -581,6 +608,10 @@ advertencia 6002: La tabla o vista 'agroalim_qa.dbo.responsables_comites_view' n
     <AssociationSet Name="FK_empresa_cadena_productiva_empresa" Association="Self.FK_empresa_cadena_productiva_empresa">
       <End Role="empresas" EntitySet="empresas" />
       <End Role="empresa_cadena_productiva" EntitySet="empresa_cadena_productiva" />
+    </AssociationSet>
+    <AssociationSet Name="FK_empresa_causa_baja" Association="Self.FK_empresa_causa_baja">
+      <End Role="causas_baja" EntitySet="causas_baja" />
+      <End Role="empresas" EntitySet="empresas" />
     </AssociationSet>
     <AssociationSet Name="FK_empresa_detalles_empresa" Association="Self.FK_empresa_detalles_empresa">
       <End Role="empresas" EntitySet="empresas" />

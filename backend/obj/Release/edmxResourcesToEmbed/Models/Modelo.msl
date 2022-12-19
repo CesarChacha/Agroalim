@@ -342,6 +342,10 @@
     <EntitySetMapping Name="empresas">
       <EntityTypeMapping TypeName="bdModel.empresas">
         <MappingFragment StoreEntitySet="empresas">
+          <ScalarProperty Name="comentario_aceptado" ColumnName="comentario_aceptado" />
+          <ScalarProperty Name="codigo_empresa" ColumnName="codigo_empresa" />
+          <ScalarProperty Name="comentario_baja" ColumnName="comentario_baja" />
+          <ScalarProperty Name="id_causa_baja" ColumnName="id_causa_baja" />
           <ScalarProperty Name="solicitud_rechazada" ColumnName="solicitud_rechazada" />
           <ScalarProperty Name="fecha_solicitud" ColumnName="fecha_solicitud" />
           <ScalarProperty Name="fecha_actualizacion" ColumnName="fecha_actualizacion" />
@@ -352,6 +356,17 @@
           <ScalarProperty Name="rfc" ColumnName="rfc" />
           <ScalarProperty Name="razon_social" ColumnName="razon_social" />
           <ScalarProperty Name="id_empresa" ColumnName="id_empresa" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="causas_baja">
+      <EntityTypeMapping TypeName="bdModel.causas_baja">
+        <MappingFragment StoreEntitySet="causas_baja">
+          <ScalarProperty Name="fecha_actualizacion" ColumnName="fecha_actualizacion" />
+          <ScalarProperty Name="baja" ColumnName="baja" />
+          <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="id_causa_baja" ColumnName="id_causa_baja" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

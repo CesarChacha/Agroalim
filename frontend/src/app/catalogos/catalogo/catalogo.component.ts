@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { actividad, comite, facturacion, norma, organizacion, profesion, puesto, tema } from 'src/app/utils/interfaces/catalogs.interface';
 import { ConfirmComponent } from 'src/app/utils/modals/confirm/confirm.component';
+import { UpdateCatalogComponent } from 'src/app/utils/modals/update-catalog/update-catalog.component';
 import { CatalogosService } from 'src/app/utils/services/catalogos.service';
 import { SnackbarService } from 'src/app/utils/services/snackbar.service';
 
@@ -68,31 +69,45 @@ export class CatalogoComponent implements OnInit  {
   }
 
   update(index: number, task: string){
-    /**/
-    let dialog = this.dialog.open(ConfirmComponent, {
-      data : this.dataTable[index]
-    })
-    dialog.afterClosed().subscribe(result => {
-      if(result==='true'){
-        let temp = this.dataTable[index];
-        if(task === 'del'){
-          temp.activo = false;
-          temp.baja = true;
-        }else if(task === 'upd'){
-          temp.activo = !temp.activo;
-        }
-    
-        this.sCatalog.updateCatalog(this.endpoint,temp).subscribe(
-          res => {
-            if(task === 'del'){
-              this.sSb.printMessage("Eliminado")
-            }else if(task === 'upd'){
-              this.sSb.printMessage("Actualizado")
-            }
-          },err => {
-            this.sSb.printMessage("Ocurrio un error en el servidor.")
+      let dialog = this.dialog.open(ConfirmComponent, {
+        data : { data : this.dataTable[index], task : task}
+      })
+      dialog.afterClosed().subscribe(result => {
+        if(result==='true'){
+          let temp = this.dataTable[index];
+          
+          if(task === 'del'){
+            temp.activo = false;
+            temp.baja = true;
+          }else if(task === 'upd'){
+            temp.activo = !temp.activo;
           }
-        )
+       
+        }
+      });
+  }
+
+  edit(index: number){
+    let dialog = this.dialog.open(UpdateCatalogComponent, {
+      data : { data : this.dataTable[index]}
+    })
+
+    dialog.afterClosed().subscribe(result => {
+      let temp = this.dataTable[index];
+      if(result){
+        if(result != temp.nombre){
+          temp.nombre = result;
+
+          this.sCatalog.updateCatalog(this.endpoint,temp).subscribe(
+            res => {
+              this.sSb.printMessage("Actualizado")
+
+              this.getCatalog();
+            },err => {
+              this.sSb.printMessage("Ocurrio un error en el servidor.")
+            }
+          )
+        }
       }
     });
   }

@@ -1,0 +1,21 @@
+<h1 mat-dialog-title>Rechazar empresa</h1>
+<div mat-dialog-content>
+    <form  [formGroup]="form" (ngSubmit)="onSave()">
+        <div class="row">
+            <div class="col">
+                <mat-form-field class="w-100">
+                    <mat-label>Causa de rechazo.</mat-label>
+                    <input matInput type="text"  formControlName="comentario_aceptado">
+                    <mat-error *ngIf="form.get('comentario_aceptado')!.touched && form.get('comentario_aceptado')!.invalid">
+                        <p *ngIf="form.get('comentario_aceptado')!.hasError('required')">Campo requerido</p>
+                        <p *ngIf="form.get('comentario_aceptado')!.hasError('maxlength')">Máxio 500 carácteres</p>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+    </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancelar</button>
+  <button mat-button cdkFocusInitial [disabled]="form.invalid" (click)="onSave()">Ok</button>
+</div>

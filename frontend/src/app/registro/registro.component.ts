@@ -99,7 +99,7 @@ export class RegistroComponent implements OnInit {
     this.formRegistro =  this.fb.group({
       nombre : ["",[ Validators.required, Validators.maxLength(256), Validators.pattern(rgv.no_blanks)]],
       razon_social : ["",[ Validators.required, Validators.maxLength(256),  Validators.pattern(rgv.no_blanks)]],
-      rfc : ["",[ Validators.required, Validators.maxLength(16),  Validators.pattern(rgv.rfc), RfcExistsValidator.exists]],
+      rfc : ["",[ Validators.required, Validators.maxLength(16),  Validators.pattern(rgv.rfc)], RfcExistsValidator.exists(this.eService)],
       descripcion : ["",[ Validators.required, Validators.maxLength(1024), Validators.pattern(rgv.no_blanks)]],
       calle_numero:["",[ Validators.required, Validators.maxLength(512),  Validators.pattern(rgv.no_blanks)]],
       codigo_postal : ["",[ Validators.required, Validators.maxLength(8), Validators.pattern(rgv.no_blanks)]],

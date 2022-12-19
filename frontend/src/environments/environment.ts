@@ -9,7 +9,8 @@ export const environment = {
 };
 
 function api (endpoint: string) {
-  return `http://54.234.60.110:8080/api/${endpoint}`;
+  return `http://localhost:44384/api/${endpoint}`;
+  //return `http://54.234.60.110:8080/api/${endpoint}`;
 }
 
 

@@ -60,12 +60,12 @@ export class EmpresasService {
     return this.http.get<any[]>(`${env.api(`requisitos/${id}`)}`);
   }
 
-  setAceptada(id:number, rfc:string){
-    return this.http.put<any>(`${env.api(`empresaAceptar/${id}?rfc=${rfc}`)}`,{});
+  setAceptada(data:any){
+    return this.http.put<any>(`${env.api(`empresaAceptar`)}`,data);
   }
 
-  setRechazada(id:number, rfc:string){
-    return this.http.put<any>(`${env.api(`empresaRechazar/${id}?rfc=${rfc}`)}`,{});
+  setRechazada(data:any){
+    return this.http.put<any>(`${env.api(`empresaRechazar`)}`,data);
   }
 
 
@@ -97,5 +97,17 @@ export class EmpresasService {
       }),
       map(() => true)
     ).subscribe();
+  }
+
+  disableEmpresa(data:any){
+    return this.http.put<empresas>(`${env.api('disable_empresa')}`, data);
+  }
+
+  existsRfc(rfc: string){
+    return this.http.get<boolean>(`${env.api('existe_rfc')}?rfc=${rfc}`);
+  }
+
+  existsCodigo(code: string){
+    return this.http.get<boolean>(`${env.api('existe_codigo')}?code=${code}`);
   }
 }

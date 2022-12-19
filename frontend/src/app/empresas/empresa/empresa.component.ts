@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EmpresasService } from 'src/app/utils/services/empresas.service';
 import { SnackbarService } from 'src/app/utils/services/snackbar.service';
+import { DisableEmpresaComponent } from '../modals/disable-empresa/disable-empresa.component';
 
 @Component({
   selector: 'app-empresa',
@@ -14,7 +16,8 @@ export class EmpresaComponent implements OnInit {
     private ar:ActivatedRoute,
     private eService: EmpresasService,
     private sbService: SnackbarService,
-    private _router: Router
+    private _router: Router,
+    public dialog: MatDialog
   ) { }
 
   id_empresa: number = 0;
@@ -128,6 +131,20 @@ export class EmpresaComponent implements OnInit {
 
   descargar(url:string, file_name:string, mediaType:string){
     this.eService.downloadItem(url,file_name,mediaType);
+  }
+
+  bajaEmpresa(){
+    let dialog = this.dialog.open(DisableEmpresaComponent, {
+      data : {
+        id_empresa : this.empresa_detalles.id_empresa
+      }
+    })
+
+    dialog
+    .afterClosed()
+    .subscribe(
+      res => this.ngOnInit()
+    )
   }
 
 }

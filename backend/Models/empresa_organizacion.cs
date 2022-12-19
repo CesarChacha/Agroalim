@@ -19,7 +19,5 @@ namespace backend.Models
         public Nullable<int> id_organizacion { get; set; }
         public string comentario { get; set; }
         public string sugerencia { get; set; }
-    
-        public virtual empresas empresas { get; set; }
     }
 }

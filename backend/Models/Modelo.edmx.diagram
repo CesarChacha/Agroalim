@@ -34,7 +34,7 @@
         <AssociationConnector Association="bdModel.FK_responsable_puesto" ManuallyRouted="false" />
         <EntityTypeShape EntityType="bdModel.responsables_cluster_view" Width="1.5" PointX="3.375" PointY="0.75" />
         <EntityTypeShape EntityType="bdModel.responsables_comites_view" Width="1.5" PointX="0.75" PointY="4.75" />
-        <EntityTypeShape EntityType="bdModel.cadena_productiva_view" Width="1.5" PointX="3.375" PointY="4.75" />
+        <EntityTypeShape EntityType="bdModel.cadena_productiva_view" Width="1.5" PointX="3.375" PointY="5" />
         <EntityTypeShape EntityType="bdModel.empresa_norma_view" Width="1.5" PointX="5.375" PointY="0.75" />
         <EntityTypeShape EntityType="bdModel.empresa_tema_view" Width="1.5" PointX="5.375" PointY="3.75" />
         <EntityTypeShape EntityType="bdModel.empresas" Width="1.5" PointX="0.75" PointY="27.25" />
@@ -48,6 +48,8 @@
         <AssociationConnector Association="bdModel.FK_empresa_sitio" />
         <AssociationConnector Association="bdModel.FK_empresa_telefono" />
         <AssociationConnector Association="bdModel.FK_responsable_empresa" />
+        <EntityTypeShape EntityType="bdModel.causas_baja" Width="1.5" PointX="5.375" PointY="6.75" />
+        <AssociationConnector Association="bdModel.FK_empresa_causa_baja" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

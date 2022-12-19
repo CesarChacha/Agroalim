@@ -1,0 +1,34 @@
+<h1 mat-dialog-title>Aceptar empresa</h1>
+<div mat-dialog-content>
+    <form  [formGroup]="form" (ngSubmit)="onSave()">
+        <div class="row">
+            <div class="col">
+                <mat-form-field class="w-100">
+                    <mat-label>Código empresa</mat-label>
+                    <input matInput type="text"  formControlName="codigo_empresa">
+                    <mat-error *ngIf="form.get('codigo_empresa')!.touched && form.get('codigo_empresa')!.invalid">
+                        <p *ngIf="form.get('codigo_empresa')!.hasError('required')">Campo requerido</p>
+                        <p *ngIf="form.get('codigo_empresa')!.hasError('maxlength')">Máxio 60 carácteres</p>
+                        <p *ngIf="form.get('codigo_empresa')!.hasError('exists')">Ya existe este código</p>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <mat-form-field class="w-100">
+                    <mat-label>Comentario</mat-label>
+                    <input matInput type="text"  formControlName="comentario_aceptado">
+                    <mat-error *ngIf="form.get('comentario_aceptado')!.touched && form.get('comentario_aceptado')!.invalid">
+                        <p *ngIf="form.get('comentario_aceptado')!.hasError('required')">Campo requerido</p>
+                        <p *ngIf="form.get('comentario_aceptado')!.hasError('maxlength')">Máxio 500 carácteres</p>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+    </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancelar</button>
+  <button mat-button cdkFocusInitial [disabled]="form.invalid" (click)="onSave()">Ok</button>
+</div>

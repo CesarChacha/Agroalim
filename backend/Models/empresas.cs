@@ -24,5 +24,9 @@ namespace backend.Models
         public Nullable<System.DateTime> fecha_actualizacion { get; set; }
         public Nullable<System.DateTime> fecha_solicitud { get; set; }
         public Nullable<bool> solicitud_rechazada { get; set; }
+        public Nullable<int> id_causa_baja { get; set; }
+        public string comentario_baja { get; set; }
+        public string codigo_empresa { get; set; }
+        public string comentario_aceptado { get; set; }
     }
 }

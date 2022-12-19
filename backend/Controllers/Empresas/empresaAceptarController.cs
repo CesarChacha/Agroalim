@@ -1,4 +1,5 @@
 ﻿using backend.Models;
+using backend.Models.custom;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,9 +14,11 @@ namespace backend.Controllers.Empresas
         private bdEntities db = new bdEntities();
 
         // GET: api/sitios
-        public Boolean Put(int id, string rfc)
+        public Boolean Put([FromBody] AceptarEmpresaDTO data)
         {
-            empresas empresa = db.empresas.Find(id);
+            empresas empresa = db.empresas.Find(data.id_empresa);
+            empresa.codigo_empresa = data.codigo_empresa;
+            empresa.comentario_aceptado = data.comentario_aceptado;
             empresa.fecha_actualizacion = DateTime.Now;
             empresa.solicitud_aceptada = true;
             empresa.solicitud_rechazada = false;

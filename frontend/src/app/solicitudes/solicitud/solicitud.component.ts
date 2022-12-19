@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EmpresasService } from 'src/app/utils/services/empresas.service';
 import { SnackbarService } from 'src/app/utils/services/snackbar.service';
+import { AcceptEmpresaComponent } from '../modals/accept-empresa/accept-empresa.component';
+import { DeclineEmpresaComponent } from '../modals/decline-empresa/decline-empresa.component';
 
 @Component({
   selector: 'app-solicitud',
@@ -14,7 +17,8 @@ export class SolicitudComponent implements OnInit {
     private ar:ActivatedRoute,
     private eService: EmpresasService,
     private sbService: SnackbarService,
-    private _router: Router
+    private _router: Router,
+    private dialog:MatDialog
   ) { }
 
   id_empresa: number = 0;
@@ -131,35 +135,21 @@ export class SolicitudComponent implements OnInit {
   }
 
   aceptarSolicitud(){
-    this.eService.setAceptada(this.id_empresa,this.rfc).subscribe(
-      res => {
-        if(res){
-          this.sbService.printMessage("La empresa fue aprobada exitosamente.","ok!");
-          setTimeout(() => {
-            this._router.navigateByUrl('/home/solicitudes')
-          }, 2000);
-        }else{
-          this.sbService.printMessage("Ocurio un error, intente más tarde","ok!");
-        }
-      },
-      err => this.sbService.printMessage("Ocurio un error, intente más tarde","ok!")
-    );
+    let dialog =  this.dialog.open(AcceptEmpresaComponent,{
+      data : { 
+        id_empresa : this.id_empresa,
+        rfc: this.rfc
+      }
+    })
   }
 
   rechazarSolicitud(){
-    this.eService.setRechazada(this.id_empresa,this.rfc).subscribe(
-      res => {
-        if(res){
-          this.sbService.printMessage("La empresa fue rechazada.","ok!");
-          setTimeout(() => {
-            this._router.navigateByUrl('/home/solicitudes')
-          }, 2000);
-        }else{
-          this.sbService.printMessage("Ocurio un error, intente más tarde","ok!");
-        }
-      },
-      err => this.sbService.printMessage("Ocurio un error, intente más tarde","ok!")
-    )
+    let dialog =  this.dialog.open(DeclineEmpresaComponent,{
+      data : { 
+        id_empresa : this.id_empresa,
+        rfc: this.rfc
+      }
+    })
   }
 
 }

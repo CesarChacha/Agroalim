@@ -40,6 +40,9 @@ namespace backend.Controllers.Empresas
             empresa.nombre_comercial = formulario.nombre;
             empresa.razon_social = formulario.razon_social;
             empresa.rfc = formulario.rfc;
+            empresa.comentario_aceptado = "";
+            empresa.comentario_baja = "";
+            empresa.codigo_empresa = "";
             empresa = db.empresas.Add(empresa);
             db.SaveChanges();
 

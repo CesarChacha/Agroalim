@@ -28,7 +28,5 @@ namespace backend.Models
         public Nullable<int> id_profesion { get; set; }
         public Nullable<int> id_comite { get; set; }
         public Nullable<System.DateTime> fecha_actualizacion { get; set; }
-    
-        public virtual empresas empresas { get; set; }
     }
 }

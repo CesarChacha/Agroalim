@@ -19,7 +19,5 @@ namespace backend.Models
         public string file_name { get; set; }
         public string local_file_name { get; set; }
         public string media_type { get; set; }
-    
-        public virtual empresas empresas { get; set; }
     }
 }

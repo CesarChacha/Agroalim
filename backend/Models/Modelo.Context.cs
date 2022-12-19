@@ -52,6 +52,7 @@ namespace backend.Models
         public virtual DbSet<empresa_norma_view> empresa_norma_view { get; set; }
         public virtual DbSet<empresa_tema_view> empresa_tema_view { get; set; }
         public virtual DbSet<empresas> empresas { get; set; }
+        public virtual DbSet<causas_baja> causas_baja { get; set; }
     
         public virtual ObjectResult<sp_get_empresa_Result> sp_get_empresa(Nullable<int> pIdEmpresa)
         {

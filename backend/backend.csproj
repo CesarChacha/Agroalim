@@ -383,9 +383,15 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\Administradores\administradorController.cs" />
+    <Compile Include="Controllers\Catalogos\causas_bajaController.cs" />
+    <Compile Include="Controllers\Catalogos\causas_baja_admController.cs" />
     <Compile Include="Controllers\Dashboard\metricasController.cs" />
+    <Compile Include="Controllers\Empresas\disable_empresaController.cs" />
     <Compile Include="Controllers\Empresas\empresaAceptarController.cs" />
     <Compile Include="Controllers\Empresas\empresaRechazarController.cs" />
+    <Compile Include="Controllers\Empresas\enable_empresaController.cs" />
+    <Compile Include="Controllers\Empresas\existe_codigoController.cs" />
+    <Compile Include="Controllers\Empresas\existe_rfcController.cs" />
     <Compile Include="Controllers\vistas\empresaCadenaProductivaController.cs" />
     <Compile Include="Controllers\Catalogos\cadena_productivaController.cs" />
     <Compile Include="Controllers\Catalogos\cadena_productiva_admController.cs" />
@@ -426,9 +432,14 @@
     <Compile Include="Models\cadena_productiva_view.cs">
       <DependentUpon>Modelo.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\causas_baja.cs">
+      <DependentUpon>Modelo.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\comites.cs">
       <DependentUpon>Modelo.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\custom\AceptarEmpresaDTO.cs" />
+    <Compile Include="Models\custom\DeshabilitarEmpresaDTO.cs" />
     <Compile Include="Models\custom\EmpresaForm.cs" />
     <Compile Include="Models\custom\FormRegistro.cs" />
     <Compile Include="Models\custom\LoginData.cs" />

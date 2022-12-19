@@ -25,7 +25,5 @@ namespace backend.Models
         public Nullable<bool> en_proceso_exportacion { get; set; }
         public string paises_exportacion { get; set; }
         public string sugerencia { get; set; }
-    
-        public virtual empresas empresas { get; set; }
     }
 }

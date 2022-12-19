@@ -20,7 +20,5 @@ namespace backend.Models
         public Nullable<bool> baja { get; set; }
         public Nullable<System.DateTime> fecha_actualizacion { get; set; }
         public Nullable<int> id_empresa { get; set; }
-    
-        public virtual empresas empresas { get; set; }
     }
 }

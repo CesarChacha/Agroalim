@@ -48,7 +48,6 @@
     <Property Name="en_proceso_exportacion" Type="Boolean" />
     <Property Name="paises_exportacion" Type="String" MaxLength="2048" FixedLength="false" Unicode="false" />
     <Property Name="sugerencia" Type="String" MaxLength="1024" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="empresas" Relationship="bdModel.FK_empresa_detalles_empresa" FromRole="detalles_empresa" ToRole="empresas" />
   </EntityType>
   <EntityType Name="domicilios">
     <Key>
@@ -62,7 +61,6 @@
     <Property Name="baja" Type="Boolean" />
     <Property Name="fecha_actualizacion" Type="DateTime" Precision="3" />
     <Property Name="id_empresa" Type="Int32" />
-    <NavigationProperty Name="empresas" Relationship="bdModel.FK_empresa_domicilio" FromRole="domicilios" ToRole="empresas" />
   </EntityType>
   <EntityType Name="empresa_cadena_productiva">
     <Key>
@@ -80,7 +78,6 @@
     <Property Name="id_empresa_norma" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="id_empresa" Type="Int32" />
     <Property Name="id_norma" Type="Int32" />
-    <NavigationProperty Name="empresas" Relationship="bdModel.FK_empresa_norma_empresa" FromRole="empresa_norma" ToRole="empresas" />
   </EntityType>
   <EntityType Name="empresa_organizacion">
     <Key>
@@ -91,7 +88,6 @@
     <Property Name="id_organizacion" Type="Int32" />
     <Property Name="comentario" Type="String" MaxLength="1024" FixedLength="false" Unicode="false" />
     <Property Name="sugerencia" Type="String" MaxLength="1024" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="empresas" Relationship="bdModel.FK_empresa_organizacion_empresa" FromRole="empresa_organizacion" ToRole="empresas" />
   </EntityType>
   <EntityType Name="empresa_tema">
     <Key>
@@ -161,7 +157,6 @@
     <Property Name="file_name" Type="String" MaxLength="1024" FixedLength="false" Unicode="false" />
     <Property Name="local_file_name" Type="String" MaxLength="2048" FixedLength="false" Unicode="false" />
     <Property Name="media_type" Type="String" MaxLength="1024" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="empresas" Relationship="bdModel.FK_empresa_requisito" FromRole="requisitos" ToRole="empresas" />
   </EntityType>
   <EntityType Name="responsables">
     <Key>
@@ -181,7 +176,6 @@
     <Property Name="id_profesion" Type="Int32" />
     <Property Name="id_comite" Type="Int32" />
     <Property Name="fecha_actualizacion" Type="DateTime" Precision="3" />
-    <NavigationProperty Name="empresas" Relationship="bdModel.FK_responsable_empresa" FromRole="responsables" ToRole="empresas" />
   </EntityType>
   <EntityType Name="sitios">
     <Key>
@@ -193,7 +187,6 @@
     <Property Name="baja" Type="Boolean" />
     <Property Name="fecha_actualizacion" Type="DateTime" Precision="3" />
     <Property Name="id_empresa" Type="Int32" />
-    <NavigationProperty Name="empresas" Relationship="bdModel.FK_empresa_sitio" FromRole="sitios" ToRole="empresas" />
   </EntityType>
   <EntityType Name="telefonos">
     <Key>
@@ -205,7 +198,6 @@
     <Property Name="baja" Type="Boolean" />
     <Property Name="fecha_actualizacion" Type="DateTime" Precision="3" />
     <Property Name="id_empresa" Type="Int32" />
-    <NavigationProperty Name="empresas" Relationship="bdModel.FK_empresa_telefono" FromRole="telefonos" ToRole="empresas" />
   </EntityType>
   <EntityType Name="temas">
     <Key>
@@ -420,6 +412,11 @@
       <End Role="empresas" EntitySet="empresas" />
       <End Role="responsables" EntitySet="responsables" />
     </AssociationSet>
+    <EntitySet Name="causas_baja" EntityType="bdModel.causas_baja" />
+    <AssociationSet Name="FK_empresa_causa_baja" Association="bdModel.FK_empresa_causa_baja">
+      <End Role="causas_baja" EntitySet="causas_baja" />
+      <End Role="empresas" EntitySet="empresas" />
+    </AssociationSet>
   </EntityContainer>
   <ComplexType Name="sp_get_empresa_Result">
     <Property Type="Int32" Name="id_empresa" Nullable="false" />
@@ -558,6 +555,10 @@
     <Property Name="fecha_actualizacion" Type="DateTime" Precision="3" />
     <Property Name="fecha_solicitud" Type="DateTime" Precision="3" />
     <Property Name="solicitud_rechazada" Type="Boolean" />
+    <Property Name="id_causa_baja" Type="Int32" />
+    <Property Name="comentario_baja" Type="String" MaxLength="512" FixedLength="false" Unicode="false" />
+    <Property Name="codigo_empresa" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+    <Property Name="comentario_aceptado" Type="String" MaxLength="512" FixedLength="false" Unicode="false" />
   </EntityType>
   <Association Name="FK_empresa_detalles_empresa">
     <End Type="bdModel.empresas" Role="empresas" Multiplicity="0..1" />
@@ -676,6 +677,28 @@
       </Principal>
       <Dependent Role="responsables">
         <PropertyRef Name="id_empresa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="causas_baja">
+    <Key>
+      <PropertyRef Name="id_causa_baja" />
+    </Key>
+    <Property Name="id_causa_baja" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="activo" Type="Boolean" />
+    <Property Name="baja" Type="Boolean" />
+    <Property Name="fecha_actualizacion" Type="DateTime" Precision="3" />
+  </EntityType>
+  <Association Name="FK_empresa_causa_baja">
+    <End Type="bdModel.causas_baja" Role="causas_baja" Multiplicity="0..1" />
+    <End Type="bdModel.empresas" Role="empresas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="causas_baja">
+        <PropertyRef Name="id_causa_baja" />
+      </Principal>
+      <Dependent Role="empresas">
+        <PropertyRef Name="id_causa_baja" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

@@ -25,6 +25,9 @@
           <button mat-icon-button matTooltip="Habilitar" color="accent" *ngIf="!row.activo" [disabled]="row.baja" (click)="update(idx,'upd')">
             <mat-icon>visibility</mat-icon>
           </button>
+          <button mat-icon-button matTooltip="Editar" color="accent"  [disabled]="row.baja" (click)="edit(idx)">
+            <mat-icon>edit</mat-icon>
+          </button>
           <button mat-icon-button matTooltip="Eliminar permanente" color="warn"  [disabled]="row.baja" (click)="update(idx,'del')">
             <mat-icon>delete</mat-icon>
           </button>

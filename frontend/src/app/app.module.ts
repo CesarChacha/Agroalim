@@ -43,6 +43,10 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import { PruebaArchivoComponent } from './prueba-archivo/prueba-archivo.component';
 import { ConfirmComponent } from './utils/modals/confirm/confirm.component';
 import { DatePipe } from '@angular/common';
+import { UpdateCatalogComponent } from './utils/modals/update-catalog/update-catalog.component';
+import { DisableEmpresaComponent } from './empresas/modals/disable-empresa/disable-empresa.component';
+import { AcceptEmpresaComponent } from './solicitudes/modals/accept-empresa/accept-empresa.component';
+import { DeclineEmpresaComponent } from './solicitudes/modals/decline-empresa/decline-empresa.component';
 
 
 @NgModule({
@@ -59,7 +63,11 @@ import { DatePipe } from '@angular/common';
     SolicitudComponent,
     EmpresaComponent,
     PruebaArchivoComponent,
-    ConfirmComponent
+    ConfirmComponent,
+    UpdateCatalogComponent,
+    DisableEmpresaComponent,
+    AcceptEmpresaComponent,
+    DeclineEmpresaComponent
   ],
   imports: [
     BrowserModule,

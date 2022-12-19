@@ -17,7 +17,5 @@ namespace backend.Models
         public int id_empresa_norma { get; set; }
         public Nullable<int> id_empresa { get; set; }
         public Nullable<int> id_norma { get; set; }
-    
-        public virtual empresas empresas { get; set; }
     }
 }

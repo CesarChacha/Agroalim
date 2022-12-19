@@ -1,0 +1,12 @@
+<h1 mat-dialog-title>{{data.data.nombre}}</h1>
+<div mat-dialog-content>
+  <p>Actualizar registro</p>
+  <mat-form-field appearance="fill">
+    <mat-label>Item</mat-label>
+    <input matInput [(ngModel)]="data.res">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancelar</button>
+  <button mat-button [mat-dialog-close]="data.res" cdkFocusInitial [disabled]="data.res.length==0">Ok</button>
+</div>

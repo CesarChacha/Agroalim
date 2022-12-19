@@ -22,6 +22,7 @@ export class CatalogosComponent implements OnInit {
     { nombre : "Cadena productiva", nombre_tabla : "cadena_productiva", nombre_pk : "id_cadena_productiva", endpoint : "cadena_productiva_adm"},
     { nombre : "Temas", nombre_tabla : "temas", nombre_pk : "id_tema", endpoint : "temas_adm"},
     { nombre : "Organizaciones", nombre_tabla : "organizaciones", nombre_pk : "id_organizacion", endpoint : "organizaciones_adm"},
+    { nombre : "Causas baja", nombre_tabla : "causas_baja", nombre_pk : "id_causa_baja", endpoint : "causas_baja_adm"},
   ]
 
   ngOnInit(): void {

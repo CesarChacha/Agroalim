@@ -1,0 +1,34 @@
+<h1 mat-dialog-title>Deshabilitar empresa</h1>
+<div mat-dialog-content>
+    <form  [formGroup]="formDisable" (ngSubmit)="onSave()">
+        <div class="row">
+            <div class="col">
+                <mat-form-field class="w-100">
+                    <mat-label>Causa de baja</mat-label>
+                    <mat-select formControlName="id_causa_baja">
+                        <mat-option *ngFor="let item of causas_baja" [value]="item.id_causa_baja">{{item.nombre}}</mat-option>
+                      </mat-select>
+                    <mat-error *ngIf="formDisable.get('id_causa_baja')!.touched && formDisable.get('id_causa_baja')!.invalid">
+                        <p *ngIf="formDisable.get('id_causa_baja')!.hasError('required')">Campo requerido</p>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <mat-form-field class="w-100">
+                    <mat-label>Comentario</mat-label>
+                    <input matInput type="text"  formControlName="comentario_baja">
+                    <mat-error *ngIf="formDisable.get('comentario_baja')!.touched && formDisable.get('comentario_baja')!.invalid">
+                        <p *ngIf="formDisable.get('comentario_baja')!.hasError('required')">Campo requerido</p>
+                        <p *ngIf="formDisable.get('comentario_baja')!.hasError('maxlength')">Máxio 500 carácteres</p>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+    </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancelar</button>
+  <button mat-button cdkFocusInitial [disabled]="formDisable.invalid" (click)="onSave()">Ok</button>
+</div>
