@@ -1,3 +1,4 @@
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 <div class="jumbotron" *ngIf="parte!=3">
     <div class="row">
         <div class="col-lg-2 col-md-2 col-sm-12 text-center"><!-- -->
@@ -513,12 +514,14 @@
         </div>
     </div>
 
+
     <div class="row">
         <div class="col">
             <button type="submit" class="w-100" mat-raised-button color="primary">Guardar <mat-icon>send</mat-icon></button>
             <mat-progress-bar mode="query" *ngIf="guardando"></mat-progress-bar>
         </div>
     </div>
+    <div class="g-recaptcha" data-sitekey="6LfL-W4kAAAAAGjqEXkvHbCk2CPLje0eXvGPBpNY"></div>
     <div class="row" *ngIf="guardando">
         <div class="col">
             <p>{{errorMensaje}}</p>
